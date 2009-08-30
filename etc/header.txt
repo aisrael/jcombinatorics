@@ -1,0 +1,8 @@
+^/\*\*$
+^ \* jcombinatorics:$
+^ \* Java Combinatorics Library$
+^ \*$
+^ \* Copyright \(c\) \d{4} by Alistair A\. Israel\. All rights reserved\.$
+^ \*$
+^ \* Created Aug \d{1,2}, \d{4}$
+^ \*/$
