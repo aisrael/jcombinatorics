@@ -83,7 +83,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
                 // swap
                 int j = i + f[i];
                 a[i] = a[j];
-                // fill to the right
+                // shift right
                 while (j > i + 1) {
                     a[j] = a[j - 1];
                     --j;

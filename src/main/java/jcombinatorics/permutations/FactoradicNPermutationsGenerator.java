@@ -79,8 +79,10 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
         for (int i = 0; i < a.length - 1; ++i) {
             if (f[i] != 0) {
                 final int t = a[i];
+                // swap
                 int j = i + f[i];
                 a[i] = a[j];
+                // shift right
                 while (j > i + 1) {
                     a[j] = a[j - 1];
                     --j;
