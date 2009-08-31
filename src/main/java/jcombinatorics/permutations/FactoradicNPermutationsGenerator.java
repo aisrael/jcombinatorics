@@ -9,13 +9,16 @@
 package jcombinatorics.permutations;
 
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.MathUtils;
 
 /**
- * P(n) generator in lexicographical order. Only supports n <= 12, since 13! >
- * {@link java.lang.Integer#MAX_VALUE}.
+ * P(n) generator in lexicographical order using factoradics. Supports computing
+ * the <i>i</i>-th permutation directly using {@link #get(long)}. Only supports n
+ * <= 20, since 20! > {@link java.lang.Long#MAX_VALUE}.
  *
  * @author Alistair A. Israel
- * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
+ * @see <a
+ *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
 public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
@@ -40,7 +43,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
      *        int
      * @return int[]
      */
-    public final int[] get(final int i) {
+    public final int[] get(final long i) {
         final int[] f = new int[n];
         final int[] a = new int[n];
         factoradic(f, i);
@@ -53,14 +56,14 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
      * @param f
      *        the array to hold the factoradic
      * @param i
-     *        int
+     *        long
      */
-    private static void factoradic(final int[] f, final int i) {
+    private static void factoradic(final int[] f, final long i) {
         final int len = f.length;
-        int m = i;
+        long m = i;
         int z = 1;
         while (m > 0) {
-            f[len - z] = m % z;
+            f[len - z] = (int) (m % z);
             m /= z;
             ++z;
         }
@@ -102,24 +105,13 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
      */
     private class Iterator implements java.util.Iterator<int[]> {
 
-        private final int count = nFactorial();
+        private final long count = MathUtils.factorial(n);
 
         private final int[] f = new int[n];
 
         private final int[] a = new int[n];
 
-        private int index;
-
-        /**
-         * @return n!
-         */
-        private int nFactorial() {
-            int fact = 1;
-            for (int i = 2; i <= n; ++i) {
-                fact *= i;
-            }
-            return fact;
-        }
+        private long index;
 
         /**
          * {@inheritDoc}

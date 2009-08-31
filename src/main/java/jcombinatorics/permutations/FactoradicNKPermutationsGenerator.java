@@ -36,13 +36,13 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
     }
 
     /**
-     * Retrieve the i-th permutation.
+     * Retrieve the <i>i</i>-th permutation.
      *
      * @param i
-     *        int
+     *        long
      * @return int[]
      */
-    public final int[] get(final int i) {
+    public final int[] get(final long i) {
         final int[] f = new int[k];
         final int[] a = new int[n];
         factoradicNK(f, i);
@@ -56,16 +56,16 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
      * @param f
      *        the array to hold the factoradic
      * @param i
-     *        int
+     *        long
      */
-    public final void factoradicNK(final int[] f, final int i) {
-        int m = i;
+    public final void factoradicNK(final int[] f, final long i) {
+        long m = i;
         int z = 1;
         int j = k - 1;
         while (j >= 0) {
             m /= z;
             z = n - j;
-            f[j] = m % z;
+            f[j] = (int) (m % z);
             --j;
         }
     }
@@ -108,13 +108,13 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
      */
     private class Iterator implements java.util.Iterator<int[]> {
 
-        private final int count = (int) Permutations.count(n, k);
+        private final long count = Permutations.count(n, k);
 
         private final int[] f = new int[k];
 
         private final int[] a = new int[n];
 
-        private int index;
+        private long index;
 
         /**
          * {@inheritDoc}

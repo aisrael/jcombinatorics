@@ -26,27 +26,33 @@ public final class MathUtils {
         // noop
     }
 
+    private static final int MAX_N_FACTORIAL = 20;
+
+    private static final long[] FACTORIALS = new long[MAX_N_FACTORIAL + 1];
+    static {
+        FACTORIALS[0] = 1;
+        for (int i = 1; i <= MAX_N_FACTORIAL; ++i) {
+            FACTORIALS[i] = FACTORIALS[i - 1] * i;
+        }
+    }
+
     /**
      * @param n
      *        integer <= 20 (21! > {@link Long#MAX_VALUE}).
      * @return n!
      */
     public static long factorial(final int n) {
-        if (n > 20) {
-            throw new IllegalArgumentException("long can only hold up to 20!");
+        if (n > MAX_N_FACTORIAL) {
+            throw new IllegalArgumentException("long only supports up to 20!");
         }
-        long f = 1;
-        for (int i = 1; i <= n; ++i) {
-            f *= i;
-        }
-        return f;
+        return FACTORIALS[n];
     }
 
     /**
      * {@link Integer#MAX_VALUE} can only occupy 13 places in factoradic base (
      * 13! > {@link Integer#MAX_VALUE}).
      */
-    private static final int MAX_INT_FACTORADIC = 13;
+    private static final int MAX_FACTORADIC_N = 13;
 
     /**
      * Return the representation of the given integer in factoradic base.
@@ -64,19 +70,19 @@ public final class MathUtils {
             }
             return new int[] { 0 };
         }
-        final int[] f = new int[MAX_INT_FACTORADIC];
+        final int[] f = new int[MAX_FACTORADIC_N];
         int m = n;
         int z = 0;
         while (m > 0) {
             ++z;
             final int r = m % z;
-            f[MAX_INT_FACTORADIC - z] = r;
+            f[MAX_FACTORADIC_N - z] = r;
             m /= z;
         }
 
         // pack
         final int[] result = new int[z];
-        System.arraycopy(f, MAX_INT_FACTORADIC - z, result, 0, z);
+        System.arraycopy(f, MAX_FACTORADIC_N - z, result, 0, z);
         return result;
     }
 
