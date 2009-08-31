@@ -28,11 +28,13 @@ public final class MathUtils {
 
     /**
      * @param n
-     *        integer <= 21 (21! > {@link Long#MAX_VALUE}).
+     *        integer <= 20 (21! > {@link Long#MAX_VALUE}).
      * @return n!
      */
     public static long factorial(final int n) {
-        assert n < 21;
+        if (n > 20) {
+            throw new IllegalArgumentException("long can only hold up to 20!");
+        }
         long f = 1;
         for (int i = 1; i <= n; ++i) {
             f *= i;
