@@ -27,6 +27,16 @@ public final class MathUtils {
     }
 
     /**
+     * @param a
+     *        an array
+     */
+    public static void identityPermutation(final int[] a) {
+        for (int i = a.length - 1; i >= 0; --i) {
+            a[i] = i;
+        }
+    }
+
+    /**
      * @param n
      *        integer <= 21 (21! > {@link Long#MAX_VALUE}).
      * @return n!

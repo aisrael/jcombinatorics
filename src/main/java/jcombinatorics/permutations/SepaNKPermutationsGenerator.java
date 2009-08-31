@@ -9,6 +9,7 @@
 package jcombinatorics.permutations;
 
 import static java.util.Arrays.sort;
+import jcombinatorics.util.MathUtils;
 
 /**
  * P(n, k) generator in lexicographical order.
@@ -73,16 +74,7 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
          *
          */
         public Iterator() {
-            initialize();
-        }
-
-        /**
-         * Initialize results array
-         */
-        private void initialize() {
-            for (int i = 0; i < n; i++) {
-                a[i] = i;
-            }
+            MathUtils.identityPermutation(a);
         }
 
         /**
@@ -111,17 +103,7 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
          *
          */
         private void computeNext() {
-            int i = edge;
-            // find rightmost a where a[i] > a[i+1]
-            while (i > 0 && a[i] >= a[i + 1]) {
-                --i;
-            }
-            if (i == 0 && a[i] > a[i + 1]) {
-                hasNext = false;
-                return;
-            }
-
-            if (i == edge) {
+            if (a[edge] < a[edge + 1]) {
                 // rotate left
                 final int last = n - 1;
                 final int t = a[edge];
@@ -130,11 +112,30 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
                 }
                 a[last] = t;
             } else {
+                final int i = findi();
+                if (i == 0 && a[i] > a[i + 1]) {
+                    hasNext = false;
+                    return;
+                }
+
                 // find next 0..n in a[i + 1, n]
                 final int j = findj(i);
                 swap(i, j);
                 sort(a, i + 1, n);
             }
+        }
+
+        /**
+         * Find rightmost i where a[i] > a[i+1]
+         *
+         * @return i
+         */
+        private int findi() {
+            int i = edge;
+            while (i > 0 && a[i] >= a[i + 1]) {
+                --i;
+            }
+            return i;
         }
 
         /**

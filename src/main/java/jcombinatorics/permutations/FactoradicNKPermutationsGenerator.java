@@ -8,6 +8,8 @@
  */
 package jcombinatorics.permutations;
 
+import jcombinatorics.util.MathUtils;
+
 /**
  * P(n, k) generator in lexicographical order.
  *
@@ -44,7 +46,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
         final int[] f = new int[k];
         final int[] a = new int[n];
         factoradicNK(f, i);
-        identityPermutation(a);
+        MathUtils.identityPermutation(a);
         factoradicToPermutation(f, a);
         System.arraycopy(a, 0, f, 0, k);
         return f;
@@ -92,16 +94,6 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
     }
 
     /**
-     * @param a
-     *        array of int
-     */
-    private static void identityPermutation(final int[] a) {
-        for (int i = 0; i < a.length; ++i) {
-            a[i] = i;
-        }
-    }
-
-    /**
      * {@inheritDoc}
      *
      * @see java.lang.Iterable#iterator()
@@ -140,7 +132,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
          */
         public int[] next() {
             factoradicNK(f, index);
-            identityPermutation(a);
+            MathUtils.identityPermutation(a);
             factoradicToPermutation(f, a);
             ++index;
             System.arraycopy(a, 0, f, 0, k);
