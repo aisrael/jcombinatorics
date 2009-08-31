@@ -27,6 +27,10 @@ public final class MathUtils {
     }
 
     /**
+     * Fills the given array with a[i] = i, for example, if a.length = 4, then
+     * fills a with { 0, 1, 2, 3 }. Used throughout permutation and combination
+     * generation as the first result (lexicographically).
+     *
      * @param a
      *        an array
      */
