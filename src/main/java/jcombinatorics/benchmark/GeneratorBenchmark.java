@@ -37,7 +37,7 @@ public class GeneratorBenchmark extends Benchmark {
      *        the generator/task name
      * @param generator
      *        the permutations generator
-     * @return {@link Result}
+     * @return {@link GeneratorBenchmark.Result}
      */
     public final Result bench(final String name, final Iterable<int[]> generator) {
         final Result result = bench(name, new Task(name, generator));
@@ -47,7 +47,7 @@ public class GeneratorBenchmark extends Benchmark {
 
     /**
      * @param result
-     *        the {@link Result}
+     *        the {@link GeneratorBenchmark.Result}
      */
     private void printResult(final Result result) {
         final String name = result.getName();

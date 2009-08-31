@@ -66,7 +66,8 @@ public final class MathUtils {
      * @param n
      *        the number
      * @return the factoradic
-     * @see http://en.wikipedia.org/wiki/Factoradic
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
      */
     public static int[] factoradic(final int n) {
         if (n < 1) {
@@ -100,7 +101,8 @@ public final class MathUtils {
      * @param n
      *        the number
      * @return the index (from the right) of the most significant digit
-     * @see http://en.wikipedia.org/wiki/Factoradic
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
      */
     public static int factoradic(final int[] a, final int n) {
         Arrays.fill(a, 0);

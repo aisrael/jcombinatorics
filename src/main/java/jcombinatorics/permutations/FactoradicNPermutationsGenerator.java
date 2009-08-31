@@ -15,7 +15,7 @@ import jcombinatorics.util.MathUtils;
  * {@link java.lang.Integer#MAX_VALUE}.
  *
  * @author Alistair A. Israel
- * @see http://en.wikipedia.org/wiki/Factoradic
+ * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
 public class FactoradicNPermutationsGenerator implements Iterable<int[]> {

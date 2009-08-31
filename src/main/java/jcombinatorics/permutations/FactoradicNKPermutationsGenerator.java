@@ -14,7 +14,7 @@ import jcombinatorics.util.MathUtils;
  * P(n, k) generator in lexicographical order.
  *
  * @author Alistair A. Israel
- * @see http://en.wikipedia.org/wiki/Factoradic
+ * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
 public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {

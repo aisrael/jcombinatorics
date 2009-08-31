@@ -13,7 +13,8 @@ package jcombinatorics.permutations;
  * {@link java.lang.Integer#MAX_VALUE}.
  *
  * @author Alistair A. Israel
- * @see http://www.freewebz.com/permute/soda_submit.html
+ * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A
+ *      Simple, Efficient Permutation Algorithm (Jeffrey A. Johnson)</a>
  * @since 0.1
  */
 public class SepaNPermutationsGenerator implements Iterable<int[]> {

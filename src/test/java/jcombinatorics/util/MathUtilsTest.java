@@ -39,7 +39,7 @@ public final class MathUtilsTest {
     }
 
     /**
-     * Test for {@link MathUtils#factoradic(int)).
+     * Test for {@link MathUtils#factoradic(int)}.
      */
     @Test
     public void testFactoradicInt() {
@@ -101,7 +101,7 @@ public final class MathUtilsTest {
     }
 
     /**
-     * Test for {@link MathUtils#gcd(int[])}.
+     * Test for {@link MathUtils#gcd(int, int)}.
      */
     @Test
     public void testGcd() {

@@ -21,7 +21,7 @@ import org.junit.Test;
 public final class PermutationsTest {
 
     /**
-     * Test for {@link Permutations#count()}.
+     * Test for {@link Permutations#count(int, int)}.
      */
     @Test
     public void testPermutationsCount() {
