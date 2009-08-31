@@ -49,10 +49,10 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
     @Test
     public void testGet() {
         final FactoradicNPermutationsGenerator generator = new FactoradicNPermutationsGenerator(N);
-        for (int i = 0; i < P4.length; ++i) {
+        for (int i = 0; i < P_4.length; ++i) {
             final int[] b = generator.get(i);
-            assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P4[i]), Arrays
-                    .toString(b)), P4[i], b);
+            assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P_4[i]), Arrays
+                    .toString(b)), P_4[i], b);
         }
     }
 

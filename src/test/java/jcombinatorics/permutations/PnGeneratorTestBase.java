@@ -28,7 +28,7 @@ public class PnGeneratorTestBase {
     /**
      * P(4)
      */
-    public static final int[][] P4 = { { 0, 1, 2, 3 }, { 0, 1, 3, 2 }, { 0, 2, 1, 3 }, { 0, 2, 3, 1 },
+    public static final int[][] P_4 = { { 0, 1, 2, 3 }, { 0, 1, 3, 2 }, { 0, 2, 1, 3 }, { 0, 2, 3, 1 },
             { 0, 3, 1, 2 }, { 0, 3, 2, 1 }, { 1, 0, 2, 3 }, { 1, 0, 3, 2 }, { 1, 2, 0, 3 }, { 1, 2, 3, 0 },
             { 1, 3, 0, 2 }, { 1, 3, 2, 0 }, { 2, 0, 1, 3 }, { 2, 0, 3, 1 }, { 2, 1, 0, 3 }, { 2, 1, 3, 0 },
             { 2, 3, 0, 1 }, { 2, 3, 1, 0 }, { 3, 0, 1, 2 }, { 3, 0, 2, 1 }, { 3, 1, 0, 2 }, { 3, 1, 2, 0 },
@@ -41,8 +41,8 @@ public class PnGeneratorTestBase {
     protected final void testGenerateP4(final Iterable<int[]> generator) {
         int i = 0;
         for (final int[] permutation : generator) {
-            assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P4[i]), Arrays
-                    .toString(permutation)), P4[i], permutation);
+            assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P_4[i]), Arrays
+                    .toString(permutation)), P_4[i], permutation);
             ++i;
         }
         assertEquals(24, i);

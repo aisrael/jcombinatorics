@@ -53,8 +53,8 @@ public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTes
     @Test
     public void testGet() {
         final FactoradicNKPermutationsGenerator generator = new FactoradicNKPermutationsGenerator(5, 3);
-        for (int i = 0; i < P53.length; ++i) {
-            final int[] expected = P53[i];
+        for (int i = 0; i < P_5_3.length; ++i) {
+            final int[] expected = P_5_3[i];
             final int[] actual = generator.get(i);
             assertArrayEquals(expected, actual);
         }
