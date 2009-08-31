@@ -90,7 +90,7 @@ public class CompareNKGenerators implements Runnable {
      *
      * @author Alistair A. Israel
      */
-    private class Task implements Runnable {
+    private static class Task implements Runnable {
 
         private final int reps;
 
