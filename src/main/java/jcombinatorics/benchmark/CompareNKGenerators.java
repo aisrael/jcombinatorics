@@ -75,7 +75,7 @@ public class CompareNKGenerators implements Runnable {
                 }
                 final String name = result.getName();
                 final long np = p * reps;
-                final float ppms = np / millis;
+                final float ppms = np / (float) millis;
                 out.println(String.format("%d times %s took %,d ms", reps, name, millis));
                 out.println(String.format(
                         "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", reps, p,

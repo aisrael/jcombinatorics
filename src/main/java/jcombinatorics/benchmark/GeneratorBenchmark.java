@@ -53,7 +53,7 @@ public class GeneratorBenchmark extends Benchmark {
         final String name = result.getName();
         final long millis = result.getMillis();
         final long np = expectedPermutations * reps;
-        final float ppms = np / millis;
+        final float ppms = np / (float) millis;
         System.out.println(String.format("%d times %s took %,d ms", reps, name, millis));
         System.out.println(String.format(
                 "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", reps,
