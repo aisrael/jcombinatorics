@@ -24,9 +24,10 @@ public final class ArrayUtils {
     }
 
     /**
-     * Fills the given array with a[i] = i. For example, if a.length = 4, then
-     * fills a with { 0, 1, 2, 3 }. Used throughout permutation and combination
-     * generation as the first result (lexicographically).
+     * Fills the given array with a[i] = i. For example, if a = int[4], then
+     * fills <code>a</code> with <code>{ 0, 1, 2, 3 }</code>. Used throughout
+     * permutation and combination generation as the first result
+     * (lexicographically).
      *
      * @param a
      *        an array
@@ -39,7 +40,8 @@ public final class ArrayUtils {
 
     /**
      * Creates and fills an array with a[i] = i. For example, if n = 4, then
-     * returns { 0, 1, 2, 3 }.
+     * returns <code>{ 0, 1, 2, 3 }</code>. Used throughout permutation and
+     * combination generation as the first result (lexicographically).
      *
      * @param n
      *        the size of the array
