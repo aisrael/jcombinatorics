@@ -9,7 +9,7 @@
 package jcombinatorics.permutations;
 
 import static java.util.Arrays.sort;
-import jcombinatorics.util.MathUtils;
+import jcombinatorics.util.ArrayUtils;
 
 /**
  * P(n, k) generator in lexicographical order.
@@ -74,7 +74,7 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
          *
          */
         public Iterator() {
-            MathUtils.identityPermutation(a);
+            ArrayUtils.identityPermutation(a);
         }
 
         /**

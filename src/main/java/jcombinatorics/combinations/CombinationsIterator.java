@@ -10,7 +10,7 @@ package jcombinatorics.combinations;
 
 import java.util.Iterator;
 
-import jcombinatorics.util.MathUtils;
+import jcombinatorics.util.ArrayUtils;
 
 /**
  * A 'fast' combinations generator.
@@ -79,8 +79,7 @@ public class CombinationsIterator implements Iterator<int[]> {
      *
      */
     private void initialize() {
-        this.a = new int[k];
-        MathUtils.identityPermutation(a);
+        this.a = ArrayUtils.identityPermutation(k);
     }
 
     /**

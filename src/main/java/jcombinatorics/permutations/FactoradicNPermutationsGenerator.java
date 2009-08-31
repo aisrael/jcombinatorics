@@ -8,7 +8,7 @@
  */
 package jcombinatorics.permutations;
 
-import jcombinatorics.util.MathUtils;
+import jcombinatorics.util.ArrayUtils;
 
 /**
  * P(n) generator in lexicographical order. Only supports n <= 12, since 13! >
@@ -44,7 +44,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
         final int[] f = new int[n];
         final int[] a = new int[n];
         factoradic(f, i);
-        MathUtils.identityPermutation(a);
+        ArrayUtils.identityPermutation(a);
         factoradicToPermutation(f, a);
         return a;
     }
@@ -137,7 +137,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
          */
         public int[] next() {
             factoradic(f, index);
-            MathUtils.identityPermutation(a);
+            ArrayUtils.identityPermutation(a);
             factoradicToPermutation(f, a);
             ++index;
             return a;

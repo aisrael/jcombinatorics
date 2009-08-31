@@ -14,6 +14,40 @@ package jcombinatorics.util;
  *
  * @author Alistair A. Israel
  */
-public class ArrayUtils {
+public final class ArrayUtils {
 
+    /**
+     * Utility classes should not have a public or default constructor.
+     */
+    private ArrayUtils() {
+        // noop
+    }
+
+    /**
+     * Fills the given array with a[i] = i. For example, if a.length = 4, then
+     * fills a with { 0, 1, 2, 3 }. Used throughout permutation and combination
+     * generation as the first result (lexicographically).
+     *
+     * @param a
+     *        an array
+     */
+    public static void identityPermutation(final int[] a) {
+        for (int i = a.length - 1; i >= 0; --i) {
+            a[i] = i;
+        }
+    }
+
+    /**
+     * Creates and fills an array with a[i] = i. For example, if n = 4, then
+     * returns { 0, 1, 2, 3 }.
+     *
+     * @param n
+     *        the size of the array
+     * @return the initialized array
+     */
+    public static int[] identityPermutation(final int n) {
+        final int[] a = new int[n];
+        identityPermutation(a);
+        return a;
+    }
 }
