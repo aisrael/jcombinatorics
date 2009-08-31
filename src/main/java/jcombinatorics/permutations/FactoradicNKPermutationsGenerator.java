@@ -79,16 +79,11 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
     private static void factoradicToPermutation(final int[] f, final int[] a) {
         for (int i = 0; i < f.length; ++i) {
             if (f[i] != 0) {
-                final int t = a[i];
-                // swap
-                int j = i + f[i];
-                a[i] = a[j];
+                final int t = a[i + f[i]];
                 // shift right
-                while (j > i + 1) {
-                    a[j] = a[j - 1];
-                    --j;
-                }
-                a[j] = t;
+                System.arraycopy(a, i, a, i + 1, f[i]);
+                // swap
+                a[i] = t;
             }
         }
     }
