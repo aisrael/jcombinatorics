@@ -98,8 +98,7 @@ public class Benchmark {
         task.run();
         final long stop = System.currentTimeMillis();
         final long millis = stop - start;
-        final Result result = new Result(taskName, millis);
-        return result;
+        return new Result(taskName, millis);
     }
 
     /**
