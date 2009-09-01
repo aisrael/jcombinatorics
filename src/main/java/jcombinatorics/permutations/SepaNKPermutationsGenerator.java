@@ -104,12 +104,11 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
         private void computeNext() {
             if (a[edge] < a[edge + 1]) {
                 // rotate left
-                final int last = n - 1;
                 final int t = a[edge];
-                for (int j = edge; j < last; ++j) {
+                for (int j = edge; j < n - 1; ++j) {
                     a[j] = a[j + 1];
                 }
-                a[last] = t;
+                a[n - 1] = t;
             } else {
                 final int i = findi();
                 if (i == 0 && a[i] > a[i + 1]) {
@@ -127,7 +126,8 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
         }
 
         /**
-         * @param start int
+         * @param start
+         *        int
          */
         private void reverseRightOf(final int start) {
             int i = start + 1;
