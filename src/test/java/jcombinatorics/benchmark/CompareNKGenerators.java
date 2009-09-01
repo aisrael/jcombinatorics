@@ -20,7 +20,7 @@ import jcombinatorics.permutations.SepaNKPermutationsGenerator;
  */
 public class CompareNKGenerators implements Runnable {
 
-    private static final int N = 7;
+    private static final int N = 8;
 
     private static final int MULTIPLIER = 100;
 
@@ -38,24 +38,26 @@ public class CompareNKGenerators implements Runnable {
                 return new SepaNKPermutationsGenerator(n, k);
             }
         };
-        final float[][] sepa = collectTimings(sepaFactory);
+        final float[][] sepa = collectTimings("SEPA", sepaFactory);
         final NKGeneratorFactory factoradicFactory = new NKGeneratorFactory() {
 
             public Iterable<int[]> generator(final int n, final int k) {
                 return new FactoradicNKPermutationsGenerator(n, k);
             }
         };
-        final float[][] factoradic = collectTimings(factoradicFactory);
+        final float[][] factoradic = collectTimings("Factoradic", factoradicFactory);
         printTimingArray(sepa);
         printTimingArray(factoradic);
     }
 
     /**
+     * @param generatorName
+     *        "Sepa" or "Factoradic"
      * @param factory
      *        the NKGeneratorFactory
      * @return float[][]
      */
-    private float[][] collectTimings(final NKGeneratorFactory factory) {
+    private float[][] collectTimings(final String generatorName, final NKGeneratorFactory factory) {
         final float[][] sepa = new float[N + 1][N + 1];
         for (int n = 2; n <= N; ++n) {
             for (int k = 1; k <= n; ++k) {
@@ -64,8 +66,8 @@ public class CompareNKGenerators implements Runnable {
                 if (reps < 1) {
                     reps = 1;
                 }
-                final String taskName = "SEPA P(" + n + "," + k + ")";
                 final Task task = new Task(reps, factory.generator(n, k));
+                final String taskName = generatorName + " P(" + n + "," + k + ")";
                 final Result result = Benchmark.single(taskName, task);
                 final long millis;
                 if (result.getMillis() > 0) {
@@ -138,7 +140,7 @@ public class CompareNKGenerators implements Runnable {
         for (int n = 2; n <= N; ++n) {
             out.print(n + ",");
             for (int k = 1; k <= n; ++k) {
-                out.print(a[n][k] + ",");
+                out.print(String.format("%1.2f,", a[n][k]));
             }
             out.println();
         }
