@@ -8,7 +8,6 @@
  */
 package jcombinatorics.permutations;
 
-import static java.util.Arrays.sort;
 import jcombinatorics.util.ArrayUtils;
 
 /**
@@ -118,10 +117,25 @@ public class SepaNKPermutationsGenerator implements Iterable<int[]> {
                     return;
                 }
 
+                // alternately, swap first then sort
+                reverseRightOf(edge);
+                reverseRightOf(i);
                 // find next 0..n in a[i + 1, n]
                 final int j = findj(i);
                 swap(i, j);
-                sort(a, i + 1, n);
+            }
+        }
+
+        /**
+         * @param start int
+         */
+        private void reverseRightOf(final int start) {
+            int i = start + 1;
+            int j = n - 1;
+            while (i < j) {
+                swap(i, j);
+                ++i;
+                --j;
             }
         }
 
