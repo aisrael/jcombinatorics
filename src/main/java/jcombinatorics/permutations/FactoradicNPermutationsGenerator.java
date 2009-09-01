@@ -25,6 +25,8 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
 
     private final int n;
 
+    private final int[] identity;
+
     /**
      * @param n
      *        the number of elements
@@ -34,6 +36,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
             throw new IllegalArgumentException("0 < n <= 12!");
         }
         this.n = n;
+        identity = ArrayUtils.identityPermutation(n);
     }
 
     /**
@@ -47,7 +50,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
         final int[] f = new int[n];
         final int[] a = new int[n];
         factoradic(f, i);
-        ArrayUtils.identityPermutation(a);
+        System.arraycopy(identity, 0, a, 0, n);
         factoradicToPermutation(f, a);
         return a;
     }
@@ -126,7 +129,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
          */
         public int[] next() {
             factoradic(f, index);
-            ArrayUtils.identityPermutation(a);
+            System.arraycopy(identity, 0, a, 0, n);
             factoradicToPermutation(f, a);
             ++index;
             return a;

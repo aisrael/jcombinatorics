@@ -23,6 +23,8 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
 
     private final int k;
 
+    private final int[] identity;
+
     /**
      * @param n
      *        the number of elements
@@ -33,6 +35,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
         assert n > 0;
         this.n = n;
         this.k = k;
+        this.identity = ArrayUtils.identityPermutation(n);
     }
 
     /**
@@ -46,7 +49,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
         final int[] f = new int[k];
         final int[] a = new int[n];
         factoradicNK(f, i);
-        ArrayUtils.identityPermutation(a);
+        System.arraycopy(identity, 0, a, 0, n);
         factoradicToPermutation(f, a);
         System.arraycopy(a, 0, f, 0, k);
         return f;
@@ -127,7 +130,7 @@ public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
          */
         public int[] next() {
             factoradicNK(f, index);
-            ArrayUtils.identityPermutation(a);
+            System.arraycopy(identity, 0, a, 0, n);
             factoradicToPermutation(f, a);
             ++index;
             System.arraycopy(a, 0, f, 0, k);
