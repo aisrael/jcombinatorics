@@ -27,7 +27,7 @@ public final class MathUtils {
     /**
      * We only support up to 20! since 21! > {@link Long#MAX_VALUE}.
      */
-    private static final int MAX_N_FACTORIAL = 21;
+    public static final int MAX_N_FACTORIAL = 21;
 
     /**
      * Pre-calculate factorials into a lookup table, trade O(n) space for O(1)
