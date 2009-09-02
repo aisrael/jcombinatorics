@@ -4,5 +4,5 @@
 ^ \*$
 ^ \* Copyright \(c\) \d{4} by Alistair A\. Israel\. All rights reserved\.$
 ^ \*$
-^ \* Created Aug \d{1,2}, \d{4}$
+^ \* Created (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}, \d{4}$
 ^ \*/$
