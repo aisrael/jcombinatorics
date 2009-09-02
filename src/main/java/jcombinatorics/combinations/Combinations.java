@@ -8,8 +8,7 @@
  */
 package jcombinatorics.combinations;
 
-import java.util.ArrayList;
-import java.util.List;
+import jcombinatorics.util.ArrayUtils;
 
 /**
  * A utility class that provides convenience methods for generating and working
@@ -30,7 +29,7 @@ public final class Combinations {
     }
 
     /**
-     * Returns the number of unique combinations of <code>n</code> elements
+     * Computes the number of unique combinations of <code>n</code> elements
      * taken <code>k</code> at a time, which can be computed as:
      * <code>n! / k! (n - k)!</code>
      *
@@ -42,6 +41,9 @@ public final class Combinations {
      *         <code>k</code> at a time
      */
     public static long count(final int n, final int k) {
+        if (k < 0 || k > n) {
+            throw new IllegalArgumentException("0 <= k <= " + n + "!");
+        }
         long count = 1;
         for (int i = 0; i < k; ++i) {
             count = count * (n - i) / (i + 1);
@@ -82,7 +84,7 @@ public final class Combinations {
          *        take <code>k</code> at a time
          * @return {@link Generator}&lt;T&gt;
          */
-        public final Iterable<List<T>> take(final int k) {
+        public final Iterable<T[]> take(final int k) {
             return new Generator<T>(elements, k);
         }
     }
@@ -92,7 +94,7 @@ public final class Combinations {
      *
      * @author Alistair A. Israel
      */
-    public static class Generator<T> implements Iterable<List<T>> {
+    public static class Generator<T> implements Iterable<T[]> {
 
         private final T[] elements;
 
@@ -114,7 +116,7 @@ public final class Combinations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<List<T>> iterator() {
+        public final java.util.Iterator<T[]> iterator() {
             return new Iterator();
         }
 
@@ -122,7 +124,7 @@ public final class Combinations {
          *
          * @author Alistair A. Israel
          */
-        private final class Iterator implements java.util.Iterator<List<T>> {
+        private final class Iterator implements java.util.Iterator<T[]> {
 
             private final CombinationsIterator iterator = new CombinationsIterator(elements.length, k);
 
@@ -140,13 +142,9 @@ public final class Combinations {
              *
              * @see java.util.Iterator#next()
              */
-            public List<T> next() {
+            public T[] next() {
                 final int[] indices = iterator.next();
-                final List<T> result = new ArrayList<T>(k);
-                for (int i = 0; i < k; ++i) {
-                    result.add(elements[indices[i]]);
-                }
-                return result;
+                return ArrayUtils.valuesAt(elements, indices);
             }
 
             /**
