@@ -2,7 +2,10 @@
  * jcombinatorics:
  * Java Combinatorics Library
  *
- * Copyright (c) 2009 by Alistair A. Israel. All rights reserved.
+ * Copyright (c) 2009 by Alistair A. Israel.
+ *
+ * This software is made available under the terms of the MIT License.
+ * See LICENSE.txt.
  *
  * Created Aug 28, 2009
  */
