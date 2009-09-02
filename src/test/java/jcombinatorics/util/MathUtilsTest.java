@@ -51,7 +51,7 @@ public final class MathUtilsTest {
     }
 
     /**
-     * Test for {@link MathUtils#factoradic(int[], int)}.
+     * Test for {@link MathUtils#factoradic(int[], long)}.
      */
     @Test
     public void testFactoradicArrayInt() {

@@ -8,7 +8,6 @@
  */
 package jcombinatorics.util;
 
-import java.util.Arrays;
 
 /**
  * Provides mathematical utility functions (static methods) not otherwise
@@ -94,20 +93,17 @@ public final class MathUtils {
      *        the array to hold the factoradic
      * @param n
      *        the number
-     * @return the index (from the right) of the most significant digit
      * @see <a
      *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
      */
-    public static int factoradic(final int[] a, final int n) {
-        Arrays.fill(a, 0);
+    public static void factoradic(final int[] a, final long n) {
         final int len = a.length;
-        int m = n;
+        long m = n;
         int z = 0;
-        while (m > 0) {
+        while (z < len) {
             ++z;
-            a[len - z] = m % z;
+            a[len - z] = (int) (m % z);
             m /= z;
         }
-        return z;
     }
 }
