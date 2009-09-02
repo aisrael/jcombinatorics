@@ -26,11 +26,11 @@ public final class PermutationsTest {
     @Test
     public void testPermutationsCount() {
         assertEquals(1, Permutations.count(1, 1));
-        final int[] ns = { 10, 2, 2, 3, 3, 5, 6, 10 };
-        final int[] rs = { 0, 1, 2, 1, 3, 3, 6, 4 };
-        final long[] expectedCounts = { 1, 2, 2, 3, 6, 60, 720, 5040 };
+        final int[] ns = { 10, 2, 2, 3, 3, 5, 6, 10, 21 };
+        final int[] ks = { 0, 1, 2, 1, 3, 3, 6, 4, 3 };
+        final long[] expectedCounts = { 1, 2, 2, 3, 6, 60, 720, 5040, 7980 };
         for (int i = 0; i < expectedCounts.length; ++i) {
-            assertEquals(expectedCounts[i], Permutations.count(ns[i], rs[i]));
+            assertEquals(expectedCounts[i], Permutations.count(ns[i], ks[i]));
         }
     }
 
