@@ -115,7 +115,7 @@ public final class ArrayUtils {
      */
     public static <T> T[] valuesAt(final T[] elements, final int[] indices) {
         final int n = indices.length;
-        final T[] result = newArray(elements.getClass().getComponentType(), n);
+        final T[] result = ArrayUtils.<T> newArray(elements.getClass().getComponentType(), n);
         for (int i = 0; i < n; ++i) {
             result[i] = elements[indices[i]];
         }
