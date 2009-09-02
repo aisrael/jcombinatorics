@@ -59,13 +59,13 @@ public final class CombinationsTest {
     }
 
     /**
-     * Test for {@link Combinations#choose(Object...)}.
+     * Test for {@link Combinations#of(Object...)}.
      */
     @Test
-    public void testChooseObjects() {
+    public void testCombinationsOfObjects() {
         final String[] expected = { "abc", "abd", "abe", "acd", "ace", "ade", "bcd", "bce", "bde", "cde" };
         int count = 0;
-        for (final String[] combination : Combinations.choose("a", "b", "c", "d", "e").take(3)) {
+        for (final String[] combination : Combinations.of("a", "b", "c", "d", "e").take(3)) {
             assertEquals(expected[count], concat(combination));
             ++count;
         }

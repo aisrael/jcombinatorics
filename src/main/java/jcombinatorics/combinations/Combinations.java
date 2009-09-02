@@ -54,6 +54,8 @@ public final class Combinations {
     }
 
     /**
+     * An inner class to implement the <code>Combinations.choose(n, k)</code>
+     * DSL.
      *
      * @author Alistair A. Israel
      */
@@ -120,18 +122,19 @@ public final class Combinations {
      *        a type
      * @param t
      *        the elements to choose from
-     * @return a {@link Builder}
+     * @return a {@link Of}
      */
-    public static <T> Builder<T> choose(final T... t) {
-        return new Builder<T>(t);
+    public static <T> Of<T> of(final T... t) {
+        return new Of<T>(t);
     }
 
     /**
-     * A builder/helper to implement the choose(T...) DSL method.
+     * A builder/helper to implement the <code>Combinations.of(T...)</code> DSL
+     * method.
      *
      * @author Alistair A. Israel
      */
-    public static class Builder<T> {
+    public static class Of<T> {
 
         private final T[] elements;
 
@@ -139,7 +142,7 @@ public final class Combinations {
          * @param elements
          *        the element set (array)
          */
-        public Builder(final T[] elements) {
+        public Of(final T[] elements) {
             this.elements = elements;
         }
 

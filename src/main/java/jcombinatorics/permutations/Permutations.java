@@ -53,7 +53,7 @@ public final class Permutations {
      *        int[]
      * @return {@link Iterable}&lt;int[]&gt;
      */
-    public static Iterable<int[]> over(final int... elements) {
+    public static Iterable<int[]> of(final int... elements) {
         if (elements.length > 12) {
             throw new IllegalArgumentException("Too many arguments (max 12)!");
         }

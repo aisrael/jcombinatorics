@@ -35,14 +35,14 @@ public final class PermutationsTest {
     }
 
     /**
-     *
+     * Test for {@link Permutations#of(int...)}.
      */
     @Test
-    public void testPermutationsOverInts() {
+    public void testPermutationsOfInts() {
         final int[][] expected = { { 2, 3, 7 }, { 2, 7, 3 }, { 3, 2, 7 }, { 3, 7, 2 }, { 7, 2, 3 },
                 { 7, 3, 2 } };
         int count = 0;
-        for (final int[] permutation : Permutations.over(2, 3, 7)) {
+        for (final int[] permutation : Permutations.of(2, 3, 7)) {
             assertArrayEquals(expected[count], permutation);
             ++count;
         }
