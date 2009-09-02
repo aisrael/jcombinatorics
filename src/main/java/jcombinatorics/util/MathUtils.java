@@ -24,33 +24,37 @@ public final class MathUtils {
         // noop
     }
 
-    private static final int MAX_N_FACTORIAL = 20;
+    /**
+     * We only support up to 20! since 21! > {@link Long#MAX_VALUE}.
+     */
+    private static final int MAX_N_FACTORIAL = 21;
 
-    private static final long[] FACTORIALS = new long[MAX_N_FACTORIAL + 1];
+    /**
+     * Pre-calculate factorials into a lookup table, trade O(n) space for O(1)
+     * time. :D
+     */
+    private static final long[] FACTORIALS = new long[MAX_N_FACTORIAL];
     static {
         FACTORIALS[0] = 1;
-        for (int i = 1; i <= MAX_N_FACTORIAL; ++i) {
+        for (int i = 1; i < MAX_N_FACTORIAL; ++i) {
             FACTORIALS[i] = FACTORIALS[i - 1] * i;
         }
     }
 
     /**
+     * Return <code>n!</code>, or
+     * <code>n * (n - 1) * (n - 2) * ... * 3 * 2 * 1</code>. <code>0!</code> = 1
+     *
      * @param n
      *        integer <= 20 (21! > {@link Long#MAX_VALUE}).
-     * @return n!
+     * @return n!, or 1 if n == 0
      */
     public static long factorial(final int n) {
-        if (n > MAX_N_FACTORIAL) {
+        if (n >= MAX_N_FACTORIAL) {
             throw new IllegalArgumentException("long only supports up to 20!");
         }
         return FACTORIALS[n];
     }
-
-    /**
-     * {@link Integer#MAX_VALUE} can only occupy 13 places in factoradic base (
-     * 13! > {@link Integer#MAX_VALUE}).
-     */
-    private static final int MAX_FACTORADIC_N = 13;
 
     /**
      * Return the representation of the given integer in factoradic base.
@@ -61,32 +65,31 @@ public final class MathUtils {
      * @see <a
      *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
      */
-    public static int[] factoradic(final int n) {
+    public static int[] factoradic(final long n) {
         if (n < 1) {
             if (n < 0) {
                 throw new IllegalArgumentException("n must be greater than 0!");
             }
             return new int[] { 0 };
         }
-        final int[] f = new int[MAX_FACTORADIC_N];
-        int m = n;
+        final int[] f = new int[MAX_N_FACTORIAL];
+        long m = n;
         int z = 0;
         while (m > 0) {
             ++z;
-            final int r = m % z;
-            f[MAX_FACTORADIC_N - z] = r;
+            f[MAX_N_FACTORIAL - z] = (int) (m % z);
             m /= z;
         }
 
         // pack
         final int[] result = new int[z];
-        System.arraycopy(f, MAX_FACTORADIC_N - z, result, 0, z);
+        System.arraycopy(f, MAX_N_FACTORIAL - z, result, 0, z);
         return result;
     }
 
     /**
-     * Compute the factoradic representation of the given integer into the given
-     * array.
+     * Compute the factoradic representation of the given (long) number into the
+     * given array.
      *
      * @param a
      *        the array to hold the factoradic
