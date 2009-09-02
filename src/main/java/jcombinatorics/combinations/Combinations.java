@@ -149,10 +149,10 @@ public final class Combinations {
         /**
          * @param k
          *        take <code>k</code> at a time
-         * @return {@link Generator}&lt;T&gt;
+         * @return {@link ParameterizedGenerator}&lt;T&gt;
          */
         public final Iterable<T[]> take(final int k) {
-            return new Generator<T>(elements, k);
+            return new ParameterizedGenerator<T>(elements, k);
         }
     }
 
@@ -161,7 +161,7 @@ public final class Combinations {
      *
      * @author Alistair A. Israel
      */
-    public static class Generator<T> implements Iterable<T[]> {
+    public static class ParameterizedGenerator<T> implements Iterable<T[]> {
 
         private final T[] elements;
 
@@ -173,7 +173,7 @@ public final class Combinations {
          * @param k
          *        take <code>k</code> at a time
          */
-        public Generator(final T[] elements, final int k) {
+        public ParameterizedGenerator(final T[] elements, final int k) {
             this.elements = elements;
             this.k = k;
         }

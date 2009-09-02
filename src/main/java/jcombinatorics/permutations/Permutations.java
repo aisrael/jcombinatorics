@@ -49,6 +49,66 @@ public final class Permutations {
     }
 
     /**
+     * @param n
+     *        the number of elements
+     * @param k
+     *        taken k at a time
+     * @return {@link Generator}
+     */
+    public static Generator permute(final int n, final int k) {
+        return new Generator(n, k);
+    }
+
+    /**
+     * An inner helper class to implement the
+     * <code>Permutations.permute(n, k)</code> DSL.
+     *
+     * @author Alistair A. Israel
+     */
+    public static class Generator implements Iterable<int[]> {
+
+        private final Iterable<int[]> iteratorFactory;
+
+        private final FactoradicNKPermutationsGenerator factoradic;
+
+        /**
+         * @param n
+         *        the number of elements
+         * @param k
+         *        taken k at a time
+         */
+        public Generator(final int n, final int k) {
+            if (k != n) {
+                iteratorFactory = new SepaPnkIterator.Factory(n, k);
+            } else {
+                iteratorFactory = new SepaPnIterator.Factory(n);
+            }
+            this.factoradic = new FactoradicNKPermutationsGenerator(n, k);
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.lang.Iterable#iterator()
+         */
+        public final Iterator<int[]> iterator() {
+            return iteratorFactory.iterator();
+        }
+
+        /**
+         * Retrieve the <i>l</i>-th permutation.
+         *
+         * @param l
+         *        long
+         * @return int[]
+         */
+        public final int[] get(final long l) {
+            return factoradic.get(l);
+        }
+
+    }
+
+    /**
      * @param elements
      *        int[]
      * @return {@link Iterable}&lt;int[]&gt;
