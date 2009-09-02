@@ -8,7 +8,6 @@
  */
 package jcombinatorics.util;
 
-
 /**
  * Provides mathematical utility functions (static methods) not otherwise
  * available in {@link java.lang.Math}. Also, extends existing functions using
