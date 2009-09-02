@@ -10,6 +10,8 @@ package jcombinatorics.permutations;
 
 import java.util.Iterator;
 
+import jcombinatorics.util.ArrayUtils;
+
 /**
  * @author Alistair A. Israel
  * @since 0.1
@@ -152,13 +154,8 @@ public final class Permutations {
              * @see java.util.Iterator#next()
              */
             public int[] next() {
-                final int n = elements.length;
-                final int[] result = new int[n];
-                final int[] ix = getNextIndices();
-                for (int i = 0; i < n; ++i) {
-                    result[i] = elements[ix[i]];
-                }
-                return result;
+                final int[] indices = getNextIndices();
+                return ArrayUtils.valuesAt(elements, indices);
             }
         }
 

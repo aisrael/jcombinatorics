@@ -8,6 +8,8 @@
  */
 package jcombinatorics.util;
 
+import java.lang.reflect.Array;
+
 /**
  * Provides a couple of static utility methods for creating and initializing
  * arrays used throughout permutation and combination generation.
@@ -52,4 +54,72 @@ public final class ArrayUtils {
         identityPermutation(a);
         return a;
     }
+
+    /**
+     * Just so we can avoid having <code>@SuppressWarnings("unchecked")</code>
+     * all around the place.
+     *
+     * @param <T>
+     *        a type
+     * @param componentType
+     *        the component type (class)
+     * @param length
+     *        the size of the new array
+     * @return T[]
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T[] newArray(final Class<?> componentType, final int length) {
+        return (T[]) Array.newInstance(componentType, length);
+    }
+
+    /**
+     * @param elements
+     *        the elements to choose from
+     * @param indices
+     *        the array of indices
+     * @return the mapped array
+     */
+    public static char[] valuesAt(final char[] elements, final int[] indices) {
+        final int n = indices.length;
+        final char[] result = new char[n];
+        for (int i = 0; i < n; ++i) {
+            result[i] = elements[indices[i]];
+        }
+        return result;
+    }
+
+    /**
+     * @param elements
+     *        the elements to choose from
+     * @param indices
+     *        the array of indices
+     * @return the mapped array
+     */
+    public static int[] valuesAt(final int[] elements, final int[] indices) {
+        final int n = indices.length;
+        final int[] result = new int[n];
+        for (int i = 0; i < n; ++i) {
+            result[i] = elements[indices[i]];
+        }
+        return result;
+    }
+
+    /**
+     * @param <T>
+     *        a type
+     * @param elements
+     *        the elements to choose from
+     * @param indices
+     *        the array of indices
+     * @return the mapped array
+     */
+    public static <T> T[] valuesAt(final T[] elements, final int[] indices) {
+        final int n = indices.length;
+        final T[] result = newArray(elements.getClass().getComponentType(), n);
+        for (int i = 0; i < n; ++i) {
+            result[i] = elements[indices[i]];
+        }
+        return result;
+    }
+
 }

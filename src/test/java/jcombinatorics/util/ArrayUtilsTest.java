@@ -45,4 +45,48 @@ public final class ArrayUtilsTest {
         }
     }
 
+    /**
+     * JUnit test for {@link ArrayUtils#valuesAt(int[], int[])}.
+     */
+    @Test
+    public void testValuesAtCharArrayIntArray() {
+        final char[] elements = { 'a', 'b', 'c', 'd', 'e' };
+        final char[][] expecteds = { { 'c' }, { 'b', 'd' }, { 'a', 'c', 'e' } };
+        final int[][] indices = { { 2 }, { 1, 3 }, { 0, 2, 4 } };
+        for (int i = 0; i < expecteds.length; ++i) {
+            final int[] index = indices[i];
+            final char[] actual = ArrayUtils.valuesAt(elements, index);
+            assertArrayEquals(expecteds[i], actual);
+        }
+    }
+
+    /**
+     * JUnit test for {@link ArrayUtils#valuesAt(int[], int[])}.
+     */
+    @Test
+    public void testValuesAtIntArrayIntArray() {
+        final int[] elements = { 1, 22, 333, 4444, 55555 };
+        final int[][] expecteds = { { 333 }, { 22, 4444 }, { 1, 333, 55555 } };
+        final int[][] indices = { { 2 }, { 1, 3 }, { 0, 2, 4 } };
+        for (int i = 0; i < expecteds.length; ++i) {
+            final int[] index = indices[i];
+            final int[] actual = ArrayUtils.valuesAt(elements, index);
+            assertArrayEquals(expecteds[i], actual);
+        }
+    }
+
+    /**
+     * JUnit test for {@link ArrayUtils#valuesAt(Object[], int[])}.
+     */
+    @Test
+    public void testValuesAtTArrayIntArray() {
+        final String[] elements = { "a", "bb", "ccc", "dddd", "eeeee" };
+        final String[][] expecteds = { { "ccc" }, { "bb", "dddd" }, { "a", "ccc", "eeeee" } };
+        final int[][] indices = { { 2 }, { 1, 3 }, { 0, 2, 4 } };
+        for (int i = 0; i < expecteds.length; ++i) {
+            final int[] index = indices[i];
+            final String[] actual = ArrayUtils.valuesAt(elements, index);
+            assertArrayEquals(expecteds[i], actual);
+        }
+    }
 }
