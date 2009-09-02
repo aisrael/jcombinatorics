@@ -10,6 +10,7 @@ package jcombinatorics.combinations;
 
 import static java.lang.String.format;
 import static jcombinatorics.util.MathUtils.factorial;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import jcombinatorics.permutations.Permutations;
 import jcombinatorics.util.MathUtils;
@@ -24,7 +25,7 @@ import org.junit.Test;
 public final class CombinationsTest {
 
     /**
-     * Test for {@link Combinations#computeCount(int, int)}.
+     * Test for {@link Combinations#count(int, int)}.
      */
     @Test
     public void testCount() {
@@ -40,11 +41,28 @@ public final class CombinationsTest {
         }
     }
 
+    private static final int[][] C_5_3 = { { 0, 1, 2 }, { 0, 1, 3 }, { 0, 1, 4 }, { 0, 2, 3 }, { 0, 2, 4 },
+            { 0, 3, 4 }, { 1, 2, 3 }, { 1, 2, 4 }, { 1, 3, 4 }, { 2, 3, 4 } };
+
     /**
-     *
+     * Test for {@link Combinations#choose(int, int)}.
      */
     @Test
-    public void testChoose() {
+    public void testChooseIntInt() {
+        final int[] expected = { 1, 2, 4 };
+        assertArrayEquals(expected, Combinations.choose(5, 3).get(7));
+        int i = 0;
+        for (final int[] actual : Combinations.choose(5, 3)) {
+            assertArrayEquals(C_5_3[i], actual);
+            ++i;
+        }
+    }
+
+    /**
+     * Test for {@link Combinations#choose(Object...)}.
+     */
+    @Test
+    public void testChooseObjects() {
         final String[] expected = { "abc", "abd", "abe", "acd", "ace", "ade", "bcd", "bce", "bde", "cde" };
         int count = 0;
         for (final String[] combination : Combinations.choose("a", "b", "c", "d", "e").take(3)) {

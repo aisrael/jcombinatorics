@@ -54,23 +54,65 @@ public final class Combinations {
     }
 
     /**
+     *
+     * @author Alistair A. Israel
+     */
+    public static final class Chooser implements Iterable<int[]> {
+
+        /**
+         *
+         */
+        private final int k;
+
+        /**
+         *
+         */
+        private final int n;
+
+        private final CombinadicCombinationsGenerator generator;
+
+        /**
+         * @param n
+         *        the number of elements
+         * @param k
+         *        taken k at a time
+         */
+        private Chooser(final int n, final int k) {
+            this.n = n;
+            this.k = k;
+            this.generator = new CombinadicCombinationsGenerator(n, k);
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.lang.Iterable#iterator()
+         */
+        public Iterator<int[]> iterator() {
+            return new RosenIterator(n, k);
+        }
+
+        /**
+         * Retrieve the <i>i</i>-th combination.
+         *
+         * @param l
+         *        long
+         * @return int[]
+         */
+        public int[] get(final long l) {
+            return generator.get(l);
+        }
+    }
+
+    /**
      * @param n
      *        the number of elements
      * @param k
      *        taken k at a time
      * @return {@link Iterable}&lt;int[]&gt;
      */
-    public static Iterable<int[]> choose(final int n, final int k) {
-        return /**
-         *
-         * @author Alistair A. Israel
-         */
-        new Iterable<int[]>() {
-
-            public Iterator<int[]> iterator() {
-                return new RosenIterator(n, k);
-            }
-        };
+    public static Chooser choose(final int n, final int k) {
+        return new Chooser(n, k);
     }
 
     /**
