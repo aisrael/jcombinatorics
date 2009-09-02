@@ -18,7 +18,7 @@ import jcombinatorics.util.ArrayUtils;
  * @author Alistair A. Israel
  * @see "Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286"
  */
-public class CombinationsIterator implements Iterator<int[]> {
+public class RosenIterator implements Iterator<int[]> {
 
     private final int n;
 
@@ -34,7 +34,7 @@ public class CombinationsIterator implements Iterator<int[]> {
      * @param k
      *        taken k at a time
      */
-    public CombinationsIterator(final int n, final int k) {
+    public RosenIterator(final int n, final int k) {
         super();
         this.n = n;
         this.k = k;

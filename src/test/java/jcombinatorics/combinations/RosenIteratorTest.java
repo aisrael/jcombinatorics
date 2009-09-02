@@ -17,11 +17,11 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link CombinationsIterator}.
+ * JUnit test for {@link RosenIterator}.
  *
  * @author Alistair A. Israel
  */
-public final class CombinationsIteratorTest {
+public final class RosenIteratorTest {
 
     private static final long EXPECTED_COUNT = Combinations.count(5, 3);
     private static final int[][] C_5_3 = { { 0, 1, 2 }, { 0, 1, 3 }, { 0, 1, 4 }, { 0, 2, 3 }, { 0, 2, 4 },
@@ -32,7 +32,7 @@ public final class CombinationsIteratorTest {
      */
     @Test
     public void testGenerateC53() {
-        final CombinationsIterator iter = new CombinationsIterator(5, 3);
+        final RosenIterator iter = new RosenIterator(5, 3);
         int count = 0;
         while (iter.hasNext()) {
             final int[] actual = iter.next();

@@ -68,7 +68,7 @@ public final class Combinations {
         new Iterable<int[]>() {
 
             public Iterator<int[]> iterator() {
-                return new CombinationsIterator(n, k);
+                return new RosenIterator(n, k);
             }
         };
     }
@@ -148,7 +148,7 @@ public final class Combinations {
          */
         private final class Iterator implements java.util.Iterator<T[]> {
 
-            private final CombinationsIterator iterator = new CombinationsIterator(elements.length, k);
+            private final RosenIterator iterator = new RosenIterator(elements.length, k);
 
             /**
              * {@inheritDoc}
