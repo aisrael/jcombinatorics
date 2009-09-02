@@ -8,6 +8,8 @@
  */
 package jcombinatorics.combinations;
 
+import java.util.Iterator;
+
 import jcombinatorics.util.ArrayUtils;
 
 /**
@@ -49,6 +51,26 @@ public final class Combinations {
             count = count * (n - i) / (i + 1);
         }
         return count;
+    }
+
+    /**
+     * @param n
+     *        the number of elements
+     * @param k
+     *        taken k at a time
+     * @return {@link Iterable}&lt;int[]&gt;
+     */
+    public static Iterable<int[]> choose(final int n, final int k) {
+        return /**
+         *
+         * @author Alistair A. Israel
+         */
+        new Iterable<int[]>() {
+
+            public Iterator<int[]> iterator() {
+                return new CombinationsIterator(n, k);
+            }
+        };
     }
 
     /**

@@ -13,7 +13,7 @@ import java.util.Iterator;
 import jcombinatorics.util.ArrayUtils;
 
 /**
- * A 'fast' combinations generator.
+ * An iterator that generates combinations in lexicographic order.
  *
  * @author Alistair A. Israel
  * @see "Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286"
