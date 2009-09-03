@@ -50,15 +50,19 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
      * @return int[]
      */
     public final int[] get(final long i) {
-        final int[] f = new int[n];
+        // For P(n) factoradic, last digit is always 0 so no need to compute
+        final int[] f = new int[n - 1];
         final int[] a = new int[n];
         factoradic(f, i);
         System.arraycopy(identity, 0, a, 0, n);
-        factoradicToPermutation(f, a);
+        Factoradic.factoradicToPermutation(f, a);
         return a;
     }
 
     /**
+     * Optimized factoradic. Doesn't compute for the last digit (which is always
+     * 0).
+     *
      * @param f
      *        the array to hold the factoradic
      * @param i
@@ -67,29 +71,11 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
     private static void factoradic(final int[] f, final long i) {
         final int len = f.length;
         long m = i;
-        int z = 1;
+        int z = 2;
         while (m > 0) {
-            f[len - z] = (int) (m % z);
+            f[len - z + 1] = (int) (m % z);
             m /= z;
             ++z;
-        }
-    }
-
-    /**
-     * @param f
-     *        the factoradic
-     * @param a
-     *        array of int
-     */
-    private static void factoradicToPermutation(final int[] f, final int[] a) {
-        for (int i = 0; i < a.length - 1; ++i) {
-            if (f[i] != 0) {
-                final int t = a[i + f[i]];
-                // shift right
-                System.arraycopy(a, i, a, i + 1, f[i]);
-                // swap
-                a[i] = t;
-            }
         }
     }
 
@@ -110,7 +96,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
 
         private final long count = MathUtils.factorial(n);
 
-        private final int[] f = new int[n];
+        private final int[] f = new int[n - 1];
 
         private final int[] a = new int[n];
 
@@ -133,7 +119,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
         public int[] next() {
             factoradic(f, index);
             System.arraycopy(identity, 0, a, 0, n);
-            factoradicToPermutation(f, a);
+            Factoradic.factoradicToPermutation(f, a);
             ++index;
             return a;
         }
