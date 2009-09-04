@@ -72,16 +72,15 @@ public class CompareNKGenerators implements Runnable {
                 final Task task = new Task(reps, factory.generator(n, k));
                 final String taskName = generatorName + " P(" + n + "," + k + ")";
                 final Result result = Benchmark.single(taskName, task);
-                final long millis;
-                if (result.getMillis() > 0) {
-                    millis = result.getMillis();
-                } else {
-                    millis = 1;
+                long nanos = result.getNanos();
+                if (nanos < 1) {
+                    nanos = 1;
                 }
                 final String name = result.getName();
                 final long np = p * reps;
-                final float ppms = np / (float) millis;
-                out.println(String.format("%d times %s took %,d ms", reps, name, millis));
+                final float millis = nanos / 1000000.0f;
+                final float ppms = np / millis;
+                out.println(String.format("%d times %s took %,1.2f ms", reps, name, millis));
                 out.println(String.format(
                         "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", reps, p,
                         np, ppms));

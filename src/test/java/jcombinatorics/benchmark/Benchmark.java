@@ -26,7 +26,7 @@ public class Benchmark {
 
     private final Map<String, Result> results = new LinkedHashMap<String, Result>();
 
-    private long totalMillis;
+    private long totalNanos;
 
     /**
      * Default constructor.
@@ -52,10 +52,10 @@ public class Benchmark {
     }
 
     /**
-     * @return the totalMillis
+     * @return the totalNanos
      */
-    public final long getTotalMillis() {
-        return totalMillis;
+    public final long getTotalNanos() {
+        return totalNanos;
     }
 
     /**
@@ -84,7 +84,7 @@ public class Benchmark {
      */
     public final Result bench(final String taskName, final Runnable task) {
         final Result result = single(taskName, task);
-        totalMillis += result.getMillis();
+        totalNanos += result.getNanos();
         results.put(taskName, result);
         return result;
     }
@@ -97,11 +97,10 @@ public class Benchmark {
      * @return {@link Result}
      */
     public static Result single(final String taskName, final Runnable task) {
-        final long start = System.currentTimeMillis();
+        final long start = System.nanoTime();
         task.run();
-        final long stop = System.currentTimeMillis();
-        final long millis = stop - start;
-        return new Result(taskName, millis);
+        final long stop = System.nanoTime();
+        return new Result(taskName, stop - start);
     }
 
     /**
@@ -112,18 +111,18 @@ public class Benchmark {
 
         private final String name;
 
-        private final long millis;
+        private final long nanos;
 
         /**
          * @param name
          *        the benchmark result name
-         * @param millis
-         *        the number of milliseconds the benchmark took
+         * @param nanos
+         *        the number of nanoseconds the benchmark took
          */
-        public Result(final String name, final long millis) {
+        public Result(final String name, final long nanos) {
             super();
             this.name = name;
-            this.millis = millis;
+            this.nanos = nanos;
         }
 
         /**
@@ -136,8 +135,8 @@ public class Benchmark {
         /**
          * @return the millis
          */
-        public final long getMillis() {
-            return millis;
+        public final long getNanos() {
+            return nanos;
         }
 
     }
