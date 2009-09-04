@@ -126,9 +126,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
         }
 
         /**
-         * {@inheritDoc}
-         *
-         * @see java.util.Iterator#remove()
+         * Not supported. Throws {@link RemoveNotSupported}.
          */
         public void remove() {
             throw new RemoveNotSupported();

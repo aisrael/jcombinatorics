@@ -133,9 +133,7 @@ public class SepaPnIterator implements Iterator<int[]> {
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @see java.util.Iterator#remove()
+     * Not supported. Throws {@link RemoveNotSupported}.
      */
     public final void remove() {
         throw new RemoveNotSupported();
