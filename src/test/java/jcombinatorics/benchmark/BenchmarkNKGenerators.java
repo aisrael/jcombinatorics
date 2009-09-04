@@ -12,9 +12,9 @@
 package jcombinatorics.benchmark;
 
 import static java.lang.String.format;
-import jcombinatorics.permutations.FactoradicNKPermutationsGenerator;
 import jcombinatorics.permutations.Permutations;
 import jcombinatorics.permutations.SepaNKPermutationsGenerator;
+import jcombinatorics.permutations.SepaNKPermutationsGenerator2;
 
 /**
  *
@@ -41,7 +41,7 @@ public class BenchmarkNKGenerators implements Runnable {
                 + ") generators benchmark", REPS, P);
         final String pnk = " P(" + N + ", " + K + ")";
         benchmark.bench("SEPA" + pnk, new SepaNKPermutationsGenerator(N, K));
-        benchmark.bench("Factoradic" + pnk, new FactoradicNKPermutationsGenerator(N, K));
+        benchmark.bench("SEPA2" + pnk, new SepaNKPermutationsGenerator2(N, K));
         benchmark.benchmarkAll();
         benchmark.prettyPrint();
     }
