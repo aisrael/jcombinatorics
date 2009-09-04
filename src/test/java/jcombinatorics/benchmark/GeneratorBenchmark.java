@@ -15,9 +15,9 @@ package jcombinatorics.benchmark;
  *
  * @author Alistair A. Israel
  */
-public class GeneratorBenchmark extends Benchmark {
+public class GeneratorBenchmark extends PermutatedOrderBenchmark {
 
-    private final int reps;
+    private final String name;
 
     private final long expectedPermutations;
 
@@ -30,66 +30,59 @@ public class GeneratorBenchmark extends Benchmark {
      *        the expected number of permutations generated in one 'run'
      */
     public GeneratorBenchmark(final String name, final int reps, final long expectedPermutations) {
-        super(name);
-        this.reps = reps;
+        super(reps);
+        this.name = name;
         this.expectedPermutations = expectedPermutations;
     }
 
     /**
-     * @param name
+     * @param generatorName
      *        the generator/task name
      * @param generator
-     *        the permutations generator
-     * @return {@link Benchmark.Result}
+     *        the generator
      */
-    public final Result bench(final String name, final Iterable<int[]> generator) {
-        final Result result = bench(name, new Task(name, generator));
-        printResult(result);
-        return result;
-    }
-
-    /**
-     * @param result
-     *        the {@link Benchmark.Result}
-     */
-    private void printResult(final Result result) {
-        final String name = result.getName();
-        final long millis = result.getMillis();
-        final long np = expectedPermutations * reps;
-        final float ppms = np / (float) millis;
-        System.out.println(String.format("%d times %s took %,d ms", reps, name, millis));
-        System.out.println(String.format(
-                "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", reps,
-                expectedPermutations, np, ppms));
+    public final void bench(final String generatorName, final Iterable<int[]> generator) {
+        final Bench bench = new Bench(generator);
+        addTask(generatorName, bench);
     }
 
     /**
      *
      */
     public final void prettyPrint() {
-        for (final Result result : getResults()) {
-            printResult(result);
+        for (final Task task : getTasks()) {
+            printResult(task);
         }
+    }
+
+    /**
+     * @param task
+     *        the task
+     */
+    private void printResult(final Task task) {
+        final long nanos = task.getTotalNanos();
+        final float millis = nanos / (float) 1000000.0;
+        final long np = expectedPermutations * getReps();
+        final float ppms = np / millis;
+        System.out.println(String.format("%d times %s took %,1.2f ms", getReps(), task.getTaskName(), millis));
+        System.out.println(String.format(
+                "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", getReps(),
+                expectedPermutations, np, ppms));
     }
 
     /**
      *
      * @author Alistair A. Israel
      */
-    private class Task implements Runnable {
-
-        private final String name;
+    private class Bench implements Runnable {
 
         private final Iterable<int[]> generator;
 
         /**
-         * @param name
-         *        the generator/task name
          * @param generator
          *        iterable
          */
-        public Task(final String name, final Iterable<int[]> generator) {
-            this.name = name;
+        public Bench(final Iterable<int[]> generator) {
             this.generator = generator;
         }
 
@@ -99,17 +92,15 @@ public class GeneratorBenchmark extends Benchmark {
          * @see java.lang.Runnable#run()
          */
         public final void run() {
-            for (int i = 0; i < reps; ++i) {
-                int count = 0;
-                for (@SuppressWarnings("unused")
-                final int[] permutation : generator) {
-                    ++count;
-                }
-                if (count != expectedPermutations) {
-                    throw new Error(String.format(
-                            "GeneratorBenchmark.Task %s: expected %,d permutations, got %,d!", name,
-                            expectedPermutations, count));
-                }
+            int count = 0;
+            for (@SuppressWarnings("unused")
+            final int[] permutation : generator) {
+                ++count;
+            }
+            if (count != expectedPermutations) {
+                throw new Error(String.format(
+                        "GeneratorBenchmark.Task %s: expected %,d permutations, got %,d!", name,
+                        expectedPermutations, count));
             }
         }
 

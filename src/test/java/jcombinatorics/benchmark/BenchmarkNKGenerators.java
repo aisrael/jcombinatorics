@@ -28,7 +28,7 @@ public class BenchmarkNKGenerators implements Runnable {
 
     private static final long P = Permutations.count(N, K);
 
-    private static final int REPS = 10;
+    private static final int REPS = 1;
 
     /**
      * {@inheritDoc}
@@ -42,6 +42,8 @@ public class BenchmarkNKGenerators implements Runnable {
         final String pnk = " P(" + N + ", " + K + ")";
         benchmark.bench("SEPA" + pnk, new SepaNKPermutationsGenerator(N, K));
         benchmark.bench("Factoradic" + pnk, new FactoradicNKPermutationsGenerator(N, K));
+        benchmark.benchmarkAll();
+        benchmark.prettyPrint();
     }
 
     /**

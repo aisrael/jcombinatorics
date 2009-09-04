@@ -11,7 +11,6 @@
  */
 package jcombinatorics.permutations;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import jcombinatorics.Generator;
@@ -119,12 +118,12 @@ public final class Permutations {
     /**
      * @param <T>
      *        a type
-     * @param coll
-     *        a collection of elements
+     * @param elements
+     *        the objects to permute
      * @return an {@link Over} DSL thingie
      */
-    public static <T> Over<T> over(final Collection<T> coll) {
-        return new Over<T>(coll);
+    public static <T> Over<T> over(final T[] elements) {
+        return new Over<T>(elements);
     }
 
     /**
@@ -141,12 +140,11 @@ public final class Permutations {
         private final Generator<int[]> factoradic;
 
         /**
-         * @param coll
-         *        the Collection of objects to permute
+         * @param elements
+         *        the objects to permute
          */
-        @SuppressWarnings("unchecked")
-        public Over(final Collection<T> coll) {
-            this.elements = (T[]) coll.toArray();
+        public Over(final T[] elements) {
+            this.elements = elements;
             this.iteratorFactory = new SepaPnIterator.Factory(elements.length);
             this.factoradic = new FactoradicNPermutationsGenerator(elements.length);
         }
