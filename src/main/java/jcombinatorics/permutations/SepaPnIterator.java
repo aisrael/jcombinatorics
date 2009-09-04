@@ -13,7 +13,7 @@ package jcombinatorics.permutations;
 
 import java.util.Iterator;
 
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * Iterator that enumerates permutations of <code>P(n)</code> in lexicographical
@@ -25,7 +25,7 @@ import jcombinatorics.util.RemoveNotSupported;
  *      Simple, Efficient Permutation Algorithm (Jeffrey A. Johnson)</a>
  * @since 0.1
  */
-public class SepaPnIterator implements Iterator<int[]> {
+public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
     private final int n;
 
@@ -130,13 +130,6 @@ public class SepaPnIterator implements Iterator<int[]> {
         final int t = a[x];
         a[x] = a[y];
         a[y] = t;
-    }
-
-    /**
-     * Not supported. Throws {@link RemoveNotSupported}.
-     */
-    public final void remove() {
-        throw new RemoveNotSupported();
     }
 
     /**

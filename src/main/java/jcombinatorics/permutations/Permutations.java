@@ -14,7 +14,7 @@ package jcombinatorics.permutations;
 import java.util.Iterator;
 
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * @author Alistair A. Israel
@@ -131,7 +131,7 @@ public final class Permutations {
      *
      * @author Alistair A. Israel
      */
-    private static class IteratorBase {
+    private abstract static class IteratorBase<T> extends ReadOnlyIterator<T> {
 
         private final Iterator<int[]> iter;
 
@@ -157,13 +157,6 @@ public final class Permutations {
          */
         protected final int[] getNextIndices() {
             return iter.next();
-        }
-
-        /**
-         * Not supported. Throws {@link RemoveNotSupported}.
-         */
-        public final void remove() {
-            throw new RemoveNotSupported();
         }
 
     }
@@ -201,7 +194,7 @@ public final class Permutations {
          *
          * @author Alistair A. Israel
          */
-        private final class IntIterator extends IteratorBase implements Iterator<int[]> {
+        private final class IntIterator extends IteratorBase<int[]> implements Iterator<int[]> {
 
             /**
              *

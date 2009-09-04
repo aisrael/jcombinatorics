@@ -11,10 +11,8 @@
  */
 package jcombinatorics.combinations;
 
-import java.util.Iterator;
-
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * An iterator that generates combinations in lexicographic order.
@@ -22,7 +20,7 @@ import jcombinatorics.util.RemoveNotSupported;
  * @author Alistair A. Israel
  * @see "Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286"
  */
-public class RosenIterator implements Iterator<int[]> {
+public class RosenIterator extends ReadOnlyIterator<int[]> {
 
     private final int n;
 
@@ -84,13 +82,6 @@ public class RosenIterator implements Iterator<int[]> {
      */
     private void initialize() {
         this.a = ArrayUtils.identityPermutation(k);
-    }
-
-    /**
-     * Not supported. Throws {@link RemoveNotSupported}.
-     */
-    public final void remove() {
-        throw new RemoveNotSupported();
     }
 
 }
