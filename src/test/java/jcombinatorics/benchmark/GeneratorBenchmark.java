@@ -61,10 +61,11 @@ public class GeneratorBenchmark extends PermutatedOrderBenchmark {
      */
     private void printResult(final Task task) {
         final long nanos = task.getTotalNanos();
-        final float millis = nanos / (float) 1000000.0;
+        final float millis = nanos / 1000000.0f;
         final long np = expectedPermutations * getReps();
         final float ppms = np / millis;
-        System.out.println(String.format("%d times %s took %,1.2f ms", getReps(), task.getTaskName(), millis));
+        System.out.println(String.format("%d times %s took %,1.2f ms", getReps(), task.getTaskName(),
+                millis));
         System.out.println(String.format(
                 "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", getReps(),
                 expectedPermutations, np, ppms));

@@ -11,6 +11,8 @@
  */
 package jcombinatorics.benchmark;
 
+import static java.lang.String.format;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -89,8 +91,9 @@ public class PermutatedOrderBenchmark {
     private void runThrough(final Task[] elements) {
         for (final Task[] permutation : Permutations.over(elements)) {
             for (final Task task : permutation) {
-                System.out.println(task.getTaskName());
                 task.runOnce();
+                final float ms = task.getTotalNanos() / 1000000.0f;
+                System.out.println(format("%s : %,1.2fms", task.getTaskName(), ms));
             }
         }
     }

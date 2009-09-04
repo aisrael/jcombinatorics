@@ -27,7 +27,7 @@ public class BenchmarkNGenerators implements Runnable {
 
     private static final long P = MathUtils.factorial(N);
 
-    private static final int REPS = 10;
+    private static final int REPS = 2;
 
     /**
      * {@inheritDoc}
@@ -41,6 +41,8 @@ public class BenchmarkNGenerators implements Runnable {
         benchmark.bench("SEPA P(" + N + "," + N + ")", new SepaNKPermutationsGenerator(N, N));
         benchmark.bench("Factoradic " + pn, new FactoradicNPermutationsGenerator(N));
         benchmark.bench("Factoradic P(" + N + "," + N + ")", new FactoradicNKPermutationsGenerator(N, N));
+        benchmark.benchmarkAll();
+        benchmark.prettyPrint();
     }
 
     /**
