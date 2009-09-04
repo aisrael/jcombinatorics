@@ -11,6 +11,7 @@
  */
 package jcombinatorics.permutations;
 
+import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.RemoveNotSupported;
 
@@ -22,7 +23,7 @@ import jcombinatorics.util.RemoveNotSupported;
  *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
-public class FactoradicNKPermutationsGenerator implements Iterable<int[]> {
+public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
 
     private final int n;
 
