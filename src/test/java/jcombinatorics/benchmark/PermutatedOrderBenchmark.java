@@ -66,7 +66,6 @@ public class PermutatedOrderBenchmark {
     public final void benchmarkAll() {
         final Task[] elements = tasksToArray();
         for (int i = 0; i < reps; ++i) {
-            System.out.println("Run " + i + " of " + reps);
             runThrough(elements);
         }
     }

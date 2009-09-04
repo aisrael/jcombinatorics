@@ -12,9 +12,9 @@
 package jcombinatorics.benchmark;
 
 import static java.lang.String.format;
+import jcombinatorics.permutations.FactoradicNKPermutationsGenerator;
 import jcombinatorics.permutations.Permutations;
 import jcombinatorics.permutations.SepaNKPermutationsGenerator;
-import jcombinatorics.permutations.SepaNKPermutationsGenerator2;
 
 /**
  *
@@ -22,13 +22,13 @@ import jcombinatorics.permutations.SepaNKPermutationsGenerator2;
  */
 public class BenchmarkNKGenerators implements Runnable {
 
-    private static final int N = 10;
+    private static final int N = 11;
 
     private static final int K = 8;
 
-    private static final long P = Permutations.count(N, K);
+    private static final long EXPECTED_PERMUTATIONS = Permutations.count(N, K);
 
-    private static final int REPS = 1;
+    private static final int REPS = 5;
 
     /**
      * {@inheritDoc}
@@ -36,12 +36,12 @@ public class BenchmarkNKGenerators implements Runnable {
      * @see java.lang.Runnable#run()
      */
     public final void run() {
-        System.out.println(format("Expecting %,d permutations..", P));
+        System.out.println(format("Expecting %,d permutations..", EXPECTED_PERMUTATIONS));
         final GeneratorBenchmark benchmark = new GeneratorBenchmark("P(" + N + "," + K
-                + ") generators benchmark", REPS, P);
+                + ") generators benchmark", REPS, EXPECTED_PERMUTATIONS);
         final String pnk = " P(" + N + ", " + K + ")";
-        benchmark.bench("SEPA" + pnk, new SepaNKPermutationsGenerator(N, K));
-        benchmark.bench("SEPA2" + pnk, new SepaNKPermutationsGenerator2(N, K));
+        benchmark.bench("a.SEPA" + pnk, new SepaNKPermutationsGenerator(N, K));
+        benchmark.bench("b.Factoradic" + pnk, new FactoradicNKPermutationsGenerator(N, K));
         benchmark.benchmarkAll();
         benchmark.prettyPrint();
     }
