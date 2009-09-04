@@ -13,7 +13,7 @@ package jcombinatorics.permutations;
 
 import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * P(n, k) generator in lexicographical order.
@@ -94,7 +94,7 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
      *
      * @author Alistair A. Israel
      */
-    private class Iterator implements java.util.Iterator<int[]> {
+    private class Iterator extends ReadOnlyIterator<int[]> {
 
         private final long count = Permutations.count(n, k);
 
@@ -125,13 +125,6 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
             ++index;
             System.arraycopy(a, 0, f, 0, k);
             return f;
-        }
-
-        /**
-         * Not supported. Throws {@link RemoveNotSupported}.
-         */
-        public void remove() {
-            throw new RemoveNotSupported();
         }
 
     }

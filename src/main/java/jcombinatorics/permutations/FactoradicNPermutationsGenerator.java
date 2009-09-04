@@ -14,7 +14,7 @@ package jcombinatorics.permutations;
 import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.MathUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * P(n) generator in lexicographical order using factoradics. Supports computing
@@ -94,7 +94,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
      *
      * @author Alistair A. Israel
      */
-    private class Iterator implements java.util.Iterator<int[]> {
+    private class Iterator extends ReadOnlyIterator<int[]> {
 
         private final long count = MathUtils.factorial(n);
 
@@ -125,14 +125,6 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
             ++index;
             return a;
         }
-
-        /**
-         * Not supported. Throws {@link RemoveNotSupported}.
-         */
-        public void remove() {
-            throw new RemoveNotSupported();
-        }
-
     }
 
 }

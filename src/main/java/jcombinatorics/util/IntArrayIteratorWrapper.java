@@ -16,7 +16,7 @@ import java.util.Iterator;
 /**
  * @author Alistair A. Israel
  */
-public class IntArrayIteratorWrapper<T> implements Iterator<Iterable<T>> {
+public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
 
     private final T[] elements;
 
@@ -50,15 +50,6 @@ public class IntArrayIteratorWrapper<T> implements Iterator<Iterable<T>> {
     public final Iterable<T> next() {
         final int[] indices = iterator.next();
         return new ValuesAtIterator(elements, indices);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.util.Iterator#remove()
-     */
-    public void remove() {
-        throw new RemoveNotSupported();
     }
 
 }

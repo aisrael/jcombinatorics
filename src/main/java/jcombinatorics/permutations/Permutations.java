@@ -11,13 +11,10 @@
  */
 package jcombinatorics.permutations;
 
-import java.util.Collection;
 import java.util.Iterator;
 
-import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
-import jcombinatorics.util.ValuesAtIterator;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * @author Alistair A. Israel
@@ -62,8 +59,8 @@ public final class Permutations {
      *        taken k at a time
      * @return {@link Generator}
      */
-    public static Generator<int[]> permute(final int n, final int k) {
-        return new Permutations.GeneratorImpl(n, k);
+    public static Generator permute(final int n, final int k) {
+        return new Generator(n, k);
     }
 
     /**
@@ -72,11 +69,11 @@ public final class Permutations {
      *
      * @author Alistair A. Israel
      */
-    private static class GeneratorImpl implements Generator<int[]> {
+    public static class Generator implements Iterable<int[]> {
 
         private final Iterable<int[]> iteratorFactory;
 
-        private final Generator<int[]> factoradic;
+        private final FactoradicNKPermutationsGenerator factoradic;
 
         /**
          * @param n
@@ -84,14 +81,13 @@ public final class Permutations {
          * @param k
          *        taken k at a time
          */
-        public GeneratorImpl(final int n, final int k) {
+        public Generator(final int n, final int k) {
             if (k != n) {
                 iteratorFactory = new SepaPnkIterator.Factory(n, k);
-                factoradic = new FactoradicNKPermutationsGenerator(n, k);
             } else {
                 iteratorFactory = new SepaPnIterator.Factory(n);
-                factoradic = new FactoradicNPermutationsGenerator(n);
             }
+            this.factoradic = new FactoradicNKPermutationsGenerator(n, k);
         }
 
         /**
@@ -117,60 +113,6 @@ public final class Permutations {
     }
 
     /**
-     * @param coll
-     *        the collection of elements to permute
-     * @return {@link Generator}&lt;{@link Iterable}&lt;T&gt;&gt;
-     */
-    public static <T> Generator<Iterable<T>> over(final Collection<T> coll) {
-        return new TPermutator<T>(coll);
-    }
-
-    private static class TPermutator<T> implements Generator<Iterable<T>> {
-
-        private final T[] elements;
-
-        private final Iterable<int[]> iteratorFactory;
-
-        private final Generator<int[]> factoradic;
-
-        /**
-         * @param coll
-         *        the collection of elements
-         */
-        @SuppressWarnings("unchecked")
-        public TPermutator(final Collection<T> coll) {
-            elements = (T[]) coll.toArray();
-            iteratorFactory = new SepaPnIterator.Factory(elements.length);
-            factoradic = new FactoradicNPermutationsGenerator(elements.length);
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @see jcombinatorics.Generator#get(long)
-         */
-        public Iterable<T> get(final long l) {
-            final int[] indices = factoradic.get(l);
-            return new Iterable<T>() {
-
-                public Iterator<T> iterator() {
-                    return new ValuesAtIterator(elements, indices);
-                }
-            };
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @see java.lang.Iterable#iterator()
-         */
-        public Iterator<Iterable<T>> iterator() {
-            return iteratorFactory.iterator();
-        }
-
-    }
-
-    /**
      * @param elements
      *        int[]
      * @return {@link Iterable}&lt;int[]&gt;
@@ -180,6 +122,43 @@ public final class Permutations {
             throw new IllegalArgumentException("Too many arguments (max 12)!");
         }
         return new IntPermutator(elements);
+    }
+
+    /**
+     * A base class for type-specific iterators, that just delegates to an
+     * internal {@link Iterator} returned by a
+     * {@link SepaNPermutationsGenerator}.
+     *
+     * @author Alistair A. Israel
+     */
+    private abstract static class IteratorBase<T> extends ReadOnlyIterator<T> {
+
+        private final Iterator<int[]> iter;
+
+        /**
+         * @param iter
+         *        the internal iterator
+         */
+        public IteratorBase(final Iterator<int[]> iter) {
+            this.iter = iter;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.util.Iterator#hasNext()
+         */
+        public final boolean hasNext() {
+            return iter.hasNext();
+        }
+
+        /**
+         * @return int[]
+         */
+        protected final int[] getNextIndices() {
+            return iter.next();
+        }
+
     }
 
     /**
@@ -215,7 +194,7 @@ public final class Permutations {
          *
          * @author Alistair A. Israel
          */
-        private final class IntIterator extends IteratorBase implements Iterator<int[]> {
+        private final class IntIterator extends IteratorBase<int[]> implements Iterator<int[]> {
 
             /**
              *
@@ -233,50 +212,6 @@ public final class Permutations {
                 final int[] indices = getNextIndices();
                 return ArrayUtils.valuesAt(elements, indices);
             }
-        }
-
-    }
-
-    /**
-     * A base class for type-specific iterators, that just delegates to an
-     * internal {@link Iterator} returned by a
-     * {@link SepaNPermutationsGenerator}.
-     *
-     * @author Alistair A. Israel
-     */
-    private static class IteratorBase {
-
-        private final Iterator<int[]> iter;
-
-        /**
-         * @param iter
-         *        the internal iterator
-         */
-        public IteratorBase(final Iterator<int[]> iter) {
-            this.iter = iter;
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @see java.util.Iterator#hasNext()
-         */
-        public final boolean hasNext() {
-            return iter.hasNext();
-        }
-
-        /**
-         * @return int[]
-         */
-        protected final int[] getNextIndices() {
-            return iter.next();
-        }
-
-        /**
-         * Not supported. Throws {@link RemoveNotSupported}.
-         */
-        public final void remove() {
-            throw new RemoveNotSupported();
         }
 
     }

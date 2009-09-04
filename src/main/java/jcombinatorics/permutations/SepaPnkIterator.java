@@ -12,13 +12,13 @@
 package jcombinatorics.permutations;
 
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  *
  * @author Alistair A. Israel
  */
-public class SepaPnkIterator implements java.util.Iterator<int[]> {
+public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
     private boolean hasNext = true;
 
@@ -163,13 +163,6 @@ public class SepaPnkIterator implements java.util.Iterator<int[]> {
         final int t = a[x];
         a[x] = a[y];
         a[y] = t;
-    }
-
-    /**
-     * Not supported. Throws {@link RemoveNotSupported}.
-     */
-    public final void remove() {
-        throw new RemoveNotSupported();
     }
 
     /**

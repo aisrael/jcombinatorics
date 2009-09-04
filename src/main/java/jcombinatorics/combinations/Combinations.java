@@ -14,7 +14,7 @@ package jcombinatorics.combinations;
 import java.util.Iterator;
 
 import jcombinatorics.util.ArrayUtils;
-import jcombinatorics.util.RemoveNotSupported;
+import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * A utility class that provides convenience methods for generating and working
@@ -195,7 +195,7 @@ public final class Combinations {
          *
          * @author Alistair A. Israel
          */
-        private final class Iterator implements java.util.Iterator<T[]> {
+        private final class Iterator extends ReadOnlyIterator<T[]> {
 
             private final RosenIterator iterator = new RosenIterator(elements.length, k);
 
@@ -216,13 +216,6 @@ public final class Combinations {
             public T[] next() {
                 final int[] indices = iterator.next();
                 return ArrayUtils.valuesAt(elements, indices);
-            }
-
-            /**
-             * Not supported. Throws {@link RemoveNotSupported}.
-             */
-            public void remove() {
-                throw new RemoveNotSupported();
             }
         }
     }
