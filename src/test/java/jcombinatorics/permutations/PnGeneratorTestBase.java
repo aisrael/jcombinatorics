@@ -12,6 +12,7 @@
 package jcombinatorics.permutations;
 
 import static java.lang.String.format;
+import static jcombinatorics.permutations.Constants.P_4;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -27,15 +28,6 @@ public class PnGeneratorTestBase {
      * N
      */
     public static final int N = 4;
-
-    /**
-     * P(4)
-     */
-    public static final int[][] P_4 = { { 0, 1, 2, 3 }, { 0, 1, 3, 2 }, { 0, 2, 1, 3 }, { 0, 2, 3, 1 },
-            { 0, 3, 1, 2 }, { 0, 3, 2, 1 }, { 1, 0, 2, 3 }, { 1, 0, 3, 2 }, { 1, 2, 0, 3 }, { 1, 2, 3, 0 },
-            { 1, 3, 0, 2 }, { 1, 3, 2, 0 }, { 2, 0, 1, 3 }, { 2, 0, 3, 1 }, { 2, 1, 0, 3 }, { 2, 1, 3, 0 },
-            { 2, 3, 0, 1 }, { 2, 3, 1, 0 }, { 3, 0, 1, 2 }, { 3, 0, 2, 1 }, { 3, 1, 0, 2 }, { 3, 1, 2, 0 },
-            { 3, 2, 0, 1 }, { 3, 2, 1, 0 } };
 
     /**
      * @param generator

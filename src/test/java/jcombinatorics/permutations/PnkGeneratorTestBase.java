@@ -12,6 +12,7 @@
 package jcombinatorics.permutations;
 
 import static java.lang.String.format;
+import static jcombinatorics.permutations.Constants.P_5_3;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -22,19 +23,6 @@ import java.util.Arrays;
  * @author Alistair A. Israel
  */
 public class PnkGeneratorTestBase {
-
-    /**
-     * P(5,3)
-     */
-    public static final int[][] P_5_3 = { { 0, 1, 2 }, { 0, 1, 3 }, { 0, 1, 4 }, { 0, 2, 1 }, { 0, 2, 3 },
-            { 0, 2, 4 }, { 0, 3, 1 }, { 0, 3, 2 }, { 0, 3, 4 }, { 0, 4, 1 }, { 0, 4, 2 }, { 0, 4, 3 },
-            { 1, 0, 2 }, { 1, 0, 3 }, { 1, 0, 4 }, { 1, 2, 0 }, { 1, 2, 3 }, { 1, 2, 4 }, { 1, 3, 0 },
-            { 1, 3, 2 }, { 1, 3, 4 }, { 1, 4, 0 }, { 1, 4, 2 }, { 1, 4, 3 }, { 2, 0, 1 }, { 2, 0, 3 },
-            { 2, 0, 4 }, { 2, 1, 0 }, { 2, 1, 3 }, { 2, 1, 4 }, { 2, 3, 0 }, { 2, 3, 1 }, { 2, 3, 4 },
-            { 2, 4, 0 }, { 2, 4, 1 }, { 2, 4, 3 }, { 3, 0, 1 }, { 3, 0, 2 }, { 3, 0, 4 }, { 3, 1, 0 },
-            { 3, 1, 2 }, { 3, 1, 4 }, { 3, 2, 0 }, { 3, 2, 1 }, { 3, 2, 4 }, { 3, 4, 0 }, { 3, 4, 1 },
-            { 3, 4, 2 }, { 4, 0, 1 }, { 4, 0, 2 }, { 4, 0, 3 }, { 4, 1, 0 }, { 4, 1, 2 }, { 4, 1, 3 },
-            { 4, 2, 0 }, { 4, 2, 1 }, { 4, 2, 3 }, { 4, 3, 0 }, { 4, 3, 1 }, { 4, 3, 2 } };
 
     /**
      * Basic test, generate P(5,3)

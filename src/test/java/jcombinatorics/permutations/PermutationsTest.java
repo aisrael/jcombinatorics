@@ -11,7 +11,8 @@
  */
 package jcombinatorics.permutations;
 
-import static jcombinatorics.permutations.Constants.PERMUTATIONS_OF_A_BB_CC;
+import static jcombinatorics.permutations.Constants.P_A_BB_CC;
+import static jcombinatorics.permutations.Constants.P_5_3;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -42,19 +43,6 @@ public final class PermutationsTest {
     }
 
     /**
-     * P(5,3)
-     */
-    public static final int[][] P_5_3 = { { 0, 1, 2 }, { 0, 1, 3 }, { 0, 1, 4 }, { 0, 2, 1 }, { 0, 2, 3 },
-            { 0, 2, 4 }, { 0, 3, 1 }, { 0, 3, 2 }, { 0, 3, 4 }, { 0, 4, 1 }, { 0, 4, 2 }, { 0, 4, 3 },
-            { 1, 0, 2 }, { 1, 0, 3 }, { 1, 0, 4 }, { 1, 2, 0 }, { 1, 2, 3 }, { 1, 2, 4 }, { 1, 3, 0 },
-            { 1, 3, 2 }, { 1, 3, 4 }, { 1, 4, 0 }, { 1, 4, 2 }, { 1, 4, 3 }, { 2, 0, 1 }, { 2, 0, 3 },
-            { 2, 0, 4 }, { 2, 1, 0 }, { 2, 1, 3 }, { 2, 1, 4 }, { 2, 3, 0 }, { 2, 3, 1 }, { 2, 3, 4 },
-            { 2, 4, 0 }, { 2, 4, 1 }, { 2, 4, 3 }, { 3, 0, 1 }, { 3, 0, 2 }, { 3, 0, 4 }, { 3, 1, 0 },
-            { 3, 1, 2 }, { 3, 1, 4 }, { 3, 2, 0 }, { 3, 2, 1 }, { 3, 2, 4 }, { 3, 4, 0 }, { 3, 4, 1 },
-            { 3, 4, 2 }, { 4, 0, 1 }, { 4, 0, 2 }, { 4, 0, 3 }, { 4, 1, 0 }, { 4, 1, 2 }, { 4, 1, 3 },
-            { 4, 2, 0 }, { 4, 2, 1 }, { 4, 2, 3 }, { 4, 3, 0 }, { 4, 3, 1 }, { 4, 3, 2 } };
-
-    /**
      * Test for
      */
     @Test
@@ -83,7 +71,7 @@ public final class PermutationsTest {
     @Test
     public void testPermutationsOver() {
         final List<String> list = Arrays.asList("a", "bb", "ccc");
-        final String[][] expected = PERMUTATIONS_OF_A_BB_CC;
+        final String[][] expected = P_A_BB_CC;
         int i = 0;
         for (final Iterable<String> permutation : Permutations.over(list)) {
             int j = 0;

@@ -12,6 +12,7 @@
 package jcombinatorics.permutations;
 
 import static java.lang.String.format;
+import static jcombinatorics.permutations.Constants.P_4;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.util.Arrays;

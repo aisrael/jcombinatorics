@@ -11,6 +11,7 @@
  */
 package jcombinatorics.permutations;
 
+import static jcombinatorics.permutations.Constants.P_5_3;
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;

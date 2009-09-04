@@ -143,6 +143,7 @@ public final class Permutations {
 
         /**
          * @param coll
+         *        the Collection of objects to permute
          */
         @SuppressWarnings("unchecked")
         public Over(final Collection<T> coll) {
