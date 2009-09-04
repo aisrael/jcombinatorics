@@ -18,7 +18,7 @@ import java.util.Iterator;
  *        a type
  * @author Alistair A. Israel
  */
-public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
+public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<T[]> {
 
     private final T[] elements;
 
@@ -49,9 +49,9 @@ public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
      *
      * @see java.util.Iterator#next()
      */
-    public final Iterable<T> next() {
+    public final T[] next() {
         final int[] indices = iterator.next();
-        return new ValuesAt<T>(elements, indices);
+        return ArrayUtils.valuesAt(elements, indices);
     }
 
 }

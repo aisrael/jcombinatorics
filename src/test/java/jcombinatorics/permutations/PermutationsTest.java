@@ -11,8 +11,8 @@
  */
 package jcombinatorics.permutations;
 
-import static jcombinatorics.permutations.Constants.P_A_BB_CC;
 import static jcombinatorics.permutations.Constants.P_5_3;
+import static jcombinatorics.permutations.Constants.P_A_BB_CC;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -73,7 +73,7 @@ public final class PermutationsTest {
         final List<String> list = Arrays.asList("a", "bb", "ccc");
         final String[][] expected = P_A_BB_CC;
         int i = 0;
-        for (final Iterable<String> permutation : Permutations.over(list)) {
+        for (final String[] permutation : Permutations.over(list)) {
             int j = 0;
             for (final String s : permutation) {
                 assertEquals(expected[i][j], s);

@@ -18,7 +18,6 @@ import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.IntArrayIteratorWrapper;
 import jcombinatorics.util.ReadOnlyIterator;
-import jcombinatorics.util.ValuesAt;
 
 /**
  * @author Alistair A. Israel
@@ -27,7 +26,7 @@ import jcombinatorics.util.ValuesAt;
 public final class Permutations {
 
     /**
-     * Utility classes should not a public or default constructor.
+     * Utility classes should not have a public or default constructor.
      */
     private Permutations() {
         // noop
@@ -133,7 +132,7 @@ public final class Permutations {
      *        a type
      * @author Alistair A. Israel
      */
-    public static class Over<T> implements Generator<Iterable<T>> {
+    public static class Over<T> implements Generator<T[]> {
 
         private final T[] elements;
 
@@ -157,8 +156,9 @@ public final class Permutations {
          *
          * @see jcombinatorics.Generator#get(long)
          */
-        public final Iterable<T> get(final long l) {
-            return new ValuesAt<T>(elements, factoradic.get(l));
+        public final T[] get(final long l) {
+            final int[] indices = factoradic.get(l);
+            return ArrayUtils.valuesAt(elements, indices);
         }
 
         /**
@@ -166,7 +166,7 @@ public final class Permutations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final Iterator<Iterable<T>> iterator() {
+        public final Iterator<T[]> iterator() {
             return new IntArrayIteratorWrapper<T>(elements, iteratorFactory.iterator());
         }
 
