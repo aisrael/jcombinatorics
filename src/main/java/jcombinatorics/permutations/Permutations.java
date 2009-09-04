@@ -11,11 +11,14 @@
  */
 package jcombinatorics.permutations;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.IntArrayIteratorWrapper;
 import jcombinatorics.util.ReadOnlyIterator;
+import jcombinatorics.util.ValuesAtIterator;
 
 /**
  * @author Alistair A. Israel
@@ -110,6 +113,65 @@ public final class Permutations {
          */
         public final int[] get(final long l) {
             return factoradic.get(l);
+        }
+
+    }
+
+    /**
+     * @param <T>
+     *        a type
+     * @param coll
+     *        a collection of elements
+     * @return an {@link Over} DSL thingie
+     */
+    public static <T> Over<T> over(final Collection<T> coll) {
+        return new Over<T>(coll);
+    }
+
+    /**
+     * @param <T>
+     *        a type
+     * @author Alistair A. Israel
+     */
+    public static class Over<T> implements Generator<Iterable<T>> {
+
+        private final T[] elements;
+
+        private final Iterable<int[]> iteratorFactory;
+
+        private final Generator<int[]> factoradic;
+
+        /**
+         * @param coll
+         */
+        @SuppressWarnings("unchecked")
+        public Over(final Collection<T> coll) {
+            this.elements = (T[]) coll.toArray();
+            this.iteratorFactory = new SepaPnIterator.Factory(elements.length);
+            this.factoradic = new FactoradicNPermutationsGenerator(elements.length);
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see jcombinatorics.Generator#get(long)
+         */
+        public final Iterable<T> get(final long l) {
+            return new Iterable<T>() {
+
+                public Iterator<T> iterator() {
+                    return new ValuesAtIterator<T>(elements, factoradic.get(l));
+                }
+            };
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.lang.Iterable#iterator()
+         */
+        public final Iterator<Iterable<T>> iterator() {
+            return new IntArrayIteratorWrapper<T>(elements, iteratorFactory.iterator());
         }
 
     }
