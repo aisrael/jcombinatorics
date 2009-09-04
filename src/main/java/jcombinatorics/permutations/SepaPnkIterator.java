@@ -12,6 +12,7 @@
 package jcombinatorics.permutations;
 
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.RemoveNotSupported;
 
 /**
  *
@@ -170,7 +171,7 @@ public class SepaPnkIterator implements java.util.Iterator<int[]> {
      * @see java.util.Iterator#remove()
      */
     public final void remove() {
-        throw new UnsupportedOperationException("remove() not supported!");
+        throw new RemoveNotSupported();
     }
 
     /**

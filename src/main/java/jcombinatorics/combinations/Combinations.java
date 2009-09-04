@@ -14,6 +14,7 @@ package jcombinatorics.combinations;
 import java.util.Iterator;
 
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.RemoveNotSupported;
 
 /**
  * A utility class that provides convenience methods for generating and working
@@ -223,7 +224,7 @@ public final class Combinations {
              * @see java.util.Iterator#remove()
              */
             public void remove() {
-                throw new UnsupportedOperationException("remove() not supported");
+                throw new RemoveNotSupported();
             }
         }
     }

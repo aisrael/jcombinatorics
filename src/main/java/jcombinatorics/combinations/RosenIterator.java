@@ -14,6 +14,7 @@ package jcombinatorics.combinations;
 import java.util.Iterator;
 
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.RemoveNotSupported;
 
 /**
  * An iterator that generates combinations in lexicographic order.
@@ -86,10 +87,10 @@ public class RosenIterator implements Iterator<int[]> {
     }
 
     /**
-     * Not supported. Throws {@link UnsupportedOperationException}.
+     * Not supported. Throws {@link RemoveNotSupported}.
      */
     public final void remove() {
-        throw new UnsupportedOperationException("remove() not supported!");
+        throw new RemoveNotSupported();
     }
 
 }

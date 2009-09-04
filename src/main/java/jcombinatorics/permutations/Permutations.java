@@ -14,6 +14,7 @@ package jcombinatorics.permutations;
 import java.util.Iterator;
 
 import jcombinatorics.util.ArrayUtils;
+import jcombinatorics.util.RemoveNotSupported;
 
 /**
  * @author Alistair A. Israel
@@ -159,12 +160,10 @@ public final class Permutations {
         }
 
         /**
-         * {@inheritDoc}
-         *
-         * @see java.util.Iterator#remove()
+         * Not supported. Throws {@link RemoveNotSupported}.
          */
         public final void remove() {
-            throw new UnsupportedOperationException();
+            throw new RemoveNotSupported();
         }
 
     }

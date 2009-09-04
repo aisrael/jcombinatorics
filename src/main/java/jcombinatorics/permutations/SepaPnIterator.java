@@ -13,6 +13,8 @@ package jcombinatorics.permutations;
 
 import java.util.Iterator;
 
+import jcombinatorics.util.RemoveNotSupported;
+
 /**
  * Iterator that enumerates permutations of <code>P(n)</code> in lexicographical
  * order. Only supports n <= 12, since 13! > {@link java.lang.Integer#MAX_VALUE}
@@ -136,7 +138,7 @@ public class SepaPnIterator implements Iterator<int[]> {
      * @see java.util.Iterator#remove()
      */
     public final void remove() {
-        throw new UnsupportedOperationException("remove() not supported!");
+        throw new RemoveNotSupported();
     }
 
     /**

@@ -13,6 +13,7 @@ package jcombinatorics.permutations;
 
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.MathUtils;
+import jcombinatorics.util.RemoveNotSupported;
 
 /**
  * P(n) generator in lexicographical order using factoradics. Supports computing
@@ -130,7 +131,7 @@ public class FactoradicNPermutationsGenerator implements Iterable<int[]> {
          * @see java.util.Iterator#remove()
          */
         public void remove() {
-            throw new UnsupportedOperationException("remove() not supported!");
+            throw new RemoveNotSupported();
         }
 
     }
