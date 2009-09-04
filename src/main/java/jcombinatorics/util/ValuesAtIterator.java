@@ -11,14 +11,12 @@
  */
 package jcombinatorics.util;
 
-import java.util.Iterator;
-
 /**
  * @param <T>
  *        a type
  * @author Alistair A. Israel
  */
-public class ValuesAtIterator<T> implements Iterator<T> {
+public class ValuesAtIterator<T> extends ReadOnlyIterator<T> {
 
     private final T[] elements;
 
@@ -53,13 +51,6 @@ public class ValuesAtIterator<T> implements Iterator<T> {
      */
     public final T next() {
         return elements[indices[i++]];
-    }
-
-    /**
-     * Not supported. Throws {@link RemoveNotSupported}.
-     */
-    public final void remove() {
-        throw new RemoveNotSupported();
     }
 
 }

@@ -14,6 +14,8 @@ package jcombinatorics.util;
 import java.util.Iterator;
 
 /**
+ * @param <T>
+ *        a type
  * @author Alistair A. Israel
  */
 public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
@@ -49,7 +51,12 @@ public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
      */
     public final Iterable<T> next() {
         final int[] indices = iterator.next();
-        return new ValuesAtIterator(elements, indices);
+        return new Iterable<T>() {
+
+            public Iterator<T> iterator() {
+                return new ValuesAtIterator<T>(elements, indices);
+            }
+        };
     }
 
 }

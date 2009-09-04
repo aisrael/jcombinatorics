@@ -13,6 +13,7 @@ package jcombinatorics.permutations;
 
 import java.util.Iterator;
 
+import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
@@ -57,10 +58,10 @@ public final class Permutations {
      *        the number of elements
      * @param k
      *        taken k at a time
-     * @return {@link Generator}
+     * @return {@link GeneratorImpl}
      */
-    public static Generator permute(final int n, final int k) {
-        return new Generator(n, k);
+    public static Generator<int[]> permute(final int n, final int k) {
+        return new GeneratorImpl(n, k);
     }
 
     /**
@@ -69,11 +70,11 @@ public final class Permutations {
      *
      * @author Alistair A. Israel
      */
-    public static class Generator implements Iterable<int[]> {
+    private static class GeneratorImpl implements Generator<int[]> {
 
         private final Iterable<int[]> iteratorFactory;
 
-        private final FactoradicNKPermutationsGenerator factoradic;
+        private final Generator<int[]> factoradic;
 
         /**
          * @param n
@@ -81,13 +82,14 @@ public final class Permutations {
          * @param k
          *        taken k at a time
          */
-        public Generator(final int n, final int k) {
+        public GeneratorImpl(final int n, final int k) {
             if (k != n) {
                 iteratorFactory = new SepaPnkIterator.Factory(n, k);
+                factoradic = new FactoradicNKPermutationsGenerator(n, k);
             } else {
                 iteratorFactory = new SepaPnIterator.Factory(n);
+                factoradic = new FactoradicNPermutationsGenerator(n);
             }
-            this.factoradic = new FactoradicNKPermutationsGenerator(n, k);
         }
 
         /**
