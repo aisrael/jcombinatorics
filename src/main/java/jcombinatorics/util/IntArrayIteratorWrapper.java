@@ -51,12 +51,7 @@ public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<Iterable<T>> {
      */
     public final Iterable<T> next() {
         final int[] indices = iterator.next();
-        return new Iterable<T>() {
-
-            public Iterator<T> iterator() {
-                return new ValuesAtIterator<T>(elements, indices);
-            }
-        };
+        return new ValuesAt<T>(elements, indices);
     }
 
 }

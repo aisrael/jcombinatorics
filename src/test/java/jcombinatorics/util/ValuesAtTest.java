@@ -17,24 +17,25 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link ValuesAtIterator}.
+ * JUnit test for {@link ValuesAt}.
  *
  * @author Alistair A. Israel
  */
-public final class ValuesAtIteratorTest {
+public final class ValuesAtTest {
 
     /**
      *
      */
     @Test
-    public void testValuesAtIterator() {
-        final String[] expected = { "ccc", "eeeee", "bb", "dddd" };
-        final int[] indices = { 2, 4, 1, 3 };
+    public void testValuesAt() {
         final String[] elements = { "a", "bb", "ccc", "dddd", "eeeee" };
+        final int[] indices = { 2, 4, 1, 3 };
+
+        final String[] expected = { "ccc", "eeeee", "bb", "dddd" };
+
         int i = 0;
-        final ValuesAtIterator<String> iterator = new ValuesAtIterator<String>(elements, indices);
-        while (iterator.hasNext()) {
-            final String actual = iterator.next();
+        final ValuesAt<String> valuesAt = new ValuesAt<String>(elements, indices);
+        for (final String actual : valuesAt) {
             assertEquals(format("[%d] expected \"%s\", got \"%s\"", i, expected[i], actual), expected[i],
                     actual);
             ++i;

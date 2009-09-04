@@ -18,7 +18,7 @@ import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.IntArrayIteratorWrapper;
 import jcombinatorics.util.ReadOnlyIterator;
-import jcombinatorics.util.ValuesAtIterator;
+import jcombinatorics.util.ValuesAt;
 
 /**
  * @author Alistair A. Israel
@@ -158,12 +158,7 @@ public final class Permutations {
          * @see jcombinatorics.Generator#get(long)
          */
         public final Iterable<T> get(final long l) {
-            return new Iterable<T>() {
-
-                public Iterator<T> iterator() {
-                    return new ValuesAtIterator<T>(elements, factoradic.get(l));
-                }
-            };
+            return new ValuesAt<T>(elements, factoradic.get(l));
         }
 
         /**
