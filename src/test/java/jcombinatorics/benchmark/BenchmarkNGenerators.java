@@ -23,7 +23,7 @@ import jcombinatorics.util.MathUtils;
  */
 public class BenchmarkNGenerators implements Runnable {
 
-    private static final int N = 8;
+    private static final int N = 10;
 
     private static final long P = MathUtils.factorial(N);
 

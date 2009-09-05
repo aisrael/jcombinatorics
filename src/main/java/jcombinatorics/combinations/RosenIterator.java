@@ -11,6 +11,8 @@
  */
 package jcombinatorics.combinations;
 
+import java.util.Iterator;
+
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
@@ -87,4 +89,34 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
         this.a = ArrayUtils.identityPermutation(k);
     }
 
+    /**
+     * @author Alistair A. Israel
+     */
+    public static class Factory implements Iterable<int[]> {
+
+        private final int n;
+
+        private final int k;
+
+        /**
+         * @param n
+         *        the number of elements
+         * @param k
+         *        taken k at a time
+         */
+        public Factory(final int n, final int k) {
+            this.n = n;
+            this.k = k;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.lang.Iterable#iterator()
+         */
+        public final Iterator<int[]> iterator() {
+            return new RosenIterator(n, k);
+        }
+
+    }
 }
