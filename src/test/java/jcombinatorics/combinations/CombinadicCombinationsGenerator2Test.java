@@ -16,7 +16,6 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.util.Arrays;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -33,7 +32,6 @@ public final class CombinadicCombinationsGenerator2Test {
      *
      */
     @Test
-    @Ignore
     public void testGenerateC53() {
         final CombinadicCombinationsGenerator2 generator = new CombinadicCombinationsGenerator2(5, 3);
         for (int i = 0; i < C_5_3.length; ++i) {
@@ -42,6 +40,20 @@ public final class CombinadicCombinationsGenerator2Test {
                     Arrays.toString(C_5_3[i]), Arrays.toString(actual)), C_5_3[i], actual);
         }
     }
+
+    /**
+    *
+    */
+   @Test
+   public void testGenerateC53Iterator() {
+       final CombinadicCombinationsGenerator2 generator = new CombinadicCombinationsGenerator2(5, 3);
+       int i = 0;
+       for (final int[] actual : generator) {
+           assertArrayEquals(format("C(%d,%d)[%d] expected %s, got %s", 5, 3, i,
+                   Arrays.toString(C_5_3[i]), Arrays.toString(actual)), C_5_3[i], actual);
+           ++i;
+       }
+   }
 
     /**
      * Test for {@link CombinadicCombinationsGenerator2#get(long)} .

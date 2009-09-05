@@ -70,7 +70,7 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
      */
     private void computeInto(final int[] a, final long l) {
         int nn = n;
-        long m = count(n, k) - l - 1;
+        long m = count - l - 1;
 
         for (int i = 0; i < k; ++i) {
             // find largest v
@@ -103,11 +103,20 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @see java.lang.Iterable#iterator()
+     */
+    public final Iterator<int[]> iterator() {
+        return new IteratorImpl();
+    }
+
+    /**
      * @author Alistair A. Israel
      */
     private class IteratorImpl extends ReadOnlyIterator<int[]> {
 
-        private long i;
+        private long l = count;
 
         private final int[] a = new int[k];
 
@@ -117,7 +126,7 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
          * @see java.util.Iterator#hasNext()
          */
         public boolean hasNext() {
-            return i < count;
+            return l > 0;
         }
 
         /**
@@ -126,20 +135,26 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
          * @see java.util.Iterator#next()
          */
         public int[] next() {
-            computeInto(a, i);
-            ++i;
+            int nn = n;
+            long m = l - 1;
+            int kk = k;
+            for (int i = 0; i < k; ++i) {
+                --nn;
+                // find largest v
+                int v = nn;
+                long c = count(v, kk);
+                while (c > m) {
+                    c = c * (v - kk) / v;
+                    --v;
+                }
+                --kk;
+                m -= c;
+                a[i] = (n - 1) - v;
+            }
+            --l;
             return a;
         }
 
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.Iterable#iterator()
-     */
-    public final Iterator<int[]> iterator() {
-        return new IteratorImpl();
     }
 
 }
