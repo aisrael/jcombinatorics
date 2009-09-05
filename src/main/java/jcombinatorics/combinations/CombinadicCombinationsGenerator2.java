@@ -49,7 +49,7 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
     }
 
     /**
-     * Retrieve the <i>i</i>-th combination.
+     * Retrieve the <i>l</i>-th combination.
      *
      * @param l
      *        long
@@ -57,27 +57,34 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
      */
     public final int[] get(final long l) {
         final int[] a = new int[k];
+        computeInto(a, l);
+        return a;
+    }
 
+    /**
+     * Computes the <i>l</i>-th combination into the given array
+     *
+     * @param a
+     *        an array
+     * @param l
+     */
+    private void computeInto(final int[] a, final long l) {
         int nn = n;
         long m = count(n, k) - l - 1;
 
         for (int i = 0; i < k; ++i) {
-            final int kk = k - i;
+            // find largest v
             int v = nn - 1;
-            int c = 1;
-            for (int i1 = 0; i1 < kk; ++i1) {
-                c = c * (v - i1) / (i1 + 1);
-            }
+            int c = count(v, k - i);
             while (c > m) {
-                c = c * (v - kk) / v;
+                c = c * (v - (k - i)) / v;
                 --v;
             }
+
             m -= c;
             nn = v;
             a[i] = (n - 1) - v;
         }
-
-        return a;
     }
 
     /**
@@ -102,6 +109,8 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
 
         private long i;
 
+        private final int[] a = new int[k];
+
         /**
          * {@inheritDoc}
          *
@@ -117,7 +126,9 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
          * @see java.util.Iterator#next()
          */
         public int[] next() {
-            return get(i++);
+            computeInto(a, i);
+            ++i;
+            return a;
         }
 
     }
