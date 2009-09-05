@@ -12,8 +12,7 @@
 package jcombinatorics.permutations;
 
 /**
- * P(n) generator in lexicographical order. Only supports n <= 12, since 13! >
- * {@link java.lang.Integer#MAX_VALUE}.
+ * P(n) generator in lexicographical order.
  *
  * @author Alistair A. Israel
  * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A
@@ -29,9 +28,6 @@ public class SepaNPermutationsGenerator implements Iterable<int[]> {
      *        the number of elements
      */
     public SepaNPermutationsGenerator(final int n) {
-        if (!(n > 0 && n <= 12)) {
-            throw new IllegalArgumentException("0 < n <= 12!");
-        }
         this.n = n;
     }
 

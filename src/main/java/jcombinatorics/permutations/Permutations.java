@@ -59,7 +59,7 @@ public final class Permutations {
      *        the number of elements
      * @param k
      *        taken k at a time
-     * @return {@link GeneratorImpl}
+     * @return {@link Permutations.GeneratorImpl}
      */
     public static Generator<int[]> permute(final int n, final int k) {
         return new GeneratorImpl(n, k);

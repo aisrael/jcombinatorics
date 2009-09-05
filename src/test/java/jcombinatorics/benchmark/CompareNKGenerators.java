@@ -15,7 +15,7 @@ import static java.lang.System.out;
 import jcombinatorics.benchmark.Benchmark.Result;
 import jcombinatorics.permutations.FactoradicNKPermutationsGenerator;
 import jcombinatorics.permutations.Permutations;
-import jcombinatorics.permutations.SepaNKPermutationsGenerator;
+import jcombinatorics.permutations.SepaPnkIterator;
 
 /**
  *
@@ -38,7 +38,7 @@ public class CompareNKGenerators implements Runnable {
         final NKGeneratorFactory sepaFactory = new NKGeneratorFactory() {
 
             public Iterable<int[]> generator(final int n, final int k) {
-                return new SepaNKPermutationsGenerator(n, k);
+                return new SepaPnkIterator.Factory(n, k);
             }
         };
         final float[][] sepa = collectTimings("SEPA", sepaFactory);

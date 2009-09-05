@@ -16,9 +16,10 @@ import java.util.Iterator;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * Iterator that enumerates permutations of <code>P(n)</code> in lexicographical
- * order. Only supports n <= 12, since 13! > {@link java.lang.Integer#MAX_VALUE}
- * .
+ * <p>
+ * SEPA ("Simple, Efficient Permutation Algorithm") iterator that enumerates all
+ * permutations <code>P(n)</code> in lexicographical order.
+ * </p>
  *
  * @author Alistair A. Israel
  * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A
@@ -38,8 +39,8 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      *        the number of elements to permute
      */
     public SepaPnIterator(final int n) {
-        if (!(n > 0 && n <= 12)) {
-            throw new IllegalArgumentException("0 < n <= 12!");
+        if (n < 0) {
+            throw new IllegalArgumentException("n < 0");
         }
         this.n = n;
     }
@@ -130,6 +131,15 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         final int t = a[x];
         a[x] = a[y];
         a[y] = t;
+    }
+
+    /**
+     * @param n
+     *        the number of elements to permute
+     * @return {@link Iterable}&lt;int[]&gt;
+     */
+    public static Iterable<int[]> permute(final int n) {
+        return new Factory(n);
     }
 
     /**

@@ -15,8 +15,14 @@ import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
+ * <p>
+ * An iterator that enumerates <code>P(n,k)</code>, or all permutations of
+ * <code>n</code> taken <code>k</code> at a time in lexicographic order. Derived
+ * from the SEPA P(n) iterator.
+ * </p>
  *
  * @author Alistair A. Israel
+ * @see SepaPnIterator
  */
 public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
@@ -84,12 +90,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      */
     private void computeNext() {
         if (a[edge] < a[edge + 1]) {
-            // rotate left
-            final int t = a[edge];
-            for (int j = edge; j < n - 1; ++j) {
-                a[j] = a[j + 1];
-            }
-            a[n - 1] = t;
+            rotateLeft();
         } else {
             final int i = findi();
             if (i == 0 && a[i] > a[i + 1]) {
@@ -107,8 +108,22 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
     }
 
     /**
+     * Rotate all elements from <code>a[edge]..a[n-1]</code> left by one
+     * position.
+     */
+    private void rotateLeft() {
+        final int t = a[edge];
+        for (int i = edge; i < n - 1; ++i) {
+            a[i] = a[i + 1];
+        }
+        a[n - 1] = t;
+    }
+
+    /**
+     * Reverse the order of elements from <code>a[start + 1]..a[n-1]</code>.
+     *
      * @param start
-     *        int
+     *        the starting element
      */
     private void reverseRightOf(final int start) {
         int i = start + 1;
