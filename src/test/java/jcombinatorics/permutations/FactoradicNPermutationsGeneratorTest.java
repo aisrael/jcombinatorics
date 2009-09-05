@@ -65,10 +65,9 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
      */
     @Test
     public void testCompareWithSepa() {
-        for (int i = 2; i < 9; ++i) {
-            final SepaNPermutationsGenerator sepa = new SepaNPermutationsGenerator(i);
-            final FactoradicNPermutationsGenerator factoradic = new FactoradicNPermutationsGenerator(i);
-            final Iterator<int[]> i1 = sepa.iterator();
+        for (int n = 2; n < 9; ++n) {
+            final FactoradicNPermutationsGenerator factoradic = new FactoradicNPermutationsGenerator(n);
+            final Iterator<int[]> i1 = new SepaPnIterator(n);
             final Iterator<int[]> i2 = factoradic.iterator();
             int c = 0;
             while (i1.hasNext() && i2.hasNext()) {

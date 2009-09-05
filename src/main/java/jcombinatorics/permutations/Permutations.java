@@ -228,7 +228,7 @@ public final class Permutations {
 
         private final int[] elements;
 
-        private final SepaNPermutationsGenerator generator;
+        private final SepaPnIterator.Factory iteratorFactory;
 
         /**
          * @param elements
@@ -236,7 +236,7 @@ public final class Permutations {
          */
         public IntPermutator(final int[] elements) {
             this.elements = elements;
-            this.generator = new SepaNPermutationsGenerator(elements.length);
+            this.iteratorFactory = new SepaPnIterator.Factory(elements.length);
         }
 
         /**
@@ -258,7 +258,7 @@ public final class Permutations {
              *
              */
             public IntIterator() {
-                super(generator.iterator());
+                super(iteratorFactory.iterator());
             }
 
             /**
