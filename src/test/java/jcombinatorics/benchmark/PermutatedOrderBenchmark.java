@@ -91,8 +91,8 @@ public class PermutatedOrderBenchmark {
     private void runThrough(final Task[] elements) {
         for (final Task[] permutation : Permutations.over(elements)) {
             for (final Task task : permutation) {
-                task.runOnce();
-                final float ms = task.getTotalNanos() / 1000000.0f;
+                final long nanos = task.runOnce();
+                final float ms = nanos / 1000000.f;
                 System.out.println(format("%s : %,1.2fms", task.getTaskName(), ms));
             }
         }
@@ -143,13 +143,15 @@ public class PermutatedOrderBenchmark {
         }
 
         /**
-         *
+         * @return the number of nanoseconds this run took
          */
-        private void runOnce() {
+        private long runOnce() {
             final long start = System.nanoTime();
             runnable.run();
             final long stop = System.nanoTime();
-            totalNanos += (stop - start);
+            final long nanos = stop - start;
+            totalNanos += nanos;
+            return nanos;
         }
 
     }

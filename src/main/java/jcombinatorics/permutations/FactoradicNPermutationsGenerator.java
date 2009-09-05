@@ -47,15 +47,15 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
     /**
      * Retrieve the i-th permutation.
      *
-     * @param i
-     *        int
+     * @param l
+     *        long
      * @return int[]
      */
-    public final int[] get(final long i) {
+    public final int[] get(final long l) {
         // For P(n) factoradic, last digit is always 0 so no need to compute
         final int[] f = new int[n - 1];
+        factoradic(f, l);
         final int[] a = new int[n];
-        factoradic(f, i);
         System.arraycopy(identity, 0, a, 0, n);
         Factoradic.factoradicToPermutation(f, a);
         return a;
@@ -67,12 +67,12 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
      *
      * @param f
      *        the array to hold the factoradic
-     * @param i
+     * @param l
      *        long
      */
-    private static void factoradic(final int[] f, final long i) {
+    private static void factoradic(final int[] f, final long l) {
         final int len = f.length;
-        long m = i;
+        long m = l;
         int z = 2;
         while (m > 0) {
             f[len - z + 1] = (int) (m % z);
