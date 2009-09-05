@@ -72,18 +72,17 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
         int nn = n;
         long m = count - l - 1;
 
-        for (int i = 0; i < k; ++i) {
+        for (int i = k; i > 0; --i) {
+            --nn;
             // find largest v
-            int v = nn - 1;
-            int c = count(v, k - i);
+            int v = nn;
+            long c = count(v, i);
             while (c > m) {
-                c = c * (v - (k - i)) / v;
+                c = c * (v - i) / v;
                 --v;
             }
-
             m -= c;
-            nn = v;
-            a[i] = (n - 1) - v;
+            a[k - i] = (n - 1) - v;
         }
     }
 
