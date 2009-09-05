@@ -63,8 +63,16 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
 
         for (int i = 0; i < k; ++i) {
             final int kk = k - i;
-            final int v = largestV(nn, kk, m);
-            m -= count(v, kk);
+            int v = nn - 1;
+            int c = 1;
+            for (int i1 = 0; i1 < kk; ++i1) {
+                c = c * (v - i1) / (i1 + 1);
+            }
+            while (c > m) {
+                c = c * (v - kk) / v;
+                --v;
+            }
+            m -= c;
             nn = v;
             a[i] = (n - 1) - v;
         }
@@ -85,28 +93,6 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
             count = count * (n - i) / (i + 1);
         }
         return count;
-    }
-
-    /**
-     * @param nn
-     *        int
-     * @param kk
-     *        int
-     * @param m
-     *        long
-     * @return v
-     */
-    private static int largestV(final int nn, final int kk, final long m) {
-        int x = nn - 1;
-        int c = 1;
-        for (int i = 0; i < kk; ++i) {
-            c = c * (x - i) / (i + 1);
-        }
-        while (c > m) {
-            c = c * (x - kk) / x;
-            --x;
-        }
-        return x;
     }
 
     /**
