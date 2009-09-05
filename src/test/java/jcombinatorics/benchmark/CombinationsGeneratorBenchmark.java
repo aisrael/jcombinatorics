@@ -22,7 +22,7 @@ import jcombinatorics.combinations.RosenIterator;
  */
 public class CombinationsGeneratorBenchmark implements Runnable {
 
-    private static final int REPS = 1;
+    private static final int REPS = 4;
 
     private static final int N = 20;
 
