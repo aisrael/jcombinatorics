@@ -30,12 +30,12 @@ public class PnGeneratorTestBase {
     public static final int N = 4;
 
     /**
-     * @param generator
+     * @param permutations
      *        the P(n) generator
      */
-    protected final void testGenerateP4(final Iterable<int[]> generator) {
+    protected final void testGenerateP4(final Iterable<int[]> permutations) {
         int i = 0;
-        for (final int[] permutation : generator) {
+        for (final int[] permutation : permutations) {
             assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P_4[i]), Arrays
                     .toString(permutation)), P_4[i], permutation);
             ++i;
