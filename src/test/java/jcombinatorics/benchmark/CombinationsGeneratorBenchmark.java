@@ -15,18 +15,17 @@ import static java.lang.String.format;
 import jcombinatorics.benchmark.PermutatedOrderBenchmark.Task;
 import jcombinatorics.combinations.CombinadicCombinationsGenerator;
 import jcombinatorics.combinations.Combinations;
-import jcombinatorics.combinations.RosenIterator;
 
 /**
  * @author Alistair A. Israel
  */
 public class CombinationsGeneratorBenchmark implements Runnable {
 
-    private static final int REPS = 10;
+    private static final int REPS = 5;
 
-    private static final int N = 21;
+    private static final int N = 17;
 
-    private static final int K = 5;
+    private static final int K = 7;
 
     private static final long EXPECTED_COMBINATIONS = Combinations.count(N, K);
 
@@ -39,9 +38,11 @@ public class CombinationsGeneratorBenchmark implements Runnable {
         System.out.println(format("Generating %d * %,d combinations...", REPS, EXPECTED_COMBINATIONS));
         final String cnk = " C(" + N + "," + K + ")";
         final PermutatedOrderBenchmark benchmark = new PermutatedOrderBenchmark(REPS);
-        benchmark.addTask("Rosen" + cnk, new CombinationsGeneratorBenchmarkTask(new RosenIterator.Factory(
-                N, K)));
+//        benchmark.addTask("Rosen" + cnk, new CombinationsGeneratorBenchmarkTask(new RosenIterator.Factory(
+//                N, K)));
         benchmark.addTask("Combinadic" + cnk, new CombinationsGeneratorBenchmarkTask(
+                new CombinadicCombinationsGenerator(N, K)));
+        benchmark.addTask("Combinadic2" + cnk, new CombinationsGeneratorBenchmarkTask(
                 new CombinadicCombinationsGenerator(N, K)));
         benchmark.benchmarkAll();
         for (final Task task : benchmark.getTasks()) {
