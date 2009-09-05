@@ -22,11 +22,11 @@ import jcombinatorics.combinations.RosenIterator;
  */
 public class CombinationsGeneratorBenchmark implements Runnable {
 
-    private static final int REPS = 3;
+    private static final int REPS = 1;
 
-    private static final int N = 17;
+    private static final int N = 20;
 
-    private static final int K = 7;
+    private static final int K = 10;
 
     private static final long EXPECTED_COMBINATIONS = Combinations.count(N, K);
 
@@ -39,8 +39,6 @@ public class CombinationsGeneratorBenchmark implements Runnable {
         System.out.println(format("Generating %d * %,d combinations...", REPS, EXPECTED_COMBINATIONS));
         final String cnk = " C(" + N + "," + K + ")";
         final PermutatedOrderBenchmark benchmark = new PermutatedOrderBenchmark(REPS);
-        benchmark.addTask("Combinadic2" + cnk, new CombinationsGeneratorBenchmarkTask(
-                new CombinadicCombinationsGenerator(N, K)));
         benchmark.addTask("Combinadic" + cnk, new CombinationsGeneratorBenchmarkTask(
                 new CombinadicCombinationsGenerator(N, K)));
         benchmark.addTask("Rosen" + cnk, new CombinationsGeneratorBenchmarkTask(new RosenIterator.Factory(
