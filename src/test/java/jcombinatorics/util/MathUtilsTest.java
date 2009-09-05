@@ -39,7 +39,7 @@ public final class MathUtilsTest {
     }
 
     /**
-     * Test for {@link MathUtils#factoradic(int)}.
+     * Test for {@link MathUtils#factoradic(long)}.
      */
     @Test
     public void testFactoradicInt() {

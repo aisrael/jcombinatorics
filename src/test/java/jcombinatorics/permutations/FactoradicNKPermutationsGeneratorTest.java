@@ -35,7 +35,7 @@ public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTes
 
     /**
      * Test for
-     * {@link FactoradicNKPermutationsGenerator#factoradicNK(int[], int)}.
+     * {@link FactoradicNKPermutationsGenerator#factoradicNK(int[], long)}.
      */
     @Test
     public void testFactoradicNK() {
@@ -52,7 +52,7 @@ public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTes
     }
 
     /**
-     * Test for {@link FactoradicNKPermutationsGenerator#get(int)}.
+     * Test for {@link FactoradicNKPermutationsGenerator#get(long)}.
      */
     @Test
     public void testGet() {
