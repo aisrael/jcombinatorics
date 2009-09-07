@@ -49,7 +49,7 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
     }
 
     /**
-     * Retrieve the <i>i</i>-th combination.
+     * Retrieve the <i>l</i>-th combination.
      *
      * @param l
      *        long
@@ -57,18 +57,19 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
      */
     public final int[] get(final long l) {
         final int[] a = new int[k];
+        long m = count - l - 1;
 
-        int nn = n;
-        long m = count(n, k) - l - 1;
-
-        for (int i = 0; i < k; ++i) {
-            final int kk = k - i;
-            final int v = largestV(nn, kk, m);
-            m -= count(v, kk);
-            nn = v;
-            a[i] = (n - 1) - v;
+        int v = n - 1;
+        for (int i = k; i > 0; --i) {
+            // in-lined find largest v
+            long c = count(v, i);
+            while (c > m) {
+                c = c * (v - i) / v;
+                --v;
+            }
+            m -= c;
+            a[k - i] = (n - 1) - v;
         }
-
         return a;
     }
 
@@ -85,23 +86,6 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
             count = count * (n - i) / (i + 1);
         }
         return count;
-    }
-
-    /**
-     * @param nn
-     *        int
-     * @param kk
-     *        int
-     * @param m
-     *        long
-     * @return v
-     */
-    private static int largestV(final int nn, final int kk, final long m) {
-        int x = nn - 1;
-        while (count(x, kk) > m) {
-            --x;
-        }
-        return x;
     }
 
     /**
