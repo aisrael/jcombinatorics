@@ -14,8 +14,8 @@ package jcombinatorics.benchmark;
 import static java.lang.String.format;
 import jcombinatorics.benchmark.PermutatedOrderBenchmark.Task;
 import jcombinatorics.combinations.CombinadicCombinationsGenerator;
+import jcombinatorics.combinations.CombinadicCombinationsGenerator2;
 import jcombinatorics.combinations.Combinations;
-import jcombinatorics.combinations.RosenIterator;
 
 /**
  * @author Alistair A. Israel
@@ -39,10 +39,12 @@ public class CombinationsGeneratorBenchmark implements Runnable {
         System.out.println(format("Generating %d * %,d combinations...", REPS, EXPECTED_COMBINATIONS));
         final String cnk = " C(" + N + "," + K + ")";
         final PermutatedOrderBenchmark benchmark = new PermutatedOrderBenchmark(REPS);
+        benchmark.addTask("Combinadic2" + cnk, new CombinationsGeneratorBenchmarkTask(
+                new CombinadicCombinationsGenerator2(N, K)));
         benchmark.addTask("Combinadic" + cnk, new CombinationsGeneratorBenchmarkTask(
                 new CombinadicCombinationsGenerator(N, K)));
-        benchmark.addTask("Rosen" + cnk, new CombinationsGeneratorBenchmarkTask(new RosenIterator.Factory(
-                N, K)));
+//        benchmark.addTask("Rosen" + cnk, new CombinationsGeneratorBenchmarkTask(new RosenIterator.Factory(
+//                N, K)));
         benchmark.benchmarkAll();
         for (final Task task : benchmark.getTasks()) {
             printResult(task);
