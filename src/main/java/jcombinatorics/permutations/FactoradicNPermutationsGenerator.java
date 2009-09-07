@@ -57,7 +57,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
         factoradic(f, l);
         final int[] a = new int[n];
         System.arraycopy(identity, 0, a, 0, n);
-        FactoradicNPermutationsGenerator.factoradicToPermutation(f, a);
+        factoradicToPermutation(f, a);
         return a;
     }
 
@@ -142,7 +142,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
         public int[] next() {
             factoradic(f, index);
             System.arraycopy(identity, 0, a, 0, n);
-            FactoradicNPermutationsGenerator.factoradicToPermutation(f, a);
+            factoradicToPermutation(f, a);
             ++index;
             return a;
         }
