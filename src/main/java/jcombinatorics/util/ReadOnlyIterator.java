@@ -21,10 +21,15 @@ import java.util.Iterator;
 public abstract class ReadOnlyIterator<T> implements Iterator<T> {
 
     /**
+     * {@value #REMOVE_OPERATION_NOT_SUPPORTED_MESSAGE}.
+     */
+    public static final String REMOVE_OPERATION_NOT_SUPPORTED_MESSAGE = "remove() operation not supported!";
+
+    /**
      * Not supported. Throws {@link RemoveNotSupported} exception.
      */
     public final void remove() {
-        throw new RemoveNotSupported();
+        throw new UnsupportedOperationException(REMOVE_OPERATION_NOT_SUPPORTED_MESSAGE);
     }
 
 }
