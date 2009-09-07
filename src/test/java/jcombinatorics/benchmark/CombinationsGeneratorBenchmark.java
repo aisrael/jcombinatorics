@@ -22,11 +22,11 @@ import jcombinatorics.combinations.Combinations;
  */
 public class CombinationsGeneratorBenchmark implements Runnable {
 
-    private static final int REPS = 3;
+    private static final int REPS = 4;
 
-    private static final int N = 17;
+    private static final int N = 20;
 
-    private static final int K = 7;
+    private static final int K = 10;
 
     private static final long EXPECTED_COMBINATIONS = Combinations.count(N, K);
 

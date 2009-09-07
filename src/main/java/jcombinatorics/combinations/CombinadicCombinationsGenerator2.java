@@ -70,12 +70,11 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
      *        long
      */
     private void computeInto(final int[] a, final long l) {
-        int nn = n;
         long m = count - l - 1;
 
+        int v = n - 1;
         for (int i = k; i > 0; --i) {
             // in-lined find largest v
-            int v = nn;
             long c = count(v, i);
             while (c > m) {
                 c = c * (v - i) / v;
@@ -83,7 +82,6 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
             }
             m -= c;
             a[k - i] = (n - 1) - v;
-            nn = v;
         }
     }
 
@@ -135,11 +133,10 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
          * @see java.util.Iterator#next()
          */
         public int[] next() {
-            int nn = n;
             long m = l - 1;
+            int v = n - 1;
             for (int i = k; i > 0; --i) {
                 // find largest v
-                int v = nn;
                 long c = count(v, i);
                 while (c > m) {
                     c = c * (v - i) / v;
@@ -147,7 +144,6 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
                 }
                 m -= c;
                 a[k - i] = (n - 1) - v;
-                nn = v;
             }
             --l;
             return a;
