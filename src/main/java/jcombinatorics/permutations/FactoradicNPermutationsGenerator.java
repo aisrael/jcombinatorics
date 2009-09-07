@@ -57,7 +57,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
         factoradic(f, l);
         final int[] a = new int[n];
         System.arraycopy(identity, 0, a, 0, n);
-        Factoradic.factoradicToPermutation(f, a);
+        FactoradicNPermutationsGenerator.factoradicToPermutation(f, a);
         return a;
     }
 
@@ -91,6 +91,27 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
     }
 
     /**
+     * Generate a permutation from a factoradic. Assumes that the array
+     * <code>a</code> is an identityPermutation.
+     *
+     * @param f
+     *        the factoradic
+     * @param a
+     *        array to hold the permutation
+     */
+    public static void factoradicToPermutation(final int[] f, final int[] a) {
+        for (int i = 0; i < f.length; ++i) {
+            if (f[i] != 0) {
+                final int t = a[i + f[i]];
+                // shift right
+                System.arraycopy(a, i, a, i + 1, f[i]);
+                // swap
+                a[i] = t;
+            }
+        }
+    }
+
+    /**
      *
      * @author Alistair A. Israel
      */
@@ -121,7 +142,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]> {
         public int[] next() {
             factoradic(f, index);
             System.arraycopy(identity, 0, a, 0, n);
-            Factoradic.factoradicToPermutation(f, a);
+            FactoradicNPermutationsGenerator.factoradicToPermutation(f, a);
             ++index;
             return a;
         }
