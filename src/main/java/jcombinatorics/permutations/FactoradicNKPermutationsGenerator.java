@@ -56,7 +56,19 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
         final int[] a = new int[n];
         factoradicNK(f, l);
         System.arraycopy(identity, 0, a, 0, n);
-        // apply factoradic f to permutation a, but store the result back in f
+        applyFactoradic(f, a);
+        return f;
+    }
+
+    /**
+     * Apply factoradic f to permutation a, but store the result back in f
+     *
+     * @param f
+     *        int[]
+     * @param a
+     *        int[]
+     */
+    private void applyFactoradic(final int[] f, final int[] a) {
         for (int i = 0; i < f.length; ++i) {
             final int skip = f[i];
             if (skip == 0) {
@@ -67,7 +79,6 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
                 System.arraycopy(a, i, a, i + 1, skip);
             }
         }
-        return f;
     }
 
     /**
@@ -130,17 +141,7 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
         public int[] next() {
             factoradicNK(f, index);
             System.arraycopy(identity, 0, a, 0, n);
-            // apply factoradic f to permutation a, but store the result back in f
-            for (int i = 0; i < f.length; ++i) {
-                final int skip = f[i];
-                if (skip == 0) {
-                    f[i] = a[i];
-                } else {
-                    f[i] = a[i + skip];
-                    // shift right
-                    System.arraycopy(a, i, a, i + 1, skip);
-                }
-            }
+            applyFactoradic(f, a);
             ++index;
             return f;
         }
