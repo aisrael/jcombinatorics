@@ -45,10 +45,7 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
         super();
         this.n = n;
         this.k = k;
-        count = 1;
-        for (int i = 0; i < k; ++i) {
-            count = count * (n - i) / (i + 1);
-        }
+        count = Combinations.count(n, k);
     }
 
     /**
