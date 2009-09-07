@@ -67,14 +67,14 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
      * @param a
      *        an array
      * @param l
+     *        long
      */
     private void computeInto(final int[] a, final long l) {
         int nn = n;
         long m = count - l - 1;
 
         for (int i = k; i > 0; --i) {
-            --nn;
-            // find largest v
+            // in-lined find largest v
             int v = nn;
             long c = count(v, i);
             while (c > m) {
@@ -83,6 +83,7 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
             }
             m -= c;
             a[k - i] = (n - 1) - v;
+            nn = v;
         }
     }
 
@@ -137,7 +138,6 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
             int nn = n;
             long m = l - 1;
             for (int i = k; i > 0; --i) {
-                --nn;
                 // find largest v
                 int v = nn;
                 long c = count(v, i);
@@ -147,6 +147,7 @@ public class CombinadicCombinationsGenerator2 implements Generator<int[]> {
                 }
                 m -= c;
                 a[k - i] = (n - 1) - v;
+                nn = v;
             }
             --l;
             return a;
