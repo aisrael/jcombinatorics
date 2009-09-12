@@ -49,7 +49,26 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
     }
 
     /**
+     * <p>
      * Retrieve the <i>l</i>-th combination.
+     * </p>
+     * <p>
+     * The main loop logic equivalent to the following:
+     * </p>
+     *
+     * <pre>
+     * int v = n - 1;
+     * for (int i = k; i &gt; 0; --i) {
+     *     long c = count(v, i);
+     *     // in-lined find largest v
+     *     while (c &gt; m) {
+     *         c = c * (v - i) / v;
+     *         --v;
+     *     }
+     *     m -= c;
+     *     a[k - i] = (n - 1) - v;
+     * }
+     * </pre>
      *
      * @param l
      *        long
@@ -60,15 +79,21 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
         long m = count - l - 1;
 
         int v = n - 1;
-        for (int i = k; i > 0; --i) {
+        long c = count(v, k);
+        for (int i = k; i > 0;) {
             // in-lined find largest v
-            long c = count(v, i);
             while (c > m) {
                 c = c * (v - i) / v;
                 --v;
             }
             m -= c;
             a[k - i] = (n - 1) - v;
+            --i;
+            if (v > i) {
+                c = c * (i + 1) / (v - i);
+            } else {
+                c = v;
+            }
         }
         return a;
     }
@@ -81,8 +106,8 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
      * @return C(n,k)
      */
     private static int count(final int n, final int k) {
-        int count = 1;
-        for (int i = 0; i < k; ++i) {
+        int count = n;
+        for (int i = 1; i < k; ++i) {
             count = count * (n - i) / (i + 1);
         }
         return count;
