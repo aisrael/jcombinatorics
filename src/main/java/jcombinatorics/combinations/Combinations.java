@@ -50,8 +50,8 @@ public final class Combinations {
         if (k < 0 || k > n) {
             throw new IllegalArgumentException("0 <= k <= " + n + "!");
         }
-        long count = n;
-        for (int i = 1; i < k; ++i) {
+        long count = 1;
+        for (int i = 0; i < k; ++i) {
             count = count * (n - i) / (i + 1);
         }
         return count;
