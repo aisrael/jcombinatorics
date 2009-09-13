@@ -252,7 +252,7 @@ public final class Permutations {
          *
          * @author Alistair A. Israel
          */
-        private final class IntIterator extends IteratorBase<int[]> implements Iterator<int[]> {
+        private final class IntIterator extends IteratorBase<int[]> {
 
             /**
              *
