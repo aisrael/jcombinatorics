@@ -36,8 +36,6 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
     private final int[] result;
 
-    private final int edge;
-
     /**
      * @param n
      *        the number of elements
@@ -55,12 +53,6 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
         this.k = k;
         a = ArrayUtils.identityPermutation(n);
         result = new int[k];
-        // pre-optimization
-        if (k == n) {
-            edge = n - 2;
-        } else {
-            edge = k - 1;
-        }
     }
 
     /**
@@ -79,9 +71,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      */
     public final int[] next() {
         System.arraycopy(a, 0, result, 0, k);
-        if (hasNext) {
-            computeNext();
-        }
+        computeNext();
         return result;
     }
 
@@ -89,34 +79,31 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      *
      */
     private void computeNext() {
-        if (a[edge] < a[edge + 1]) {
-            rotateLeft();
+        final int edge = k - 1;
+        int j = k;
+        while (j < n && a[j] < a[edge]) {
+            ++j;
+        }
+        if (j < n) {
+            swap(edge, j);
         } else {
-            final int i = findi();
-            if (i == 0 && a[i] > a[i + 1]) {
+            reverseRightOf(edge);
+            int i = k - 1 - 1;
+            while (i >= 0 && a[i] >= a[i + 1]) {
+                --i;
+            }
+            if (i < 0) {
                 hasNext = false;
                 return;
             }
-
-            // alternately, swap first then sort
-            reverseRightOf(edge);
-            reverseRightOf(i);
-            // find next 0..n in a[i + 1, n]
-            final int j = findj(i);
+            final int current = a[i];
+            j = n - 1;
+            while (j > i && a[j] <= current) {
+                --j;
+            }
             swap(i, j);
+            reverseRightOf(i);
         }
-    }
-
-    /**
-     * Rotate all elements from <code>a[edge]..a[n-1]</code> left by one
-     * position.
-     */
-    private void rotateLeft() {
-        final int t = a[edge];
-        for (int i = edge; i < n - 1; ++i) {
-            a[i] = a[i + 1];
-        }
-        a[n - 1] = t;
     }
 
     /**
@@ -133,39 +120,6 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             ++i;
             --j;
         }
-    }
-
-    /**
-     * Find rightmost i where a[i] > a[i+1]
-     *
-     * @return i
-     */
-    private int findi() {
-        int i = edge;
-        while (i > 0 && a[i] >= a[i + 1]) {
-            --i;
-        }
-        return i;
-    }
-
-    /**
-     * Find j > i where a[i] is smallest but > a[i]
-     *
-     * @param i
-     *        start at i + 1
-     * @return j
-     */
-    private int findj(final int i) {
-        final int current = a[i];
-        int minToTheRight = n;
-        int indexOfMin = i;
-        for (int j = i + 1; j < n; ++j) {
-            if (a[j] < minToTheRight && a[j] > current) {
-                minToTheRight = a[j];
-                indexOfMin = j;
-            }
-        }
-        return indexOfMin;
     }
 
     /**
