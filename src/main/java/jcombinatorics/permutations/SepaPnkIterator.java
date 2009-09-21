@@ -88,6 +88,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             swap(i, j);
         } else {
             reverseRightOf(i);
+            // i = (k - 1) - 1
             --i;
             while (i >= 0 && a[i] >= a[i + 1]) {
                 --i;
@@ -96,6 +97,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
                 hasNext = false;
                 return;
             }
+            // j = n - 1
             --j;
             while (j > i && a[j] <= a[i]) {
                 --j;
