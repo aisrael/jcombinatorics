@@ -53,10 +53,12 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]> {
      */
     public final int[] get(final long l) {
         final int[] f = new int[k];
-        final int[] a = new int[n];
         factoradicNK(f, l);
+
+        final int[] a = new int[n];
         System.arraycopy(identity, 0, a, 0, n);
         applyFactoradic(f, a);
+
         return f;
     }
 
