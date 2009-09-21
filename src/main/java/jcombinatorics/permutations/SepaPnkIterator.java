@@ -79,16 +79,16 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      *
      */
     private void computeNext() {
-        final int edge = k - 1;
+        int i = k - 1;
         int j = k;
-        while (j < n && a[j] < a[edge]) {
+        while (j < n && a[j] < a[i]) {
             ++j;
         }
         if (j < n) {
-            swap(edge, j);
+            swap(i, j);
         } else {
-            reverseRightOf(edge);
-            int i = k - 1 - 1;
+            reverseRightOf(i);
+            --i;
             while (i >= 0 && a[i] >= a[i + 1]) {
                 --i;
             }
@@ -96,9 +96,8 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
                 hasNext = false;
                 return;
             }
-            final int current = a[i];
-            j = n - 1;
-            while (j > i && a[j] <= current) {
+            --j;
+            while (j > i && a[j] <= a[i]) {
                 --j;
             }
             swap(i, j);
