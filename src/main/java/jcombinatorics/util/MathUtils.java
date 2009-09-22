@@ -53,7 +53,7 @@ public final class MathUtils {
      * @return n!, or 1 if n == 0
      */
     public static long factorial(final int n) {
-        if (n >= MAX_FACTORIAL_N) {
+        if (!(n < MAX_FACTORIAL_N)) {
             throw new IllegalArgumentException("long only supports up to 20!");
         }
         return FACTORIALS[n];

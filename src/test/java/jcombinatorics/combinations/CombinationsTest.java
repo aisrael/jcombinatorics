@@ -34,7 +34,7 @@ public final class CombinationsTest {
     public void testCount() {
         assertEquals(210, Combinations.count(21, 19));
         assertEquals(2598960, Combinations.count(52, 5));
-        for (int n = 2; n < MathUtils.MAX_N_FACTORIAL; ++n) {
+        for (int n = 2; n < MathUtils.MAX_FACTORIAL_N; ++n) {
             assertEquals(format("C(%d,%d)", n, n), 1, Combinations.count(n, n));
             for (int k = 1; k < n; ++k) {
                 final long expected = Permutations.count(n, k) / factorial(k);

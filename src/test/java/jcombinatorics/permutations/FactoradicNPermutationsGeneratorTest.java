@@ -12,7 +12,6 @@
 package jcombinatorics.permutations;
 
 import static java.lang.String.format;
-import static jcombinatorics.permutations.Constants.P_4;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.util.Arrays;
@@ -52,11 +51,14 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
      */
     @Test
     public void testGet() {
-        final FactoradicNPermutationsGenerator generator = new FactoradicNPermutationsGenerator(N);
-        for (int i = 0; i < P_4.length; ++i) {
-            final int[] b = generator.get(i);
-            assertArrayEquals(format("[%d] Expected %s, got %s", i, Arrays.toString(P_4[i]), Arrays
-                    .toString(b)), P_4[i], b);
+        final FactoradicNPermutationsGenerator generator = new FactoradicNPermutationsGenerator(5);
+        final int[][] expected = { { 0, 3, 1, 4, 2 }, { 0, 3, 4, 2, 1 }, { 1, 3, 0, 4, 2 },
+                { 2, 0, 1, 4, 3 }, { 3, 4, 0, 2, 1 }, { 4, 2, 1, 3, 0 } };
+        final long[] l = { 13, 17, 37, 49, 91, 111 };
+        for (int i = 0; i < expected.length; ++i) {
+            final int[] actual = generator.get(l[i]);
+            assertArrayEquals(format("P(5)[%d] Expected %s, got %s", l[i], Arrays.toString(expected[i]),
+                    Arrays.toString(actual)), expected[i], actual);
         }
     }
 
