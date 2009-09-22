@@ -82,7 +82,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      *
      */
     private void computeNext() {
-        // search for the rightmost i where a[i] > a[i + 1]
+        // find rightmost ascent, or i where a[i + 1] > a[i]
         int i = n - 2;
         while (i >= 0) {
             if (a[i + 1] < a[i]) {
@@ -92,18 +92,17 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
             }
         }
 
+        // find smallest (rightmost) a[j] where a[j] > a[i]
         int j = n - 1;
-
         while (j > i && a[j] <= a[i]) {
             --j;
         }
 
         swap(i, j);
 
-        // reverse the remaining elements (sort to ascending order)
+        // reverse to right of i (sort to ascending order)
         i++;
         j = n - 1;
-
         while (i < j) {
             swap(i, j);
             i++;
