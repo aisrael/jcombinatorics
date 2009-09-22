@@ -42,14 +42,17 @@ public final class MathUtilsTest {
      * Test for {@link MathUtils#factoradic(long)}.
      */
     @Test
-    public void testFactoradicInt() {
+    public void testFactoradicLong() {
         final int[][] expected = { { 1, 0 }, { 2, 1, 0 }, { 2, 5, 2, 0, 1, 1, 0 },
-                { 2, 6, 6, 2, 5, 1, 2, 1, 1, 0 }, { 4, 5, 8, 7, 8, 0, 0, 1, 0, 1, 0, 1, 0 } };
-        final int[] n = { 1, 5, 2091, 999999, Integer.MAX_VALUE };
+                { 2, 6, 6, 2, 5, 1, 2, 1, 1, 0 }, { 4, 5, 8, 7, 8, 0, 0, 1, 0, 1, 0, 1, 0 },
+                { 3, 15, 15, 11, 1, 15, 9, 2, 8, 2, 5, 9, 1, 6, 3, 3, 0, 1, 0, 1, 0 } };
+        final long[] n = { 1, 5, 2091, 999999, Integer.MAX_VALUE, Long.MAX_VALUE };
         for (int i = 0; i < expected.length; ++i) {
-            final int[] actual = MathUtils.factoradic(n[i]);
+            final int[] factoradic = MathUtils.factoradic(n[i]);
             assertArrayEquals(String.format("Expected factoradic of %d is %s, was %s", n[i], Arrays
-                    .toString(expected[i]), Arrays.toString(actual)), expected[i], actual);
+                    .toString(expected[i]), Arrays.toString(factoradic)), expected[i], factoradic);
+            final long l = MathUtils.factoradicToLong(factoradic);
+            assertEquals(n[i], l);
         }
     }
 
@@ -61,11 +64,13 @@ public final class MathUtilsTest {
         final int[][] expected = { { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0, 0, 0, 2, 1, 0 },
                 { 0, 0, 0, 2, 5, 2, 0, 1, 1, 0 }, { 2, 6, 6, 2, 5, 1, 2, 1, 1, 0 } };
         final int[] n = { 1, 5, 2091, 999999 };
-        final int[] a = new int[10];
+        final int[] factoradic = new int[10];
         for (int i = 0; i < expected.length; ++i) {
-            MathUtils.factoradic(a, n[i]);
+            MathUtils.factoradic(factoradic, n[i]);
             assertArrayEquals(String.format("Expected factoradic of %d is %s, was %s", n[i], Arrays
-                    .toString(expected[i]), Arrays.toString(a)), expected[i], a);
+                    .toString(expected[i]), Arrays.toString(factoradic)), expected[i], factoradic);
+            final long l = MathUtils.factoradicToLong(factoradic);
+            assertEquals(n[i], l);
         }
     }
 }

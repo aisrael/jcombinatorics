@@ -107,4 +107,21 @@ public final class MathUtils {
         }
         return z;
     }
+
+    /**
+     * @param factoradic
+     *        the factoradic
+     * @return the number
+     */
+    public static long factoradicToLong(final int[] factoradic) {
+        long result = 0;
+        long f = 1;
+        final int len = factoradic.length;
+        for (int i = 1; i < len; ++i) {
+            final int d = factoradic[len - 1 - i];
+            f *= i;
+            result += f * d;
+        }
+        return result;
+    }
 }
