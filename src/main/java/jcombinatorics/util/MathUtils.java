@@ -30,16 +30,16 @@ public final class MathUtils {
     /**
      * We only support up to 20! since 21! > {@link Long#MAX_VALUE}.
      */
-    public static final int MAX_N_FACTORIAL = 21;
+    public static final int MAX_FACTORIAL_N = 21;
 
     /**
      * Pre-calculate factorials into a lookup table, trade O(n) space for O(1)
      * time. :D
      */
-    private static final long[] FACTORIALS = new long[MAX_N_FACTORIAL];
+    private static final long[] FACTORIALS = new long[MAX_FACTORIAL_N];
     static {
         FACTORIALS[0] = 1;
-        for (int i = 1; i < MAX_N_FACTORIAL; ++i) {
+        for (int i = 1; i < MAX_FACTORIAL_N; ++i) {
             FACTORIALS[i] = FACTORIALS[i - 1] * i;
         }
     }
@@ -53,7 +53,7 @@ public final class MathUtils {
      * @return n!, or 1 if n == 0
      */
     public static long factorial(final int n) {
-        if (n >= MAX_N_FACTORIAL) {
+        if (n >= MAX_FACTORIAL_N) {
             throw new IllegalArgumentException("long only supports up to 20!");
         }
         return FACTORIALS[n];
@@ -75,18 +75,12 @@ public final class MathUtils {
             }
             return new int[] { 0 };
         }
-        final int[] f = new int[MAX_N_FACTORIAL];
-        long m = n;
-        int z = 0;
-        while (m > 0) {
-            ++z;
-            f[MAX_N_FACTORIAL - z] = (int) (m % z);
-            m /= z;
-        }
+        final int[] f = new int[MAX_FACTORIAL_N];
+        final int z = factoradic(f, n);
 
         // pack
         final int[] result = new int[z];
-        System.arraycopy(f, MAX_N_FACTORIAL - z, result, 0, z);
+        System.arraycopy(f, MAX_FACTORIAL_N - z, result, 0, z);
         return result;
     }
 
@@ -98,17 +92,19 @@ public final class MathUtils {
      *        the array to hold the factoradic
      * @param n
      *        the number
+     * @return the index (<code>z</code>) of the most significant digit
      * @see <a
      *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
      */
-    public static void factoradic(final int[] a, final long n) {
+    public static int factoradic(final int[] a, final long n) {
         final int len = a.length;
         long m = n;
         int z = 0;
-        while (z < len) {
+        while (m > 0 && z < len) {
             ++z;
             a[len - z] = (int) (m % z);
             m /= z;
         }
+        return z;
     }
 }
