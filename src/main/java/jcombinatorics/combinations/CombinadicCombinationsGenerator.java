@@ -28,7 +28,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      the mth Lexicographical Element of a Mathematical Combination, James
  *      McCaffrey</a>
  */
-public class CombinadicCombinationsGenerator implements Generator<int[]> {
+public class CombinadicCombinationsGenerator implements Generator<int[]>, Iterable<int[]> {
 
     private final int n;
 
@@ -43,9 +43,28 @@ public class CombinadicCombinationsGenerator implements Generator<int[]> {
      *        taken <code>k</code> at a time
      */
     public CombinadicCombinationsGenerator(final int n, final int k) {
+        if (k < 0 || k > n) {
+            throw new IllegalArgumentException("0 <= k <= " + n + "!");
+        }
         this.n = n;
         this.k = k;
-        this.count = Combinations.count(n, k);
+        this.count = count(n, k);
+    }
+
+    /**
+     * <p>
+     * Return the total number of combinations available to generate, which can
+     * be expressed as:
+     * </p>
+     * <p>
+     * <code>n! / k! (n - k)!</code>
+     * </p>
+     *
+     * @return the total number of combinations
+     * @see jcombinatorics.Generator#count()
+     */
+    public final long count() {
+        return count;
     }
 
     /**

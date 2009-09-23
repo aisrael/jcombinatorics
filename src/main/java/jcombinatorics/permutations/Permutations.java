@@ -71,7 +71,7 @@ public final class Permutations {
      *
      * @author Alistair A. Israel
      */
-    private static class GeneratorImpl implements Generator<int[]> {
+    private static class GeneratorImpl implements Generator<int[]>, Iterable<int[]> {
 
         private final Iterable<int[]> iteratorFactory;
 
@@ -103,6 +103,14 @@ public final class Permutations {
         }
 
         /**
+         * @return the total number of permutations available
+         * @see jcombinatorics.Generator#count()
+         */
+        public long count() {
+            return factoradic.count();
+        }
+
+        /**
          * Retrieve the <i>l</i>-th permutation.
          *
          * @param l
@@ -131,7 +139,7 @@ public final class Permutations {
      *        a type
      * @author Alistair A. Israel
      */
-    public static class Over<T> implements Generator<T[]> {
+    public static class Over<T> implements Generator<T[]>, Iterable<T[]> {
 
         private final T[] elements;
 
@@ -157,6 +165,14 @@ public final class Permutations {
         public final T[] get(final long l) {
             final int[] indices = factoradic.get(l);
             return ArrayUtils.valuesAt(elements, indices);
+        }
+
+        /**
+         * @return the total number of permutations available
+         * @see jcombinatorics.Generator#count()
+         */
+        public final long count() {
+            return factoradic.count();
         }
 
         /**
