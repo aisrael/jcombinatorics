@@ -11,6 +11,8 @@
  */
 package jcombinatorics.benchmark;
 
+import jcombinatorics.permutations.Permutations;
+
 /**
  *
  * @author Alistair A. Israel
@@ -62,13 +64,15 @@ public class GeneratorBenchmark extends PermutatedOrderBenchmark {
     private void printResult(final Task task) {
         final long nanos = task.getTotalNanos();
         final float millis = nanos / 1000000.0f;
-        final long np = expectedPermutations * getReps();
+        final int nTasks = getTasks().size();
+        final long nRuns = Permutations.count(nTasks, nTasks);
+        final long np = expectedPermutations * nRuns * getReps();
         final float ppms = np / millis;
-        System.out.println(String.format("%d times %s took %,1.2f ms", getReps(), task.getTaskName(),
-                millis));
+        System.out.println(String.format("%d * %d times %s took %,1.2f ms", nRuns, getReps(), task
+                .getTaskName(), millis));
         System.out.println(String.format(
-                "Generated %d * %,d = %,d permutations, average %,1.2f permutations/ms)", getReps(),
-                expectedPermutations, np, ppms));
+                "Generated %d * %d * %,d = %,d permutations, average %,1.2f permutations/ms)", nRuns,
+                getReps(), expectedPermutations, np, ppms));
     }
 
     /**
