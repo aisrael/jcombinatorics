@@ -11,8 +11,8 @@
  */
 package jcombinatorics.benchmark;
 
-import jcombinatorics.permutations.FactoradicNKPermutationsGenerator;
-import jcombinatorics.permutations.FactoradicNPermutationsGenerator;
+import jcombinatorics.permutations.FactoradicPnGenerator;
+import jcombinatorics.permutations.FactoradicPnkGenerator;
 import jcombinatorics.permutations.SepaPnIterator;
 import jcombinatorics.permutations.SepaPnkIterator;
 import jcombinatorics.util.MathUtils;
@@ -39,8 +39,8 @@ public class BenchmarkNGenerators implements Runnable {
         final GeneratorBenchmark benchmark = new GeneratorBenchmark(pn + " generators benchmark", REPS, P);
         benchmark.bench("SEPA " + pn, new SepaPnIterator.Factory(N));
         benchmark.bench("SEPA P(" + N + "," + N + ")", new SepaPnkIterator.Factory(N, N));
-        benchmark.bench("Factoradic " + pn, new FactoradicNPermutationsGenerator(N));
-        benchmark.bench("Factoradic P(" + N + "," + N + ")", new FactoradicNKPermutationsGenerator(N, N));
+        benchmark.bench("Factoradic " + pn, new FactoradicPnGenerator(N));
+        benchmark.bench("Factoradic P(" + N + "," + N + ")", new FactoradicPnkGenerator(N, N));
         benchmark.benchmarkAll();
         benchmark.prettyPrint();
     }

@@ -43,7 +43,7 @@ public final class SepaPnkIteratorTest extends PnkGeneratorTestBase {
     public void testCompareAgainstFactoradic() {
         for (int n = 2; n < 9; ++n) {
             for (int k = 1; k <= n; ++k) {
-                final FactoradicNKPermutationsGenerator factoradic = new FactoradicNKPermutationsGenerator(
+                final FactoradicPnkGenerator factoradic = new FactoradicPnkGenerator(
                         n, k);
                 final Iterator<int[]> sepa = new SepaPnkIterator(n, k);
                 int i = 0;

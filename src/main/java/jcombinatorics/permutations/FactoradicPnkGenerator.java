@@ -23,7 +23,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
-public class FactoradicNKPermutationsGenerator implements Generator<int[]>, Iterable<int[]> {
+public class FactoradicPnkGenerator implements Generator<int[]>, Iterable<int[]> {
 
     private final int n;
 
@@ -39,7 +39,7 @@ public class FactoradicNKPermutationsGenerator implements Generator<int[]>, Iter
      * @param k
      *        taken k at a time
      */
-    public FactoradicNKPermutationsGenerator(final int n, final int k) {
+    public FactoradicPnkGenerator(final int n, final int k) {
         assert n > 0;
         this.n = n;
         this.k = k;

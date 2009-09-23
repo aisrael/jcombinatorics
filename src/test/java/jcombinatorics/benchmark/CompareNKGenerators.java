@@ -13,7 +13,7 @@ package jcombinatorics.benchmark;
 
 import static java.lang.System.out;
 import jcombinatorics.benchmark.Benchmark.Result;
-import jcombinatorics.permutations.FactoradicNKPermutationsGenerator;
+import jcombinatorics.permutations.FactoradicPnkGenerator;
 import jcombinatorics.permutations.Permutations;
 import jcombinatorics.permutations.SepaPnkIterator;
 
@@ -45,7 +45,7 @@ public class CompareNKGenerators implements Runnable {
         final NKGeneratorFactory factoradicFactory = new NKGeneratorFactory() {
 
             public Iterable<int[]> generator(final int n, final int k) {
-                return new FactoradicNKPermutationsGenerator(n, k);
+                return new FactoradicPnkGenerator(n, k);
             }
         };
         final float[][] factoradic = collectTimings("Factoradic", factoradicFactory);

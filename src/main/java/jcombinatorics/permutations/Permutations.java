@@ -86,10 +86,10 @@ public final class Permutations {
         public GeneratorImpl(final int n, final int k) {
             if (k != n) {
                 iteratorFactory = new SepaPnkIterator.Factory(n, k);
-                factoradic = new FactoradicNKPermutationsGenerator(n, k);
+                factoradic = new FactoradicPnkGenerator(n, k);
             } else {
                 iteratorFactory = new SepaPnIterator.Factory(n);
-                factoradic = new FactoradicNPermutationsGenerator(n);
+                factoradic = new FactoradicPnGenerator(n);
             }
         }
 
@@ -154,7 +154,7 @@ public final class Permutations {
         public Over(final T[] elements) {
             this.elements = elements;
             this.iteratorFactory = new SepaPnIterator.Factory(elements.length);
-            this.factoradic = new FactoradicNPermutationsGenerator(elements.length);
+            this.factoradic = new FactoradicPnGenerator(elements.length);
         }
 
         /**

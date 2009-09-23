@@ -20,18 +20,18 @@ import java.util.Iterator;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link FactoradicNPermutationsGenerator}.
+ * JUnit test for {@link FactoradicPnGenerator}.
  *
  * @author Alistair A. Israel
  */
-public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestBase {
+public final class FactoradicPnGeneratorTest extends PnGeneratorTestBase {
 
     /**
      * Basic test, compare against P(4)
      */
     @Test
     public void testGeneratePermutations() {
-        testGenerateP4(new FactoradicNPermutationsGenerator(N));
+        testGenerateP4(new FactoradicPnGenerator(N));
     }
 
     /**
@@ -39,7 +39,7 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
      */
     @Test
     public void testEuler24() {
-        final FactoradicNPermutationsGenerator p10 = new FactoradicNPermutationsGenerator(10);
+        final FactoradicPnGenerator p10 = new FactoradicPnGenerator(10);
         final int[] expected = { 2, 7, 8, 3, 9, 1, 5, 4, 6, 0 };
         final int[] actual = p10.get(999999);
         assertArrayEquals(format("1 millionth permutation of 0..9 expected %s, was %s", Arrays
@@ -51,7 +51,7 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
      */
     @Test
     public void testGet() {
-        final FactoradicNPermutationsGenerator generator = new FactoradicNPermutationsGenerator(5);
+        final FactoradicPnGenerator generator = new FactoradicPnGenerator(5);
         final int[][] expected = { { 0, 3, 1, 4, 2 }, { 0, 3, 4, 2, 1 }, { 1, 3, 0, 4, 2 },
                 { 2, 0, 1, 4, 3 }, { 3, 4, 0, 2, 1 }, { 4, 2, 1, 3, 0 } };
         final long[] l = { 13, 17, 37, 49, 91, 111 };
@@ -68,7 +68,7 @@ public final class FactoradicNPermutationsGeneratorTest extends PnGeneratorTestB
     @Test
     public void testCompareWithSepa() {
         for (int n = 2; n < 9; ++n) {
-            final FactoradicNPermutationsGenerator factoradic = new FactoradicNPermutationsGenerator(n);
+            final FactoradicPnGenerator factoradic = new FactoradicPnGenerator(n);
             final Iterator<int[]> i1 = new SepaPnIterator(n);
             final Iterator<int[]> i2 = factoradic.iterator();
             int c = 0;

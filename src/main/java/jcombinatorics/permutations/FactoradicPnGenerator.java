@@ -26,7 +26,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
-public class FactoradicNPermutationsGenerator implements Generator<int[]>, Iterable<int[]> {
+public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> {
 
     /**
      * <code>long</code> can only hold up to {@value #MAX_N}!
@@ -43,7 +43,7 @@ public class FactoradicNPermutationsGenerator implements Generator<int[]>, Itera
      * @param n
      *        the number of elements
      */
-    public FactoradicNPermutationsGenerator(final int n) {
+    public FactoradicPnGenerator(final int n) {
         if (!(n > 0 && n <= MAX_N)) {
             throw new IllegalArgumentException("0 < n <= " + MAX_N + "!");
         }

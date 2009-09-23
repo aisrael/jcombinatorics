@@ -17,11 +17,11 @@ import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link FactoradicNPermutationsGenerator}.
+ * JUnit test for {@link FactoradicPnGenerator}.
  *
  * @author Alistair A. Israel
  */
-public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTestBase {
+public final class FactoradicPnkGeneratorTest extends PnkGeneratorTestBase {
 
     /**
      * Basic test, generate P(5,3)
@@ -30,21 +30,21 @@ public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTes
      */
     @Test
     public void testGeneratePermutations() {
-        testGenerateP53(new FactoradicNKPermutationsGenerator(5, 3));
+        testGenerateP53(new FactoradicPnkGenerator(5, 3));
     }
 
     /**
      * Test for
-     * {@link FactoradicNKPermutationsGenerator#factoradicNK(int[], long)}.
+     * {@link FactoradicPnkGenerator#factoradicNK(int[], long)}.
      */
     @Test
     public void testFactoradicNK() {
-        final FactoradicNKPermutationsGenerator pgen53 = new FactoradicNKPermutationsGenerator(5, 3);
+        final FactoradicPnkGenerator pgen53 = new FactoradicPnkGenerator(5, 3);
         int[] f = new int[3];
         pgen53.factoradicNK(f, 14);
         assertArrayEquals(new int[] { 1, 0, 2 }, f);
 
-        final FactoradicNKPermutationsGenerator pgen42 = new FactoradicNKPermutationsGenerator(4, 2);
+        final FactoradicPnkGenerator pgen42 = new FactoradicPnkGenerator(4, 2);
         f = new int[2];
         pgen42.factoradicNK(f, 7);
         assertArrayEquals(new int[] { 2, 1 }, f);
@@ -52,11 +52,11 @@ public final class FactoradicNKPermutationsGeneratorTest extends PnkGeneratorTes
     }
 
     /**
-     * Test for {@link FactoradicNKPermutationsGenerator#get(long)}.
+     * Test for {@link FactoradicPnkGenerator#get(long)}.
      */
     @Test
     public void testGet() {
-        final FactoradicNKPermutationsGenerator generator = new FactoradicNKPermutationsGenerator(5, 3);
+        final FactoradicPnkGenerator generator = new FactoradicPnkGenerator(5, 3);
         for (int i = 0; i < P_5_3.length; ++i) {
             final int[] expected = P_5_3[i];
             final int[] actual = generator.get(i);
