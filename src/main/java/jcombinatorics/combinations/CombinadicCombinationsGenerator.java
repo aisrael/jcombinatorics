@@ -11,10 +11,7 @@
  */
 package jcombinatorics.combinations;
 
-import java.util.Iterator;
-
 import jcombinatorics.Generator;
-import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * A combinations generator based on combinadics. Capable of computing the
@@ -28,7 +25,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      the mth Lexicographical Element of a Mathematical Combination, James
  *      McCaffrey</a>
  */
-public class CombinadicCombinationsGenerator implements Generator<int[]>, Iterable<int[]> {
+public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
 
     private final int n;
 
@@ -130,42 +127,6 @@ public class CombinadicCombinationsGenerator implements Generator<int[]>, Iterab
             count = count * (n - i) / (i + 1);
         }
         return count;
-    }
-
-    /**
-     * @author Alistair A. Israel
-     */
-    private class IteratorImpl extends ReadOnlyIterator<int[]> {
-
-        private long i;
-
-        /**
-         * {@inheritDoc}
-         *
-         * @see java.util.Iterator#hasNext()
-         */
-        public boolean hasNext() {
-            return i < count;
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @see java.util.Iterator#next()
-         */
-        public int[] next() {
-            return get(i++);
-        }
-
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.Iterable#iterator()
-     */
-    public final Iterator<int[]> iterator() {
-        return new IteratorImpl();
     }
 
 }

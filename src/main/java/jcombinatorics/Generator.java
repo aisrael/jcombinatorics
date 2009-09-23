@@ -11,6 +11,8 @@
  */
 package jcombinatorics;
 
+import jcombinatorics.util.ReadOnlyIterator;
+
 /**
  * A parameterized generator. Basically represents set of directly retrievable
  * items addressed by a <code>long</code> index.
@@ -36,4 +38,62 @@ public interface Generator<T> {
      * @return the total number of items available for generation.
      */
     long count();
+
+    /**
+     * A base class for generators that also implements {@link Iterable}
+     *
+     * @author Alistair A. Israel
+     */
+    abstract class Of<T> implements Generator<T>, Iterable<T> {
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.lang.Iterable#iterator()
+         */
+        public final java.util.Iterator<T> iterator() {
+            return new Generator.Iterator<T>(this);
+        }
+
+    }
+
+    /**
+     * An 'adapter' for {@link Generator}s acts as an {@link java.util.Iterator}
+     * .
+     *
+     * @author Alistair A. Israel
+     */
+    class Iterator<T> extends ReadOnlyIterator<T> {
+
+        private final Generator<T> generator;
+
+        private long index;
+
+        /**
+         * @param generator
+         *        the generator to use
+         */
+        public Iterator(final Generator<T> generator) {
+            this.generator = generator;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.util.Iterator#hasNext()
+         */
+        public final boolean hasNext() {
+            return index < generator.count();
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see java.util.Iterator#next()
+         */
+        public final T next() {
+            return generator.get(index++);
+        }
+
+    }
 }

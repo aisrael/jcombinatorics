@@ -26,7 +26,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
-public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> {
+public class FactoradicPnGenerator extends Generator.Of<int[]> {
 
     /**
      * <code>long</code> can only hold up to {@value #MAX_N}!
@@ -97,16 +97,6 @@ public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> 
             ++z;
         }
     }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.Iterable#iterator()
-     */
-    public final java.util.Iterator<int[]> iterator() {
-        return new Iterator();
-    }
-
     /**
      * Generate a permutation from a factoradic. Assumes that the array
      * <code>a</code> is an identityPermutation.
@@ -132,7 +122,7 @@ public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> 
      *
      * @author Alistair A. Israel
      */
-    private class Iterator extends ReadOnlyIterator<int[]> {
+    public class FastIterator extends ReadOnlyIterator<int[]> {
 
         private final long count = MathUtils.factorial(n);
 
@@ -147,7 +137,7 @@ public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> 
          *
          * @see java.util.Iterator#hasNext()
          */
-        public boolean hasNext() {
+        public final boolean hasNext() {
             return index < count;
         }
 
@@ -156,7 +146,7 @@ public class FactoradicPnGenerator implements Generator<int[]>, Iterable<int[]> 
          *
          * @see java.util.Iterator#next()
          */
-        public int[] next() {
+        public final int[] next() {
             factoradic(f, index);
             System.arraycopy(identity, 0, a, 0, n);
             factoradicToPermutation(f, a);

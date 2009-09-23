@@ -32,7 +32,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
     private int[] a;
 
-    private boolean hasNext = true;
+    private int ascent;
 
     /**
      * @param n
@@ -43,6 +43,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
             throw new IllegalArgumentException("n < 0");
         }
         this.n = n;
+        ascent = n - 1 - 1;
     }
 
     /**
@@ -61,7 +62,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      * @see java.util.Iterator#hasNext()
      */
     public final boolean hasNext() {
-        return hasNext;
+        return ascent >= 0;
     }
 
     /**
@@ -83,15 +84,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      */
     private void computeNext() {
         // find rightmost ascent, or i where a[i + 1] > a[i]
-        int i = n - 2;
-        while (i >= 0) {
-            if (a[i + 1] < a[i]) {
-                --i;
-            } else {
-                break;
-            }
-        }
-
+        int i = ascent;
         // find smallest (rightmost) a[j] where a[j] > a[i]
         int j = n - 1;
         while (j > i && a[j] <= a[i]) {
@@ -113,11 +106,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         while (i >= 0 && a[i + 1] < a[i]) {
             --i;
         }
-        if (i == -1) {
-            // all in descending order
-            hasNext = false;
-            return;
-        }
+        ascent = i;
     }
 
     /**
