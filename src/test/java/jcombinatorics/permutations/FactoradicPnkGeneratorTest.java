@@ -24,6 +24,14 @@ import org.junit.Test;
 public final class FactoradicPnkGeneratorTest extends PnkGeneratorTestBase {
 
     /**
+     * Basic test, compare against P(4)
+     */
+    @Test
+    public void testGenerateP4() {
+        testGenerateP4(new FactoradicPnkGenerator(4, 4));
+    }
+
+    /**
      * Basic test, generate P(5,3)
      *
      * @see PnkGeneratorTestBase#testGenerateP53(Iterable)
@@ -34,8 +42,7 @@ public final class FactoradicPnkGeneratorTest extends PnkGeneratorTestBase {
     }
 
     /**
-     * Test for
-     * {@link FactoradicPnkGenerator#factoradicNK(int[], long)}.
+     * Test for {@link FactoradicPnkGenerator#factoradicNK(int[], long)}.
      */
     @Test
     public void testFactoradicNK() {

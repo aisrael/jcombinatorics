@@ -24,7 +24,7 @@ public final class SepaPnIteratorTest extends PnGeneratorTestBase {
      * Basic test, compare against P(4)
      */
     @Test
-    public void testGeneratePermutations() {
+    public void testGenerateP4() {
         testGenerateP4(new SepaPnIterator.Factory(N));
     }
 

@@ -27,6 +27,14 @@ import org.junit.Test;
 public final class SepaPnkIteratorTest extends PnkGeneratorTestBase {
 
     /**
+     * Basic test, compare against P(4)
+     */
+    @Test
+    public void testGenerateP4() {
+        testGenerateP4(new SepaPnkIterator.Factory(N, N));
+    }
+
+    /**
      * Basic test, generate P(5,3)
      *
      * @see PnkGeneratorTestBase#testGenerateP53(Iterable)
@@ -43,8 +51,7 @@ public final class SepaPnkIteratorTest extends PnkGeneratorTestBase {
     public void testCompareAgainstFactoradic() {
         for (int n = 2; n < 9; ++n) {
             for (int k = 1; k <= n; ++k) {
-                final FactoradicPnkGenerator factoradic = new FactoradicPnkGenerator(
-                        n, k);
+                final FactoradicPnkGenerator factoradic = new FactoradicPnkGenerator(n, k);
                 final Iterator<int[]> sepa = new SepaPnkIterator(n, k);
                 int i = 0;
                 while (sepa.hasNext()) {

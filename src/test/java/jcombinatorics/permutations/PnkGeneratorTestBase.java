@@ -22,7 +22,7 @@ import java.util.Arrays;
  *
  * @author Alistair A. Israel
  */
-public class PnkGeneratorTestBase {
+public class PnkGeneratorTestBase extends PnGeneratorTestBase {
 
     /**
      * Basic test, generate P(5,3)
