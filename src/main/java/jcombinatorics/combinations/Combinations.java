@@ -187,22 +187,22 @@ public final class Combinations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<T[]> iterator() {
-            return new Iterator();
+        public final Iterator<T[]> iterator() {
+            return new RosenIteratorWrapper();
         }
 
         /**
          *
          * @author Alistair A. Israel
          */
-        private final class Iterator extends ReadOnlyIterator<T[]> {
+        private final class RosenIteratorWrapper extends ReadOnlyIterator<T[]> {
 
             private final RosenIterator iterator = new RosenIterator(elements.length, k);
 
             /**
              * {@inheritDoc}
              *
-             * @see java.util.Iterator#hasNext()
+             * @see Iterator#hasNext()
              */
             public boolean hasNext() {
                 return iterator.hasNext();
@@ -211,7 +211,7 @@ public final class Combinations {
             /**
              * {@inheritDoc}
              *
-             * @see java.util.Iterator#next()
+             * @see Iterator#next()
              */
             public T[] next() {
                 final int[] indices = iterator.next();

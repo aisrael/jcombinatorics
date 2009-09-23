@@ -51,7 +51,7 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
     /**
      * {@inheritDoc}
      *
-     * @see java.util.Iterator#hasNext()
+     * @see Iterator#hasNext()
      */
     public final boolean hasNext() {
         return count > 0;
@@ -60,7 +60,7 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
     /**
      * {@inheritDoc}
      *
-     * @see java.util.Iterator#next()
+     * @see Iterator#next()
      */
     public final int[] next() {
         if (a == null) {

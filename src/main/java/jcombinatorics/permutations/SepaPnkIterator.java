@@ -11,6 +11,8 @@
  */
 package jcombinatorics.permutations;
 
+import java.util.Iterator;
+
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
@@ -168,7 +170,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<int[]> iterator() {
+        public final Iterator<int[]> iterator() {
             return new SepaPnkIterator(n, k);
         }
 

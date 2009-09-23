@@ -98,7 +98,7 @@ public final class Permutations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<int[]> iterator() {
+        public final Iterator<int[]> iterator() {
             return iteratorFactory.iterator();
         }
 
@@ -180,7 +180,7 @@ public final class Permutations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<T[]> iterator() {
+        public final Iterator<T[]> iterator() {
             return new IntArrayIteratorWrapper<T>(elements, iteratorFactory.iterator());
         }
 
@@ -260,7 +260,7 @@ public final class Permutations {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public java.util.Iterator<int[]> iterator() {
+        public Iterator<int[]> iterator() {
             return new IntIterator();
         }
 

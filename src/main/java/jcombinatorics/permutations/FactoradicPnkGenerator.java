@@ -23,7 +23,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
-public class FactoradicPnkGenerator implements Generator<int[]>, Iterable<int[]> {
+public class FactoradicPnkGenerator extends Generator.Of<int[]> {
 
     private final int n;
 
@@ -116,19 +116,10 @@ public class FactoradicPnkGenerator implements Generator<int[]>, Iterable<int[]>
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.Iterable#iterator()
-     */
-    public final java.util.Iterator<int[]> iterator() {
-        return new Iterator();
-    }
-
-    /**
      *
      * @author Alistair A. Israel
      */
-    private class Iterator extends ReadOnlyIterator<int[]> {
+    public class FastIterator extends ReadOnlyIterator<int[]> {
 
         private final long count = Permutations.count(n, k);
 
@@ -143,7 +134,7 @@ public class FactoradicPnkGenerator implements Generator<int[]>, Iterable<int[]>
          *
          * @see java.util.Iterator#hasNext()
          */
-        public boolean hasNext() {
+        public final boolean hasNext() {
             return index < count;
         }
 
@@ -152,7 +143,7 @@ public class FactoradicPnkGenerator implements Generator<int[]>, Iterable<int[]>
          *
          * @see java.util.Iterator#next()
          */
-        public int[] next() {
+        public final int[] next() {
             factoradicNK(f, index);
             System.arraycopy(identity, 0, a, 0, n);
             applyFactoradic(f, a);

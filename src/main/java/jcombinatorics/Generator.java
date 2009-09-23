@@ -11,6 +11,8 @@
  */
 package jcombinatorics;
 
+import java.util.Iterator;
+
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
@@ -51,8 +53,8 @@ public interface Generator<T> {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final java.util.Iterator<T> iterator() {
-            return new Generator.Iterator<T>(this);
+        public final Iterator<T> iterator() {
+            return new ForwardIterator<T>(this);
         }
 
     }
@@ -63,7 +65,7 @@ public interface Generator<T> {
      *
      * @author Alistair A. Israel
      */
-    class Iterator<T> extends ReadOnlyIterator<T> {
+    class ForwardIterator<T> extends ReadOnlyIterator<T> {
 
         private final Generator<T> generator;
 
@@ -73,7 +75,7 @@ public interface Generator<T> {
          * @param generator
          *        the generator to use
          */
-        public Iterator(final Generator<T> generator) {
+        public ForwardIterator(final Generator<T> generator) {
             this.generator = generator;
         }
 
