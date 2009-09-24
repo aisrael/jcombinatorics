@@ -85,7 +85,7 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
         int i = ascent;
         // find smallest (rightmost) a[j] where a[j] > a[i]
         int j = n - 1;
-        while (j > i && a[j].compareTo(a[i]) <= 0) {
+        while (j > i && a[i].compareTo(a[j]) >= 0) {
             --j;
         }
 
@@ -101,7 +101,7 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
         }
 
         i = n - 2;
-        while (i >= 0 && a[i + 1].compareTo(a[i]) <= 0) {
+        while (i >= 0 && a[i].compareTo(a[i + 1]) >= 0) {
             --i;
         }
         ascent = i;

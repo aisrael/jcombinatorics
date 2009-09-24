@@ -87,7 +87,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         int i = ascent;
         // find smallest (rightmost) a[j] where a[j] > a[i]
         int j = n - 1;
-        while (j > i && a[j] <= a[i]) {
+        while (j > i && a[i] >= a[j]) {
             --j;
         }
 
@@ -103,7 +103,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         }
 
         i = n - 2;
-        while (i >= 0 && a[i + 1] <= a[i]) {
+        while (i >= 0 && a[i] >= a[i + 1]) {
             --i;
         }
         ascent = i;

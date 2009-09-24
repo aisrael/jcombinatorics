@@ -84,7 +84,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
         int i = k - 1;
         int j = k;
         // find smallest j > k - 1 where a[j] > a[k - 1]
-        while (j < n && a[j] <= a[i]) {
+        while (j < n && a[i] >= a[j]) {
             ++j;
         }
         if (j < n) {
@@ -93,7 +93,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             reverseRightOf(i);
             // i = (k - 1) - 1
             --i;
-            while (i >= 0 && a[i + 1] <= a[i]) {
+            while (i >= 0 && a[i] >= a[i + 1]) {
                 --i;
             }
             if (i < 0) {
@@ -102,7 +102,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             }
             // j = n - 1
             --j;
-            while (j > i && a[j] <= a[i]) {
+            while (j > i && a[i] >= a[j]) {
                 --j;
             }
             swap(i, j);

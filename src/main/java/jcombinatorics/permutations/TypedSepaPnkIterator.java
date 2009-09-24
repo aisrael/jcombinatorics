@@ -79,8 +79,8 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
     private void computeNext() {
         int i = k - 1;
         int j = k;
-        // find smallest j > k - 1 where a[j] > a[k - 1]
-        while (j < n && a[j].compareTo(a[i]) <= 0) {
+        // find smallest j > k - 1 where a[j] >= a[k - 1]
+        while (j < n && a[i].compareTo(a[j]) >= 0) {
             ++j;
         }
         if (j < n) {
@@ -89,7 +89,7 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
             reverseRightOf(i);
             // i = (k - 1) - 1
             --i;
-            while (i >= 0 && a[i + 1].compareTo(a[i]) <= 0) {
+            while (i >= 0 && a[i].compareTo(a[i + 1]) >= 0) {
                 --i;
             }
             if (i < 0) {
@@ -98,7 +98,7 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
             }
             // j = n - 1
             --j;
-            while (j > i && a[j].compareTo(a[i]) <= 0) {
+            while (j > i && a[i].compareTo(a[j]) >= 0) {
                 --j;
             }
             swap(i, j);
