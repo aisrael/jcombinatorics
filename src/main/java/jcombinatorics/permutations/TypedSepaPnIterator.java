@@ -7,53 +7,51 @@
  * This software is made available under the terms of the MIT License.
  * See LICENSE.txt.
  *
- * Created Sep 2, 2009
+ * Created Sep 24, 2009
  */
 package jcombinatorics.permutations;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * <p>
- * SEPA ("Simple, Efficient Permutation Algorithm") iterator that enumerates all
- * permutations <code>P(n)</code> in lexicographical order.
- * </p>
- *
+ * @param <T>
+ *        a type that implements {@link Comparable}
  * @author Alistair A. Israel
- * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A
- *      Simple, Efficient Permutation Algorithm (Jeffrey A. Johnson)</a>
- * @since 0.1
  */
-public class SepaPnIterator extends ReadOnlyIterator<int[]> {
+public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterator<T[]> {
+
+    private T[] a;
 
     private final int n;
-
-    private int[] a;
 
     private int ascent;
 
     /**
-     * @param n
+     * @param elements
      *        the number of elements to permute
      */
-    public SepaPnIterator(final int n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("n < 0");
+    public TypedSepaPnIterator(final T[] elements) {
+        if (elements == null) {
+            throw new NullPointerException("elements cannot be null!");
         }
-        this.n = n;
-        ascent = n - 1 - 1;
+        this.a = elements;
+        Arrays.sort(elements);
+        this.n = elements.length;
+        ascent = n;
     }
 
     /**
      *
      */
     private void initialize() {
-        a = new int[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = i;
+        int i = n - 2;
+        while (i >= 0 && a[i + 1].compareTo(a[i]) <= 0) {
+            --i;
         }
+        ascent = i;
     }
 
     /**
@@ -70,8 +68,8 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      *
      * @see java.util.Iterator#next()
      */
-    public final int[] next() {
-        if (a == null) {
+    public final T[] next() {
+        if (ascent == n) {
             initialize();
         } else {
             computeNext();
@@ -87,7 +85,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         int i = ascent;
         // find smallest (rightmost) a[j] where a[j] > a[i]
         int j = n - 1;
-        while (j > i && a[j] <= a[i]) {
+        while (j > i && a[j].compareTo(a[i]) <= 0) {
             --j;
         }
 
@@ -103,7 +101,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
         }
 
         i = n - 2;
-        while (i >= 0 && a[i + 1] <= a[i]) {
+        while (i >= 0 && a[i + 1].compareTo(a[i]) <= 0) {
             --i;
         }
         ascent = i;
@@ -116,7 +114,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
      *        second position
      */
     private void swap(final int x, final int y) {
-        final int t = a[x];
+        final T t = a[x];
         a[x] = a[y];
         a[y] = t;
     }

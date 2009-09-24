@@ -42,7 +42,8 @@ public interface Generator<T> {
     long count();
 
     /**
-     * A base class for generators that also implements {@link Iterable}
+     * A base class for generators that also implements {@link Iterable} by
+     * returning a {@link ForwardIterator}.
      *
      * @author Alistair A. Israel
      */
