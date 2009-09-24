@@ -120,28 +120,30 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
     }
 
     /**
-     * @param n
-     *        the number of elements to permute
-     * @return {@link Iterable}&lt;int[]&gt;
+     * @param <T>
+     *        a type that implements {@link Comparable}
+     * @param elements
+     *        the elements to permute
+     * @return {@link Iterable}&lt;T[]&gt;
      */
-    public static Iterable<int[]> permute(final int n) {
-        return new Factory(n);
+    public static <T extends Comparable<T>> Iterable<T[]> permute(final T[] elements) {
+        return new Factory<T>(elements);
     }
 
     /**
      *
      * @author Alistair A. Israel
      */
-    public static class Factory implements Iterable<int[]> {
+    public static class Factory<T extends Comparable<T>> implements Iterable<T[]> {
 
-        private final int n;
+        private final T[] elements;
 
         /**
-         * @param n
-         *        the number of elements to permute
+         * @param elements
+         *        the elements to permute
          */
-        public Factory(final int n) {
-            this.n = n;
+        public Factory(final T[] elements) {
+            this.elements = elements;
         }
 
         /**
@@ -149,8 +151,8 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final Iterator<int[]> iterator() {
-            return new SepaPnIterator(n);
+        public final Iterator<T[]> iterator() {
+            return new TypedSepaPnIterator<T>(elements);
         }
 
     }

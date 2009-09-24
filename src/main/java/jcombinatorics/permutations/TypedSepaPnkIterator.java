@@ -7,54 +7,50 @@
  * This software is made available under the terms of the MIT License.
  * See LICENSE.txt.
  *
- * Created Sep 2, 2009
+ * Created Sep 24, 2009
  */
 package jcombinatorics.permutations;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
-import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * <p>
- * An iterator that enumerates <code>P(n,k)</code>, or all permutations of
- * <code>n</code> taken <code>k</code> at a time in lexicographic order. Derived
- * from the SEPA P(n) iterator.
- * </p>
- *
+ * @param <T>
+ *        a type that implements {@link Comparable}
  * @author Alistair A. Israel
- * @see SepaPnIterator
  */
-public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
-
-    private boolean hasNext = true;
+public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyIterator<T[]> {
 
     private final int n;
 
     private final int k;
 
-    private final int[] a;
+    private final T[] a;
 
-    private final int[] result;
+    private final T[] result;
+
+    private boolean hasNext = true;
 
     /**
-     * @param n
-     *        the number of elements
+     * @param elements
+     *        the number of elements to permute
      * @param k
-     *        taken k at a time
+     *        taken <code>k</code> at a time
      */
-    public SepaPnkIterator(final int n, final int k) {
-        if (n < 1) {
-            throw new IllegalArgumentException("Need at least 1 element!");
+    public TypedSepaPnkIterator(final T[] elements, final int k) {
+        if (elements == null) {
+            throw new NullPointerException("elements cannot be null!");
         }
+        n = elements.length;
         if (k < 0 || k > n) {
             throw new IllegalArgumentException("0 < k <= n!");
         }
-        this.n = n;
         this.k = k;
-        a = ArrayUtils.identityPermutation(n);
-        result = new int[k];
+        a = Arrays.copyOf(elements, n);
+        Arrays.sort(a);
+        result = Arrays.copyOf(a, k);
     }
 
     /**
@@ -71,7 +67,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      *
      * @see java.util.Iterator#next()
      */
-    public final int[] next() {
+    public final T[] next() {
         System.arraycopy(a, 0, result, 0, k);
         computeNext();
         return result;
@@ -84,7 +80,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
         int i = k - 1;
         int j = k;
         // find smallest j > k - 1 where a[j] > a[k - 1]
-        while (j < n && a[j] <= a[i]) {
+        while (j < n && a[j].compareTo(a[i]) <= 0) {
             ++j;
         }
         if (j < n) {
@@ -93,7 +89,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             reverseRightOf(i);
             // i = (k - 1) - 1
             --i;
-            while (i >= 0 && a[i + 1] <= a[i]) {
+            while (i >= 0 && a[i + 1].compareTo(a[i]) <= 0) {
                 --i;
             }
             if (i < 0) {
@@ -102,7 +98,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
             }
             // j = n - 1
             --j;
-            while (j > i && a[j] <= a[i]) {
+            while (j > i && a[j].compareTo(a[i]) <= 0) {
                 --j;
             }
             swap(i, j);
@@ -133,36 +129,50 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      *        second position
      */
     private void swap(final int x, final int y) {
-        final int t = a[x];
+        final T t = a[x];
         a[x] = a[y];
         a[y] = t;
+    }
+
+    /**
+     * @param <T>
+     *        a type that implements {@link Comparable}
+     * @param elements
+     *        the of elements to permute
+     * @param k
+     *        taken <code>k</code> at a time
+     * @return {@link Factory}
+     */
+    public static <T extends Comparable<T>> Iterable<T[]> permute(final T[] elements, final int k) {
+        return new Factory<T>(elements, k);
     }
 
     /**
      *
      * @author Alistair A. Israel
      */
-    public static class Factory implements Iterable<int[]> {
+    public static class Factory<T extends Comparable<T>> implements Iterable<T[]> {
 
-        private final int n;
+        private final T[] a;
 
         private final int k;
 
         /**
-         * @param n
-         *        the number of elements
+         * @param elements
+         *        the of elements to permute
          * @param k
-         *        taken k at a time
+         *        taken <code>k</code> at a time
          */
-        public Factory(final int n, final int k) {
-            if (n < 1) {
-                throw new IllegalArgumentException("Need at least 1 element!");
+        public Factory(final T[] elements, final int k) {
+            if (elements == null) {
+                throw new NullPointerException("elements cannot be null!");
             }
-            if (n < k || k < 0) {
+            final int n = elements.length;
+            if (k < 0 || k > n) {
                 throw new IllegalArgumentException("0 < k <= n!");
             }
-            this.n = n;
             this.k = k;
+            a = Arrays.copyOf(elements, n);
         }
 
         /**
@@ -170,9 +180,10 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
          *
          * @see java.lang.Iterable#iterator()
          */
-        public final Iterator<int[]> iterator() {
-            return new SepaPnkIterator(n, k);
+        public final Iterator<T[]> iterator() {
+            return new TypedSepaPnkIterator<T>(a, k);
         }
 
     }
+
 }

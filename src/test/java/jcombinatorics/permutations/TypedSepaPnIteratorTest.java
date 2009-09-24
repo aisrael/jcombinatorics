@@ -92,7 +92,7 @@ public final class TypedSepaPnIteratorTest {
             final String[] actual = iter.next();
             final String[] expected = P_122333[i];
             assertArrayEquals(format("P(\"1\", \"2\", \"2\", \"3\", \"3\", \"3\")[%d] expected %s, got %s",
-                    i, expected, actual), expected, actual);
+                    i, Arrays.toString(expected), Arrays.toString(actual)), expected, actual);
             ++i;
         }
         assertEquals(60, i);

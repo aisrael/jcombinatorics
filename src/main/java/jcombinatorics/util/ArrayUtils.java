@@ -11,7 +11,7 @@
  */
 package jcombinatorics.util;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Provides a couple of static utility methods for creating and initializing
@@ -59,23 +59,6 @@ public final class ArrayUtils {
     }
 
     /**
-     * Just so we can avoid having <code>@SuppressWarnings("unchecked")</code>
-     * all around the place.
-     *
-     * @param <T>
-     *        a type
-     * @param componentType
-     *        the component type (class)
-     * @param length
-     *        the size of the new array
-     * @return T[]
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> T[] newArray(final Class<?> componentType, final int length) {
-        return (T[]) Array.newInstance(componentType, length);
-    }
-
-    /**
      * @param elements
      *        the elements to choose from
      * @param indices
@@ -118,7 +101,7 @@ public final class ArrayUtils {
      */
     public static <T> T[] valuesAt(final T[] elements, final int[] indices) {
         final int n = indices.length;
-        final T[] result = ArrayUtils.<T> newArray(elements.getClass().getComponentType(), n);
+        final T[] result = Arrays.copyOf(elements, n);
         for (int i = 0; i < n; ++i) {
             result[i] = elements[indices[i]];
         }
