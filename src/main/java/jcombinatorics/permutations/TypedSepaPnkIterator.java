@@ -79,7 +79,7 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
     private void computeNext() {
         int i = k - 1;
         int j = k;
-        // find smallest j > k - 1 where a[j] >= a[k - 1]
+        // find smallest j > k - 1 where a[j] > a[k - 1]
         while (j < n && a[i].compareTo(a[j]) >= 0) {
             ++j;
         }
