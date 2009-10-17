@@ -11,6 +11,8 @@
  */
 package jcombinatorics.permutations;
 
+import java.util.Arrays;
+
 import jcombinatorics.Generator;
 import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
@@ -113,6 +115,7 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
             f[j] = (int) (m % z);
             --j;
         }
+        System.out.println(String.format("factoradic(%d,%d)[%d]: %s", n, k, l, Arrays.toString(f)));
     }
 
     /**

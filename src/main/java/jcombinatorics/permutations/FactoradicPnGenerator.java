@@ -91,10 +91,12 @@ public class FactoradicPnGenerator extends Generator.Of<int[]> {
         final int len = f.length;
         long m = l;
         int z = 2;
+        int j = len - 1;
         while (m > 0) {
-            f[len - z + 1] = (int) (m % z);
+            f[j] = (int) (m % z);
             m /= z;
             ++z;
+            --j;
         }
     }
     /**

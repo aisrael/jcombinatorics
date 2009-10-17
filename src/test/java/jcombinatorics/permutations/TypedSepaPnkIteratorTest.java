@@ -71,4 +71,20 @@ public final class TypedSepaPnkIteratorTest {
         }
         assertEquals(P_122333_3.length, i);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void testGenerate0122() {
+        final TypedSepaPnkIterator<String> iter = new TypedSepaPnkIterator<String>(new String[] { "0", "1",
+                "2", "2" }, 4);
+        int i = 0;
+        while (iter.hasNext()) {
+            final String[] actual = iter.next();
+            System.out.println(format("%d %s", i, Arrays.toString(actual)));
+            ++i;
+        }
+        System.out.println("n = " + i);
+    }
 }
