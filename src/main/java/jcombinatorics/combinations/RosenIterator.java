@@ -27,9 +27,9 @@ import jcombinatorics.util.ReadOnlyIterator;
  */
 public class RosenIterator extends ReadOnlyIterator<int[]> {
 
-    private final int n;
+    protected final int n;
 
-    private final int k;
+    protected final int k;
 
     private int[] a;
 
@@ -62,7 +62,7 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
      *
      * @see Iterator#next()
      */
-    public final int[] next() {
+    public int[] next() {
         if (a == null) {
             initialize();
         } else {
