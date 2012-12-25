@@ -27,9 +27,9 @@ import jcombinatorics.util.ReadOnlyIterator;
  */
 public class RosenIterator extends ReadOnlyIterator<int[]> {
 
-    protected final int n;
+    private final int n;
 
-    protected final int k;
+    private final int k;
 
     private int[] a;
 
