@@ -115,7 +115,7 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
             f[j] = (int) (m % z);
             --j;
         }
-        System.out.println(String.format("factoradic(%d,%d)[%d]: %s", n, k, l, Arrays.toString(f)));
+        // System.out.println(String.format("factoradic(%d,%d)[%d]: %s", n, k, l, Arrays.toString(f)));
     }
 
     /**
