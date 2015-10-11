@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 /**
  * @param <T>
- *        a type
+ *            a type
  * @author Alistair A. Israel
  */
 public abstract class ReadOnlyIterator<T> implements Iterator<T> {

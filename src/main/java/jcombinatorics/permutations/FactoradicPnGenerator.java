@@ -17,13 +17,11 @@ import jcombinatorics.util.MathUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * P(n) generator in lexicographical order using factoradics. Supports computing
- * the <i>i</i>-th permutation directly using {@link #get(long)}. Only supports
- * n <= 20, since 21! > {@link Long#MAX_VALUE}.
+ * P(n) generator in lexicographical order using factoradics. Supports computing the <i>i</i>-th permutation directly using
+ * {@link #get(long)}. Only supports n <= 20, since 21! > {@link Long#MAX_VALUE}.
  *
  * @author Alistair A. Israel
- * @see <a
- *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
 public class FactoradicPnGenerator extends Generator.Of<int[]> {
@@ -41,7 +39,7 @@ public class FactoradicPnGenerator extends Generator.Of<int[]> {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      */
     public FactoradicPnGenerator(final int n) {
         if (!(n > 0 && n <= MAX_N)) {
@@ -65,7 +63,7 @@ public class FactoradicPnGenerator extends Generator.Of<int[]> {
      * Retrieve the i-th permutation.
      *
      * @param l
-     *        long
+     *            long
      * @return int[]
      */
     public final int[] get(final long l) {
@@ -79,13 +77,12 @@ public class FactoradicPnGenerator extends Generator.Of<int[]> {
     }
 
     /**
-     * Optimized factoradic. Doesn't compute for the last digit (which is always
-     * 0).
+     * Optimized factoradic. Doesn't compute for the last digit (which is always 0).
      *
      * @param f
-     *        the array to hold the factoradic
+     *            the array to hold the factoradic
      * @param l
-     *        long
+     *            long
      */
     private static void factoradic(final int[] f, final long l) {
         final int len = f.length;
@@ -99,14 +96,14 @@ public class FactoradicPnGenerator extends Generator.Of<int[]> {
             --j;
         }
     }
+
     /**
-     * Generate a permutation from a factoradic. Assumes that the array
-     * <code>a</code> is an identityPermutation.
+     * Generate a permutation from a factoradic. Assumes that the array <code>a</code> is an identityPermutation.
      *
      * @param f
-     *        the factoradic
+     *            the factoradic
      * @param a
-     *        array to hold the permutation
+     *            array to hold the permutation
      */
     public static void factoradicToPermutation(final int[] f, final int[] a) {
         for (int i = 0; i < f.length; ++i) {

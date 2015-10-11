@@ -18,7 +18,7 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * @param <T>
- *        a type that implements {@link Comparable}
+ *            a type that implements {@link Comparable}
  * @author Alistair A. Israel
  */
 public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyIterator<T[]> {
@@ -35,9 +35,9 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
 
     /**
      * @param elements
-     *        the number of elements to permute
+     *            the number of elements to permute
      * @param k
-     *        taken <code>k</code> at a time
+     *            taken <code>k</code> at a time
      */
     public TypedSepaPnkIterator(final T[] elements, final int k) {
         if (elements == null) {
@@ -110,7 +110,7 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
      * Reverse the order of elements from <code>a[start + 1]..a[n-1]</code>.
      *
      * @param start
-     *        the starting element
+     *            the starting element
      */
     private void reverseRightOf(final int start) {
         int i = start + 1;
@@ -124,9 +124,9 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
 
     /**
      * @param x
-     *        first position
+     *            first position
      * @param y
-     *        second position
+     *            second position
      */
     private void swap(final int x, final int y) {
         final T t = a[x];
@@ -136,11 +136,11 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
 
     /**
      * @param <T>
-     *        a type that implements {@link Comparable}
+     *            a type that implements {@link Comparable}
      * @param elements
-     *        the of elements to permute
+     *            the of elements to permute
      * @param k
-     *        taken <code>k</code> at a time
+     *            taken <code>k</code> at a time
      * @return {@link Factory}
      */
     public static <T extends Comparable<T>> Iterable<T[]> permute(final T[] elements, final int k) {
@@ -149,6 +149,8 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
 
     /**
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     public static class Factory<T extends Comparable<T>> implements Iterable<T[]> {
@@ -159,9 +161,9 @@ public class TypedSepaPnkIterator<T extends Comparable<T>> extends ReadOnlyItera
 
         /**
          * @param elements
-         *        the of elements to permute
+         *            the of elements to permute
          * @param k
-         *        taken <code>k</code> at a time
+         *            taken <code>k</code> at a time
          */
         public Factory(final T[] elements, final int k) {
             if (elements == null) {

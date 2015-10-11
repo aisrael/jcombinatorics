@@ -75,7 +75,7 @@ public class CombinationsGeneratorBenchmark implements Runnable {
          * @param generator
          *        {@link Iterable}&lt;int[]&gt;
          */
-        public CombinationsGeneratorBenchmarkTask(final Iterable<int[]> generator) {
+        CombinationsGeneratorBenchmarkTask(final Iterable<int[]> generator) {
             super();
             this.generator = generator;
         }

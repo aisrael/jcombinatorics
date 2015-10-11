@@ -106,7 +106,7 @@ public class CompareNKGenerators implements Runnable {
          * @param generator
          *        iterable
          */
-        public Task(final int reps, final Iterable<int[]> generator) {
+        Task(final int reps, final Iterable<int[]> generator) {
             this.reps = reps;
             this.generator = generator;
         }

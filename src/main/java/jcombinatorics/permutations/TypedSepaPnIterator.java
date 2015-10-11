@@ -18,7 +18,7 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * @param <T>
- *        a type that implements {@link Comparable}
+ *            a type that implements {@link Comparable}
  * @author Alistair A. Israel
  */
 public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterator<T[]> {
@@ -31,7 +31,7 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
 
     /**
      * @param elements
-     *        the number of elements to permute
+     *            the number of elements to permute
      */
     public TypedSepaPnIterator(final T[] elements) {
         if (elements == null) {
@@ -109,9 +109,9 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
 
     /**
      * @param x
-     *        first position
+     *            first position
      * @param y
-     *        second position
+     *            second position
      */
     private void swap(final int x, final int y) {
         final T t = a[x];
@@ -121,9 +121,9 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
 
     /**
      * @param <T>
-     *        a type that implements {@link Comparable}
+     *            a type that implements {@link Comparable}
      * @param elements
-     *        the elements to permute
+     *            the elements to permute
      * @return {@link Iterable}&lt;T[]&gt;
      */
     public static <T extends Comparable<T>> Iterable<T[]> permute(final T[] elements) {
@@ -132,6 +132,8 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
 
     /**
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     public static class Factory<T extends Comparable<T>> implements Iterable<T[]> {
@@ -140,7 +142,7 @@ public class TypedSepaPnIterator<T extends Comparable<T>> extends ReadOnlyIterat
 
         /**
          * @param elements
-         *        the elements to permute
+         *            the elements to permute
          */
         public Factory(final T[] elements) {
             this.elements = elements;

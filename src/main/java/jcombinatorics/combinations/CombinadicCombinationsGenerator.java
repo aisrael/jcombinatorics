@@ -14,16 +14,12 @@ package jcombinatorics.combinations;
 import jcombinatorics.Generator;
 
 /**
- * A combinations generator based on combinadics. Capable of computing the
- * <i>i</i>-th combination directly using {@link #get(long)}.
+ * A combinations generator based on combinadics. Capable of computing the <i>i</i>-th combination directly using {@link #get(long)}.
  *
  * @author Alistair A. Israel
- * @see <a
- *      href="http://en.wikipedia.org/wiki/Combinadic">http://en.wikipedia.org/wiki/Combinadic</a>
- * @see <a
- *      href="http://msdn.microsoft.com/en-us/library/aa289166%28VS.71%29.aspx">Generating
- *      the mth Lexicographical Element of a Mathematical Combination, James
- *      McCaffrey</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Combinadic">http://en.wikipedia.org/wiki/Combinadic</a>
+ * @see <a href="http://msdn.microsoft.com/en-us/library/aa289166%28VS.71%29.aspx">Generating the mth Lexicographical Element of a
+ *      Mathematical Combination, James McCaffrey</a>
  */
 public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
 
@@ -35,9 +31,9 @@ public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
 
     /**
      * @param n
-     *        the number of elements to choose from
+     *            the number of elements to choose from
      * @param k
-     *        taken <code>k</code> at a time
+     *            taken <code>k</code> at a time
      */
     public CombinadicCombinationsGenerator(final int n, final int k) {
         if (k < 0 || k > n) {
@@ -50,8 +46,7 @@ public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
 
     /**
      * <p>
-     * Return the total number of combinations available to generate, which can
-     * be expressed as:
+     * Return the total number of combinations available to generate, which can be expressed as:
      * </p>
      * <p>
      * <code>n! / k! (n - k)!</code>
@@ -87,7 +82,7 @@ public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
      * </pre>
      *
      * @param l
-     *        long
+     *            long
      * @return int[]
      */
     public final int[] get(final long l) {
@@ -116,9 +111,9 @@ public class CombinadicCombinationsGenerator extends Generator.Of<int[]> {
 
     /**
      * @param n
-     *        n
+     *            n
      * @param k
-     *        k
+     *            k
      * @return C(n,k)
      */
     private static int count(final int n, final int k) {

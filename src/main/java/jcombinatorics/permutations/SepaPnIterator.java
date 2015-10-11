@@ -17,13 +17,11 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * <p>
- * SEPA ("Simple, Efficient Permutation Algorithm") iterator that enumerates all
- * permutations <code>P(n)</code> in lexicographical order.
+ * SEPA ("Simple, Efficient Permutation Algorithm") iterator that enumerates all permutations <code>P(n)</code> in lexicographical order.
  * </p>
  *
  * @author Alistair A. Israel
- * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A
- *      Simple, Efficient Permutation Algorithm (Jeffrey A. Johnson)</a>
+ * @see <a href="http://www.freewebz.com/permute/soda_submit.html">SEPA: A Simple, Efficient Permutation Algorithm (Jeffrey A. Johnson)</a>
  * @since 0.1
  */
 public class SepaPnIterator extends ReadOnlyIterator<int[]> {
@@ -36,7 +34,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param n
-     *        the number of elements to permute
+     *            the number of elements to permute
      */
     public SepaPnIterator(final int n) {
         if (n < 0) {
@@ -111,9 +109,9 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param x
-     *        first position
+     *            first position
      * @param y
-     *        second position
+     *            second position
      */
     private void swap(final int x, final int y) {
         final int t = a[x];
@@ -123,7 +121,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param n
-     *        the number of elements to permute
+     *            the number of elements to permute
      * @return {@link Iterable}&lt;int[]&gt;
      */
     public static Iterable<int[]> permute(final int n) {
@@ -140,7 +138,7 @@ public class SepaPnIterator extends ReadOnlyIterator<int[]> {
 
         /**
          * @param n
-         *        the number of elements to permute
+         *            the number of elements to permute
          */
         public Factory(final int n) {
             this.n = n;

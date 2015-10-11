@@ -16,11 +16,10 @@ import java.util.Iterator;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * A parameterized generator. Basically represents set of directly retrievable
- * items addressed by a <code>long</code> index.
+ * A parameterized generator. Basically represents set of directly retrievable items addressed by a <code>long</code> index.
  *
  * @param <T>
- *        a type
+ *            a type
  * @author Alistair A. Israel
  */
 public interface Generator<T> {
@@ -29,7 +28,7 @@ public interface Generator<T> {
      * Compute and return the <code>l</code>-th item
      *
      * @param l
-     *        the index of the item to generate
+     *            the index of the item to generate
      * @return T
      */
     T get(final long l);
@@ -42,9 +41,10 @@ public interface Generator<T> {
     long count();
 
     /**
-     * A base class for generators that also implements {@link Iterable} by
-     * returning a {@link ForwardIterator}.
+     * A base class for generators that also implements {@link Iterable} by returning a {@link ForwardIterator}.
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     abstract class Of<T> implements Generator<T>, Iterable<T> {
@@ -61,9 +61,10 @@ public interface Generator<T> {
     }
 
     /**
-     * An 'adapter' for {@link Generator}s acts as an {@link java.util.Iterator}
-     * .
+     * An 'adapter' for {@link Generator}s acts as an {@link java.util.Iterator}.
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     class ForwardIterator<T> extends ReadOnlyIterator<T> {
@@ -74,7 +75,7 @@ public interface Generator<T> {
 
         /**
          * @param generator
-         *        the generator to use
+         *            the generator to use
          */
         public ForwardIterator(final Generator<T> generator) {
             this.generator = generator;

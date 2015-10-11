@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 /**
  * @param <T>
- *        a type
+ *            a type
  * @author Alistair A. Israel
  */
 public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<T[]> {
@@ -26,9 +26,9 @@ public class IntArrayIteratorWrapper<T> extends ReadOnlyIterator<T[]> {
 
     /**
      * @param elements
-     *        the elements to iterate over
+     *            the elements to iterate over
      * @param iterator
-     *        the {@link Iterator}&lt;int[]&gt; to wrap
+     *            the {@link Iterator}&lt;int[]&gt; to wrap
      */
     public IntArrayIteratorWrapper(final T[] elements, final Iterator<int[]> iterator) {
         this.elements = elements;

@@ -18,9 +18,8 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * <p>
- * An iterator that enumerates <code>P(n,k)</code>, or all permutations of
- * <code>n</code> taken <code>k</code> at a time in lexicographic order. Derived
- * from the SEPA P(n) iterator.
+ * An iterator that enumerates <code>P(n,k)</code>, or all permutations of <code>n</code> taken <code>k</code> at a time in lexicographic
+ * order. Derived from the SEPA P(n) iterator.
  * </p>
  *
  * @author Alistair A. Israel
@@ -40,9 +39,9 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        taken k at a time
+     *            taken k at a time
      */
     public SepaPnkIterator(final int n, final int k) {
         if (n < 1) {
@@ -114,7 +113,7 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
      * Reverse the order of elements from <code>a[start + 1]..a[n-1]</code>.
      *
      * @param start
-     *        the starting element
+     *            the starting element
      */
     private void reverseRightOf(final int start) {
         int i = start + 1;
@@ -128,9 +127,9 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param x
-     *        first position
+     *            first position
      * @param y
-     *        second position
+     *            second position
      */
     private void swap(final int x, final int y) {
         final int t = a[x];
@@ -150,9 +149,9 @@ public class SepaPnkIterator extends ReadOnlyIterator<int[]> {
 
         /**
          * @param n
-         *        the number of elements
+         *            the number of elements
          * @param k
-         *        taken k at a time
+         *            taken k at a time
          */
         public Factory(final int n, final int k) {
             if (n < 1) {

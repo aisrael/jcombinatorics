@@ -14,8 +14,7 @@ package jcombinatorics.util;
 import java.util.Arrays;
 
 /**
- * Provides a couple of static utility methods for creating and initializing
- * arrays used throughout permutation and combination generation.
+ * Provides a couple of static utility methods for creating and initializing arrays used throughout permutation and combination generation.
  *
  * @author Alistair A. Israel
  */
@@ -29,13 +28,11 @@ public final class ArrayUtils {
     }
 
     /**
-     * Fills the given array with a[i] = i. For example, if a = int[4], then
-     * fills <code>a</code> with <code>{ 0, 1, 2, 3 }</code>. Used throughout
-     * permutation and combination generation as the first result
-     * (lexicographically).
+     * Fills the given array with a[i] = i. For example, if a = int[4], then fills <code>a</code> with <code>{ 0, 1, 2, 3 }</code>. Used
+     * throughout permutation and combination generation as the first result (lexicographically).
      *
      * @param a
-     *        an array
+     *            an array
      */
     public static void identityPermutation(final int[] a) {
         for (int i = a.length - 1; i >= 0; --i) {
@@ -44,12 +41,11 @@ public final class ArrayUtils {
     }
 
     /**
-     * Creates and fills an array with a[i] = i. For example, if n = 4, then
-     * returns <code>{ 0, 1, 2, 3 }</code>. Used throughout permutation and
-     * combination generation as the first result (lexicographically).
+     * Creates and fills an array with a[i] = i. For example, if n = 4, then returns <code>{ 0, 1, 2, 3 }</code>. Used throughout
+     * permutation and combination generation as the first result (lexicographically).
      *
      * @param n
-     *        the size of the array
+     *            the size of the array
      * @return the initialized array
      */
     public static int[] identityPermutation(final int n) {
@@ -60,9 +56,9 @@ public final class ArrayUtils {
 
     /**
      * @param elements
-     *        the elements to choose from
+     *            the elements to choose from
      * @param indices
-     *        the array of indices
+     *            the array of indices
      * @return the mapped array
      */
     public static char[] valuesAt(final char[] elements, final int[] indices) {
@@ -76,9 +72,9 @@ public final class ArrayUtils {
 
     /**
      * @param elements
-     *        the elements to choose from
+     *            the elements to choose from
      * @param indices
-     *        the array of indices
+     *            the array of indices
      * @return the mapped array
      */
     public static int[] valuesAt(final int[] elements, final int[] indices) {
@@ -92,11 +88,11 @@ public final class ArrayUtils {
 
     /**
      * @param <T>
-     *        a type
+     *            a type
      * @param elements
-     *        the elements to choose from
+     *            the elements to choose from
      * @param indices
-     *        the array of indices
+     *            the array of indices
      * @return the mapped array
      */
     public static <T> T[] valuesAt(final T[] elements, final int[] indices) {

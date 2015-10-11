@@ -21,8 +21,7 @@ import jcombinatorics.util.ReadOnlyIterator;
  * P(n, k) generator in lexicographical order.
  *
  * @author Alistair A. Israel
- * @see <a
- *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  * @since 0.1
  */
 public class FactoradicPnkGenerator extends Generator.Of<int[]> {
@@ -37,9 +36,9 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        taken k at a time
+     *            taken k at a time
      */
     public FactoradicPnkGenerator(final int n, final int k) {
         assert n > 0;
@@ -62,7 +61,7 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
      * Retrieve the <i>l</i>-th permutation.
      *
      * @param l
-     *        long
+     *            long
      * @return int[]
      */
     public final int[] get(final long l) {
@@ -80,9 +79,9 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
      * Apply factoradic f to permutation a, but store the result back in f
      *
      * @param f
-     *        int[]
+     *            int[]
      * @param a
-     *        int[]
+     *            int[]
      */
     private void applyFactoradic(final int[] f, final int[] a) {
         for (int i = 0; i < f.length; ++i) {
@@ -101,9 +100,9 @@ public class FactoradicPnkGenerator extends Generator.Of<int[]> {
      * Truncated factoradic. Only computes up to <code>k</code> digits.
      *
      * @param f
-     *        the array to hold the factoradic
+     *            the array to hold the factoradic
      * @param l
-     *        long
+     *            long
      */
     public final void factoradicNK(final int[] f, final long l) {
         long m = l;

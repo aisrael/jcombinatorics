@@ -87,7 +87,7 @@ public class GeneratorBenchmark extends PermutatedOrderBenchmark {
          * @param generator
          *        iterable
          */
-        public Bench(final Iterable<int[]> generator) {
+        Bench(final Iterable<int[]> generator) {
             this.generator = generator;
         }
 

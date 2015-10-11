@@ -18,8 +18,8 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * <p>
- * An iterator that generates combinations of <code>n</code> elements,
- * <code>C(n)</code>, in lexicographic order, based on Rosen's algorithm.
+ * An iterator that generates combinations of <code>n</code> elements, <code>C(n)</code>, in lexicographic order, based on Rosen's
+ * algorithm.
  * </p>
  *
  * @author Alistair A. Israel
@@ -37,9 +37,9 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        taken k at a time
+     *            taken k at a time
      */
     public RosenIterator(final int n, final int k) {
         super();
@@ -97,9 +97,9 @@ public class RosenIterator extends ReadOnlyIterator<int[]> {
 
         /**
          * @param n
-         *        the number of elements
+         *            the number of elements
          * @param k
-         *        taken k at a time
+         *            taken k at a time
          */
         public Factory(final int n, final int k) {
             this.n = n;
