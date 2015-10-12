@@ -4,7 +4,7 @@
   <groupId>jcombinatorics</groupId>
   <artifactId>jcombinatorics</artifactId>
   <name>Java Combinatorics Library</name>
-  <version>0.3</version>
+  <version>0.3-SNAPSHOT</version>
   <description>JCombinatorics provides useful combinatorics algorithms (permutations &amp; combinations) and functions for Java.</description>
   <url>http://github.com/AlistairIsrael/jcombinatorics</url>
   <inceptionYear>2009</inceptionYear>
