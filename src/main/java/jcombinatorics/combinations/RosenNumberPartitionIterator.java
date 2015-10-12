@@ -7,9 +7,11 @@ import jcombinatorics.util.ReadOnlyIterator;
  * An iterator that generates all partitions of <code>n</code> elements, into <code>k</code> parts containing the number of elements in each
  * part, based on Rosen's algorithm.
  * </p>
+ * <p>
+ * See Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286
+ * </p>
  *
  * @author Alistair A. Israel
- * @see "Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286"
  */
 public class RosenNumberPartitionIterator extends ReadOnlyIterator<int[]> {
 
@@ -32,7 +34,7 @@ public class RosenNumberPartitionIterator extends ReadOnlyIterator<int[]> {
     /**
      * {@inheritDoc}
      *
-     * @see Iterator#next()
+     * @see java.util.Iterator#next()
      */
     public final int[] next() {
         final int[] actual = rosen.next();

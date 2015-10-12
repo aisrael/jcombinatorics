@@ -21,9 +21,11 @@ import jcombinatorics.util.ReadOnlyIterator;
  * An iterator that generates combinations of <code>n</code> elements, <code>C(n)</code>, in lexicographic order, based on Rosen's
  * algorithm.
  * </p>
+ * <p>
+ * See Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286
+ * </p>
  *
  * @author Alistair A. Israel
- * @see "Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286"
  */
 public class RosenIterator extends ReadOnlyIterator<int[]> {
 
