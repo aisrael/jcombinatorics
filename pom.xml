@@ -27,11 +27,11 @@
   </scm>
 
   <distributionManagement>
-    <site>
+    <repository>
       <id>maven2.github.com</id>
       <name>Maven2 GitHub Repository</name>
       <url>scm:git:git@github.com:maven2/maven2.github.com.git</url>
-    </site>
+    </repository>
   </distributionManagement>
 
   <dependencies>
