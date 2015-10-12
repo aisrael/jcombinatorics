@@ -4,7 +4,7 @@
   <groupId>jcombinatorics</groupId>
   <artifactId>jcombinatorics</artifactId>
   <name>Java Combinatorics Library</name>
-  <version>0.3.1-SNAPSHOT</version>
+  <version>0.3</version>
   <description>JCombinatorics provides useful combinatorics algorithms (permutations &amp; combinations) and functions for Java.</description>
   <url>http://github.com/AlistairIsrael/jcombinatorics</url>
   <inceptionYear>2009</inceptionYear>
@@ -20,7 +20,7 @@
     <!-- Use UTF-8 as the default source encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
+
   <scm>
   	<developerConnection>scm:git:[fetch=]https://github.com/aisrael/jcombinatorics.git[push=]git@github.com:aisrael/jcombinatorics.git</developerConnection>
     <tag>HEAD</tag>
@@ -30,7 +30,7 @@
     <repository>
       <id>maven2.github.com</id>
       <name>Maven2 GitHub Repository</name>
-      <url>scm:git:git@github.com:maven2/maven2.github.com.git</url>
+      <url>file://${project.build.directory}/repo</url>
     </repository>
   </distributionManagement>
 
