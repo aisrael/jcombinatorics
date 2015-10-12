@@ -21,6 +21,10 @@
     <!-- Use UTF-8 as the default source encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <scm>
+  	<developerConnection>scm:git:[fetch=]https://github.com/aisrael/jcombinatorics.git[push=]git@github.com:aisrael/jcombinatorics.git</developerConnection>
+  </scm>
 
   <dependencies>
     <!--
