@@ -17,12 +17,10 @@ import jcombinatorics.util.ArrayUtils;
 import jcombinatorics.util.ReadOnlyIterator;
 
 /**
- * A utility class that provides convenience methods for generating and working
- * with combinations.
+ * A utility class that provides convenience methods for generating and working with combinations.
  *
  * @author Alistair A. Israel
- * @see <a
- *      href="http://en.wikipedia.org/wiki/Combination">http://en.wikipedia.org/wiki/Combination</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Combination">http://en.wikipedia.org/wiki/Combination</a>
  * @since 0.1
  */
 public final class Combinations {
@@ -35,16 +33,14 @@ public final class Combinations {
     }
 
     /**
-     * Computes the number of unique combinations of <code>n</code> elements
-     * taken <code>k</code> at a time, which can be computed as:
+     * Computes the number of unique combinations of <code>n</code> elements taken <code>k</code> at a time, which can be computed as:
      * <code>n! / k! (n - k)!</code>
      *
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        subset/sample size
-     * @return the number of combinations of <code>n</code> elements taken
-     *         <code>k</code> at a time
+     *            subset/sample size
+     * @return the number of combinations of <code>n</code> elements taken <code>k</code> at a time
      */
     public static long count(final int n, final int k) {
         if (k < 0 || k > n) {
@@ -58,8 +54,7 @@ public final class Combinations {
     }
 
     /**
-     * An inner class to implement the <code>Combinations.choose(n, k)</code>
-     * DSL.
+     * An inner class to implement the <code>Combinations.choose(n, k)</code> DSL.
      *
      * @author Alistair A. Israel
      */
@@ -79,9 +74,9 @@ public final class Combinations {
 
         /**
          * @param n
-         *        the number of elements
+         *            the number of elements
          * @param k
-         *        taken k at a time
+         *            taken k at a time
          */
         private Chooser(final int n, final int k) {
             this.n = n;
@@ -102,7 +97,7 @@ public final class Combinations {
          * Retrieve the <i>i</i>-th combination.
          *
          * @param l
-         *        long
+         *            long
          * @return int[]
          */
         public int[] get(final long l) {
@@ -112,9 +107,9 @@ public final class Combinations {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        taken k at a time
+     *            taken k at a time
      * @return {@link Iterable}&lt;int[]&gt;
      */
     public static Chooser choose(final int n, final int k) {
@@ -123,9 +118,9 @@ public final class Combinations {
 
     /**
      * @param <T>
-     *        a type
+     *            a type
      * @param t
-     *        the elements to choose from
+     *            the elements to choose from
      * @return a {@link Of}
      */
     public static <T> Of<T> of(final T... t) {
@@ -133,9 +128,10 @@ public final class Combinations {
     }
 
     /**
-     * A builder/helper to implement the <code>Combinations.of(T...)</code> DSL
-     * method.
+     * A builder/helper to implement the <code>Combinations.of(T...)</code> DSL method.
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     public static class Of<T> {
@@ -144,7 +140,7 @@ public final class Combinations {
 
         /**
          * @param elements
-         *        the element set (array)
+         *            the element set (array)
          */
         public Of(final T[] elements) {
             this.elements = elements;
@@ -152,7 +148,7 @@ public final class Combinations {
 
         /**
          * @param k
-         *        take <code>k</code> at a time
+         *            take <code>k</code> at a time
          * @return {@link ParameterizedGenerator}&lt;T&gt;
          */
         public final Iterable<T[]> take(final int k) {
@@ -163,6 +159,8 @@ public final class Combinations {
     /**
      * A parameterized combinations generator.
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     public static class ParameterizedGenerator<T> implements Iterable<T[]> {
@@ -173,9 +171,9 @@ public final class Combinations {
 
         /**
          * @param elements
-         *        the element set (array)
+         *            the element set (array)
          * @param k
-         *        take <code>k</code> at a time
+         *            take <code>k</code> at a time
          */
         public ParameterizedGenerator(final T[] elements, final int k) {
             this.elements = elements;

@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>jcombinatorics</groupId>
   <artifactId>jcombinatorics</artifactId>
   <name>Java Combinatorics Library</name>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3</version>
   <description>JCombinatorics provides useful combinatorics algorithms (permutations &amp; combinations) and functions for Java.</description>
   <url>http://github.com/AlistairIsrael/jcombinatorics</url>
   <inceptionYear>2009</inceptionYear>
@@ -21,6 +20,19 @@
     <!-- Use UTF-8 as the default source encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <scm>
+  	<developerConnection>scm:git:[fetch=]https://github.com/aisrael/jcombinatorics.git[push=]git@github.com:aisrael/jcombinatorics.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>maven2.github.com</id>
+      <name>Maven2 GitHub Repository</name>
+      <url>file://${project.build.directory}/repo</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <!--
@@ -41,6 +53,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
         <configuration>
           <source>1.5</source>
           <target>1.5</target>
@@ -51,9 +64,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.3</version>
+        <version>2.5</version>
         <configuration>
-          <configLocation>etc/checkstyle.xml</configLocation>
+          <configLocation>${project.build.directory}/../etc/checkstyle.xml</configLocation>
           <consoleOutput>true</consoleOutput>
           <failsOnError>true</failsOnError>
           <encoding>UTF-8</encoding>
@@ -78,6 +91,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -91,6 +105,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
+        <version>1.4.0</version>
         <configuration>
           <classpathScope>test</classpathScope>
         </configuration>

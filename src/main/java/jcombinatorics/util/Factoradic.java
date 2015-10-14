@@ -16,12 +16,10 @@ import static java.lang.System.arraycopy;
 import java.util.Arrays;
 
 /**
- * Convenience class for computing the factoradic representation of a (
- * <code>long</code>) number.
+ * Convenience class for computing the factoradic representation of a ( <code>long</code>) number.
  *
  * @author Alistair A. Israel
- * @see <a
- *      href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>
  */
 public class Factoradic {
 
@@ -31,8 +29,7 @@ public class Factoradic {
     public static final int MAX_N = 20;
 
     /**
-     * Maximum length on an array to hold a factoradic of a long value,
-     * equivalent to {@link #MAX_N} + 1.
+     * Maximum length on an array to hold a factoradic of a long value, equivalent to {@link #MAX_N} + 1.
      */
     private static final int MAX_LEN = MAX_N + 1;
 
@@ -40,7 +37,7 @@ public class Factoradic {
 
     /**
      * @param n
-     *        long
+     *            long
      */
     public Factoradic(final long n) {
         if (n < 1) {
@@ -66,7 +63,7 @@ public class Factoradic {
 
     /**
      * @param f
-     *        int[]
+     *            int[]
      */
     public Factoradic(final int[] f) {
         validate(f);
@@ -76,19 +73,17 @@ public class Factoradic {
 
     /**
      * @param f
-     *        the int[] to validate
+     *            the int[] to validate
      */
     private static void validate(final int[] f) {
         final int len = f.length;
         if (len > MAX_LEN) {
-            throw new IllegalArgumentException("Array " + Arrays.toString(f)
-                    + " has too many elements (max " + MAX_LEN + ")!");
+            throw new IllegalArgumentException("Array " + Arrays.toString(f) + " has too many elements (max " + MAX_LEN + ")!");
         }
         for (int x = 0, i = len - 1; x < len; ++x, --i) {
             final int d = f[i];
             if (d > x) {
-                throw new IllegalArgumentException("Illegal factoradic digit (" + d + ") at index " + i
-                        + "!");
+                throw new IllegalArgumentException("Illegal factoradic digit (" + d + ") at index " + i + "!");
             }
         }
     }

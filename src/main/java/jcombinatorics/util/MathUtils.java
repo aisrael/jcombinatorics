@@ -12,9 +12,8 @@
 package jcombinatorics.util;
 
 /**
- * Provides mathematical utility functions (static methods) not otherwise
- * available in {@link java.lang.Math}. Also, extends existing functions using
- * Java 5 idioms (such as varargs).
+ * Provides mathematical utility functions (static methods) not otherwise available in {@link java.lang.Math}. Also, extends existing
+ * functions using Java 5 idioms (such as varargs).
  *
  * @author Alistair A. Israel
  */
@@ -28,13 +27,12 @@ public final class MathUtils {
     }
 
     /**
-     * We only support up to 20! since 21! > {@link Long#MAX_VALUE}.
+     * We only support up to 20! since 21! &gt; {@link java.lang.Long#MAX_VALUE}.
      */
     public static final int MAX_FACTORIAL_N = 21;
 
     /**
-     * Pre-calculate factorials into a lookup table, trade O(n) space for O(1)
-     * time. :D
+     * Pre-calculate factorials into a lookup table, trade O(n) space for O(1) time. :D
      */
     private static final long[] FACTORIALS = new long[MAX_FACTORIAL_N];
     static {
@@ -45,11 +43,10 @@ public final class MathUtils {
     }
 
     /**
-     * Return <code>n!</code>, or
-     * <code>n * (n - 1) * (n - 2) * ... * 3 * 2 * 1</code>. <code>0!</code> = 1
+     * Return <code>n!</code>, or <code>n * (n - 1) * (n - 2) * ... * 3 * 2 * 1</code>. <code>0!</code> = 1
      *
      * @param n
-     *        integer <= 20 (21! > {@link Long#MAX_VALUE}).
+     *            integer &lt;= 20 (21! &gt; {@link java.lang.Long#MAX_VALUE}).
      * @return n!, or 1 if n == 0
      */
     public static long factorial(final int n) {

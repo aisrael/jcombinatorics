@@ -32,16 +32,14 @@ public final class Permutations {
     }
 
     /**
-     * Compute and return the number of permutations of <code>n</code> elements
-     * taken <code>k</code> at a time, which can be computed as:
+     * Compute and return the number of permutations of <code>n</code> elements taken <code>k</code> at a time, which can be computed as:
      * <code>n!/(n-k)!</code>
      *
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        subset/sample size
-     * @return the number of permutations of <code>n</code> elements taken
-     *         <code>k</code> at a time
+     *            subset/sample size
+     * @return the number of permutations of <code>n</code> elements taken <code>k</code> at a time
      */
     public static long count(final int n, final int k) {
         if (k > n) {
@@ -56,9 +54,9 @@ public final class Permutations {
 
     /**
      * @param n
-     *        the number of elements
+     *            the number of elements
      * @param k
-     *        taken k at a time
+     *            taken k at a time
      * @return {@link Permutations.GeneratorImpl}
      */
     public static Generator<int[]> permute(final int n, final int k) {
@@ -66,8 +64,7 @@ public final class Permutations {
     }
 
     /**
-     * An inner helper class to implement the
-     * <code>Permutations.permute(n, k)</code> DSL.
+     * An inner helper class to implement the <code>Permutations.permute(n, k)</code> DSL.
      *
      * @author Alistair A. Israel
      */
@@ -79,11 +76,11 @@ public final class Permutations {
 
         /**
          * @param n
-         *        the number of elements
+         *            the number of elements
          * @param k
-         *        taken k at a time
+         *            taken k at a time
          */
-        public GeneratorImpl(final int n, final int k) {
+        GeneratorImpl(final int n, final int k) {
             if (k != n) {
                 iteratorFactory = new SepaPnkIterator.Factory(n, k);
                 factoradic = new FactoradicPnkGenerator(n, k);
@@ -114,7 +111,7 @@ public final class Permutations {
          * Retrieve the <i>l</i>-th permutation.
          *
          * @param l
-         *        long
+         *            long
          * @return int[]
          */
         public final int[] get(final long l) {
@@ -125,9 +122,9 @@ public final class Permutations {
 
     /**
      * @param <T>
-     *        a type
+     *            a type
      * @param elements
-     *        the objects to permute
+     *            the objects to permute
      * @return an {@link Over} DSL thingie
      */
     public static <T> Over<T> over(final T[] elements) {
@@ -136,7 +133,7 @@ public final class Permutations {
 
     /**
      * @param <T>
-     *        a type
+     *            a type
      * @author Alistair A. Israel
      */
     public static class Over<T> implements Generator<T[]>, Iterable<T[]> {
@@ -149,7 +146,7 @@ public final class Permutations {
 
         /**
          * @param elements
-         *        the objects to permute
+         *            the objects to permute
          */
         public Over(final T[] elements) {
             this.elements = elements;
@@ -188,7 +185,7 @@ public final class Permutations {
 
     /**
      * @param elements
-     *        int[]
+     *            int[]
      * @return {@link Iterable}&lt;int[]&gt;
      */
     public static Iterable<int[]> of(final int... elements) {
@@ -199,10 +196,11 @@ public final class Permutations {
     }
 
     /**
-     * A base class for type-specific iterators, that just delegates to an
-     * internal {@link Iterator} returned by a
+     * A base class for type-specific iterators, that just delegates to an internal {@link Iterator} returned by a
      * {@link SepaNPermutationsGenerator}.
      *
+     * @param <T>
+     *            a type
      * @author Alistair A. Israel
      */
     private abstract static class IteratorBase<T> extends ReadOnlyIterator<T> {
@@ -211,9 +209,9 @@ public final class Permutations {
 
         /**
          * @param iter
-         *        the internal iterator
+         *            the internal iterator
          */
-        public IteratorBase(final Iterator<int[]> iter) {
+        IteratorBase(final Iterator<int[]> iter) {
             this.iter = iter;
         }
 
@@ -248,9 +246,9 @@ public final class Permutations {
 
         /**
          * @param elements
-         *        the element set
+         *            the element set
          */
-        public IntPermutator(final int[] elements) {
+        IntPermutator(final int[] elements) {
             this.elements = elements;
             this.iteratorFactory = new SepaPnIterator.Factory(elements.length);
         }
@@ -273,7 +271,7 @@ public final class Permutations {
             /**
              *
              */
-            public IntIterator() {
+            IntIterator() {
                 super(iteratorFactory.iterator());
             }
 
