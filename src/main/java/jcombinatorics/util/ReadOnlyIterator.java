@@ -26,7 +26,7 @@ public abstract class ReadOnlyIterator<T> implements Iterator<T> {
     public static final String REMOVE_OPERATION_NOT_SUPPORTED_MESSAGE = "remove() operation not supported!";
 
     /**
-     * Not supported. Throws {@link RemoveNotSupported} exception.
+     * Not supported. Throws {@link UnsupportedOperationException} exception.
      */
     public final void remove() {
         throw new UnsupportedOperationException(REMOVE_OPERATION_NOT_SUPPORTED_MESSAGE);

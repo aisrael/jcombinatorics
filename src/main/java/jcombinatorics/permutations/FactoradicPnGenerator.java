@@ -18,7 +18,7 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * P(n) generator in lexicographical order using factoradics. Supports computing the <i>i</i>-th permutation directly using
- * {@link #get(long)}. Only supports n <= 20, since 21! > {@link Long#MAX_VALUE}.
+ * {@link #get(long)}. Only supports n &lt;= 20, since 21! &gt; {@link java.lang.Long#MAX_VALUE}.
  *
  * @author Alistair A. Israel
  * @see <a href="http://en.wikipedia.org/wiki/Factoradic">http://en.wikipedia.org/wiki/Factoradic</a>

@@ -27,7 +27,7 @@ public final class MathUtils {
     }
 
     /**
-     * We only support up to 20! since 21! > {@link Long#MAX_VALUE}.
+     * We only support up to 20! since 21! &gt; {@link java.lang.Long#MAX_VALUE}.
      */
     public static final int MAX_FACTORIAL_N = 21;
 
@@ -46,7 +46,7 @@ public final class MathUtils {
      * Return <code>n!</code>, or <code>n * (n - 1) * (n - 2) * ... * 3 * 2 * 1</code>. <code>0!</code> = 1
      *
      * @param n
-     *            integer <= 20 (21! > {@link Long#MAX_VALUE}).
+     *            integer &lt;= 20 (21! &gt; {@link java.lang.Long#MAX_VALUE}).
      * @return n!, or 1 if n == 0
      */
     public static long factorial(final int n) {
