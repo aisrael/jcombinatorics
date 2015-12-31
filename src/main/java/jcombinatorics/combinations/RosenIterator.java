@@ -18,104 +18,113 @@ import jcombinatorics.util.ReadOnlyIterator;
 
 /**
  * <p>
- * An iterator that generates combinations of <code>n</code> elements, <code>C(n)</code>, in lexicographic order, based on Rosen's
- * algorithm.
+ * An iterator that generates combinations of <code>n</code> elements,
+ * <code>C(n)</code>, in lexicographic order, based on Rosen's algorithm.
  * </p>
  * <p>
- * See Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition (NY: McGraw-Hill, 1991), pp. 284-286
+ * See Kenneth H. Rosen, Discrete Mathematics and Its Applications, 2nd edition
+ * (NY: McGraw-Hill, 1991), pp. 284-286
  * </p>
  *
  * @author Alistair A. Israel
  */
 public class RosenIterator extends ReadOnlyIterator<int[]> {
 
-    private final int n;
+	private final int n;
 
-    private final int k;
+	private final int k;
 
-    private int[] a;
+	private int[] a;
 
-    private long count;
+	private long count;
 
-    /**
-     * @param n
-     *            the number of elements
-     * @param k
-     *            taken k at a time
-     */
-    public RosenIterator(final int n, final int k) {
-        super();
-        this.n = n;
-        this.k = k;
-        count = Combinations.count(n, k);
-    }
+	/**
+	 * @param n
+	 *            the number of elements
+	 * @param k
+	 *            taken k at a time
+	 */
+	public RosenIterator(final int n, final int k) {
+		super();
+		this.n = n;
+		this.k = k;
+		count = Combinations.count(n, k);
+	}
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see Iterator#hasNext()
-     */
-    public final boolean hasNext() {
-        return count > 0;
-    }
+	/**
+	 * Reset itertor for a new pass.
+	 */
+	public void reset() {
+		this.count = Combinations.count(n, k);
+		a = null;
+	}
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see Iterator#next()
-     */
-    public final int[] next() {
-        if (a == null) {
-            initialize();
-        } else {
-            int i = k - 1;
-            while (a[i] == n - k + i) {
-                i--;
-            }
-            a[i] = a[i] + 1;
-            for (int j = i + 1; j < k; j++) {
-                a[j] = a[i] + j - i;
-            }
-        }
-        --count;
-        return a;
-    }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see Iterator#hasNext()
+	 */
+	public final boolean hasNext() {
+		return count > 0;
+	}
 
-    /**
-     *
-     */
-    private void initialize() {
-        this.a = ArrayUtils.identityPermutation(k);
-    }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see Iterator#next()
+	 */
+	public final int[] next() {
+		if (a == null) {
+			initialize();
+		} else {
+			int i = k - 1;
+			while (a[i] == n - k + i) {
+				i--;
+			}
+			a[i] = a[i] + 1;
+			for (int j = i + 1; j < k; j++) {
+				a[j] = a[i] + j - i;
+			}
+		}
+		--count;
+		return a;
+	}
 
-    /**
-     * @author Alistair A. Israel
-     */
-    public static class Factory implements Iterable<int[]> {
+	/**
+	 *
+	 */
+	private void initialize() {
+		this.a = ArrayUtils.identityPermutation(k);
+	}
 
-        private final int n;
+	/**
+	 * @author Alistair A. Israel
+	 */
+	public static class Factory implements Iterable<int[]> {
 
-        private final int k;
+		private final int n;
 
-        /**
-         * @param n
-         *            the number of elements
-         * @param k
-         *            taken k at a time
-         */
-        public Factory(final int n, final int k) {
-            this.n = n;
-            this.k = k;
-        }
+		private final int k;
 
-        /**
-         * {@inheritDoc}
-         *
-         * @see java.lang.Iterable#iterator()
-         */
-        public final Iterator<int[]> iterator() {
-            return new RosenIterator(n, k);
-        }
+		/**
+		 * @param n
+		 *            the number of elements
+		 * @param k
+		 *            taken k at a time
+		 */
+		public Factory(final int n, final int k) {
+			this.n = n;
+			this.k = k;
+		}
 
-    }
+		/**
+		 * {@inheritDoc}
+		 *
+		 * @see java.lang.Iterable#iterator()
+		 */
+		public final Iterator<int[]> iterator() {
+			return new RosenIterator(n, k);
+		}
+
+	}
 }
