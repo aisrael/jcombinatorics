@@ -52,6 +52,10 @@ public class RosenNumberPartitionIterator extends ReadOnlyIterator<int[]> {
         }
         return temp;
     }
+    
+    public void reset() {
+		rosen.reset();
+	}
 
     /**
      * {@inheritDoc}
